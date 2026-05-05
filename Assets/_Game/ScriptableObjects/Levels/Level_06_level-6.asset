@@ -1,0 +1,248 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChromaCube.Data.LevelData
+  levelId: level-6
+  index: 6
+  title: Soft Crossing
+  subtitle: More floor, more color.
+  hint: Use the extra space to prepare the next bottom face.
+  width: 6
+  height: 5
+  start: {x: 1, y: 4}
+  mechanicsMode: 0
+  backgroundTexture: {fileID: 2800000, guid: 91d57a59e36890f459883026186b3875, type: 3}
+  tiles:
+  - id: l6-floor-0-0
+    worldFace: 0
+    gridPos: {x: 0, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-1-0
+    worldFace: 0
+    gridPos: {x: 1, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-2-0
+    worldFace: 0
+    gridPos: {x: 2, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-3-0
+    worldFace: 0
+    gridPos: {x: 3, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-4-0
+    worldFace: 0
+    gridPos: {x: 4, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-5-0
+    worldFace: 0
+    gridPos: {x: 5, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-0-1
+    worldFace: 0
+    gridPos: {x: 0, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-09
+    worldFace: 0
+    gridPos: {x: 1, y: 1}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l6-10
+    worldFace: 0
+    gridPos: {x: 2, y: 1}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l6-11
+    worldFace: 0
+    gridPos: {x: 3, y: 1}
+    colorId: amber
+    required: 1
+    captured: 0
+    active: 1
+  - id: l6-12
+    worldFace: 0
+    gridPos: {x: 4, y: 1}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l6-floor-5-1
+    worldFace: 0
+    gridPos: {x: 5, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-0-2
+    worldFace: 0
+    gridPos: {x: 0, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-08
+    worldFace: 0
+    gridPos: {x: 1, y: 2}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l6-07
+    worldFace: 0
+    gridPos: {x: 2, y: 2}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l6-06
+    worldFace: 0
+    gridPos: {x: 3, y: 2}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l6-floor-4-2
+    worldFace: 0
+    gridPos: {x: 4, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-5-2
+    worldFace: 0
+    gridPos: {x: 5, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-0-3
+    worldFace: 0
+    gridPos: {x: 0, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-1-3
+    worldFace: 0
+    gridPos: {x: 1, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-2-3
+    worldFace: 0
+    gridPos: {x: 2, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-3-3
+    worldFace: 0
+    gridPos: {x: 3, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-4-3
+    worldFace: 0
+    gridPos: {x: 4, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-5-3
+    worldFace: 0
+    gridPos: {x: 5, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-0-4
+    worldFace: 0
+    gridPos: {x: 0, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-1-4
+    worldFace: 0
+    gridPos: {x: 1, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-2-4
+    worldFace: 0
+    gridPos: {x: 2, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-3-4
+    worldFace: 0
+    gridPos: {x: 3, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-4-4
+    worldFace: 0
+    gridPos: {x: 4, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l6-floor-5-4
+    worldFace: 0
+    gridPos: {x: 5, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  faceColorMap:
+  - face: 0
+    colorId: mint
+  - face: 1
+    colorId: slate
+  - face: 2
+    colorId: amber
+  - face: 3
+    colorId: ocean
+  - face: 4
+    colorId: lavender
+  - face: 5
+    colorId: coral

@@ -82,21 +82,25 @@ namespace ChromaCube.UI
             titlePanel = CreatePanel("TitlePanel");
             titlePanel.GetComponent<Image>().color = new Color(0.035f, 0.055f, 0.07f, 0.98f);
             CreateTitleBackdrop(titlePanel.transform);
-            CreateTitleText(titlePanel.transform, "CHROMA CUBE", 68, new Vector2(0.5f, 0.68f), new Vector2(840f, 96f));
+            CreateTitleText(titlePanel.transform, ColorfulTitle(), "CHROMA CUBE", 68, new Vector2(0.5f, 0.68f), new Vector2(900f, 96f));
             CreateText(titlePanel.transform, "A calm color-matching cube puzzle", 23, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.575f), new Vector2(760f, 46f), new Color(0.84f, 0.93f, 0.96f));
             titleButtons.Add(CreateButton(titlePanel.transform, "Start", new Vector2(0.5f, 0.43f), () => StartLevel(0), new Vector2(290f, 58f)));
             titleButtons.Add(CreateButton(titlePanel.transform, "Level Select", new Vector2(0.5f, 0.325f), ShowLevelSelect, new Vector2(290f, 58f)));
 
             levelSelectPanel = CreatePanel("LevelSelectPanel");
-            CreateText(levelSelectPanel.transform, "Select Level", 42, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.78f), new Vector2(520f, 70f));
+            CreateText(levelSelectPanel.transform, "Select Level", 42, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.84f), new Vector2(520f, 70f));
             for (var i = 0; i < levelManager.Levels.Count; i++)
             {
                 var localIndex = i;
                 var level = levelManager.Levels[i];
-                levelSelectButtons.Add(CreateButton(levelSelectPanel.transform, $"{level.index}. {level.title}", new Vector2(0.5f, 0.62f - i * 0.11f), () => StartLevel(localIndex)));
+                var column = i < 5 ? 0 : 1;
+                var row = column == 0 ? i : i - 5;
+                var anchorX = column == 0 ? 0.36f : 0.64f;
+                var anchorY = 0.68f - row * 0.115f;
+                levelSelectButtons.Add(CreateButton(levelSelectPanel.transform, $"{level.index}. {level.title}", new Vector2(anchorX, anchorY), () => StartLevel(localIndex), new Vector2(260f, 52f)));
             }
 
-            levelSelectButtons.Add(CreateButton(levelSelectPanel.transform, "Back", new Vector2(0.5f, 0.16f), ShowTitle));
+            levelSelectButtons.Add(CreateButton(levelSelectPanel.transform, "Back", new Vector2(0.5f, 0.14f), ShowTitle, new Vector2(220f, 52f)));
 
             hudPanel = CreatePanel("HudPanel");
             hudPanel.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
@@ -254,13 +258,20 @@ namespace ChromaCube.UI
             return text;
         }
 
-        private void CreateTitleText(Transform parent, string content, int size, Vector2 anchorPosition, Vector2 dimensions)
+        private void CreateTitleText(Transform parent, string coloredContent, string shadowContent, int size, Vector2 anchorPosition, Vector2 dimensions)
         {
-            var shadow = CreateText(parent, content, size, TextAnchor.MiddleCenter, anchorPosition, dimensions, new Color(0.05f, 0.08f, 0.10f, 0.9f));
+            var shadow = CreateText(parent, shadowContent, size, TextAnchor.MiddleCenter, anchorPosition, dimensions, new Color(0.05f, 0.08f, 0.10f, 0.9f));
             shadow.GetComponent<RectTransform>().anchoredPosition = new Vector2(4f, -5f);
 
-            var title = CreateText(parent, content, size, TextAnchor.MiddleCenter, anchorPosition, dimensions, new Color(0.96f, 1f, 0.98f));
+            var title = CreateText(parent, coloredContent, size, TextAnchor.MiddleCenter, anchorPosition, dimensions, Color.white);
             title.fontStyle = FontStyle.Bold;
+            title.supportRichText = true;
+        }
+
+        private static string ColorfulTitle()
+        {
+            return "<color=#33F59E>C</color><color=#61D7FF>H</color><color=#FFD12E>R</color><color=#C27AFF>O</color><color=#FF5C6B>M</color><color=#33F59E>A</color> " +
+                   "<color=#61D7FF>C</color><color=#FFD12E>U</color><color=#C27AFF>B</color><color=#FF5C6B>E</color>";
         }
 
         private void CreateTitleBackdrop(Transform parent)

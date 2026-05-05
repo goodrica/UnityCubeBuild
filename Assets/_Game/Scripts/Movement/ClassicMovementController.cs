@@ -14,6 +14,7 @@ namespace ChromaCube.Movement
 
         private Func<Direction, bool> canMove;
         private Func<Direction, Vector3> getTargetWorldPosition;
+        private Func<Direction, Vector3> getRotationAxis;
         private Action<Direction> commitMove;
         private bool isMoving;
 
@@ -23,6 +24,15 @@ namespace ChromaCube.Movement
         {
             canMove = canMoveDelegate;
             getTargetWorldPosition = targetDelegate;
+            commitMove = commitDelegate;
+            getRotationAxis = GetClassicRotationAxis;
+        }
+
+        public void Configure(Func<Direction, bool> canMoveDelegate, Func<Direction, Vector3> targetDelegate, Func<Direction, Vector3> axisDelegate, Action<Direction> commitDelegate)
+        {
+            canMove = canMoveDelegate;
+            getTargetWorldPosition = targetDelegate;
+            getRotationAxis = axisDelegate;
             commitMove = commitDelegate;
         }
 
@@ -50,7 +60,7 @@ namespace ChromaCube.Movement
             var startPosition = transform.position;
             var targetPosition = getTargetWorldPosition(direction);
             var startRotation = transform.rotation;
-            var axis = GetRotationAxis(direction);
+            var axis = getRotationAxis != null ? getRotationAxis(direction) : GetClassicRotationAxis(direction);
             var elapsed = 0f;
 
             while (elapsed < moveDuration)
@@ -70,7 +80,7 @@ namespace ChromaCube.Movement
             isMoving = false;
         }
 
-        private static Vector3 GetRotationAxis(Direction direction)
+        private static Vector3 GetClassicRotationAxis(Direction direction)
         {
             switch (direction)
             {

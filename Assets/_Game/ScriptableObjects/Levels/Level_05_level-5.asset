@@ -1,0 +1,710 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChromaCube.Data.LevelData
+  levelId: level-5
+  index: 5
+  title: World Cube
+  subtitle: 'Bonus round: roll across every side.'
+  hint: Cross the edges of the large cube and solve colored tiles on each face.
+  width: 4
+  height: 4
+  start: {x: 1, y: 1}
+  mechanicsMode: 1
+  backgroundTexture: {fileID: 2800000, guid: c5944936ff0b0b7419b82413128567dd, type: 3}
+  tiles:
+  - id: l5-Top-0-0
+    worldFace: 0
+    gridPos: {x: 0, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-1-0
+    worldFace: 0
+    gridPos: {x: 1, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-2-0
+    worldFace: 0
+    gridPos: {x: 2, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-3-0
+    worldFace: 0
+    gridPos: {x: 3, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-0-1
+    worldFace: 0
+    gridPos: {x: 0, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-1-1
+    worldFace: 0
+    gridPos: {x: 1, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-2-1
+    worldFace: 0
+    gridPos: {x: 2, y: 1}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l5-Top-3-1
+    worldFace: 0
+    gridPos: {x: 3, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-0-2
+    worldFace: 0
+    gridPos: {x: 0, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-1-2
+    worldFace: 0
+    gridPos: {x: 1, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-2-2
+    worldFace: 0
+    gridPos: {x: 2, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-3-2
+    worldFace: 0
+    gridPos: {x: 3, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-0-3
+    worldFace: 0
+    gridPos: {x: 0, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-1-3
+    worldFace: 0
+    gridPos: {x: 1, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-2-3
+    worldFace: 0
+    gridPos: {x: 2, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Top-3-3
+    worldFace: 0
+    gridPos: {x: 3, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-0-0
+    worldFace: 1
+    gridPos: {x: 0, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-1-0
+    worldFace: 1
+    gridPos: {x: 1, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-2-0
+    worldFace: 1
+    gridPos: {x: 2, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-3-0
+    worldFace: 1
+    gridPos: {x: 3, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-0-1
+    worldFace: 1
+    gridPos: {x: 0, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-1-1
+    worldFace: 1
+    gridPos: {x: 1, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-2-1
+    worldFace: 1
+    gridPos: {x: 2, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-3-1
+    worldFace: 1
+    gridPos: {x: 3, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-0-2
+    worldFace: 1
+    gridPos: {x: 0, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-1-2
+    worldFace: 1
+    gridPos: {x: 1, y: 2}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l5-Bottom-2-2
+    worldFace: 1
+    gridPos: {x: 2, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-3-2
+    worldFace: 1
+    gridPos: {x: 3, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-0-3
+    worldFace: 1
+    gridPos: {x: 0, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-1-3
+    worldFace: 1
+    gridPos: {x: 1, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-2-3
+    worldFace: 1
+    gridPos: {x: 2, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-Bottom-3-3
+    worldFace: 1
+    gridPos: {x: 3, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-0-0
+    worldFace: 2
+    gridPos: {x: 0, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-1-0
+    worldFace: 2
+    gridPos: {x: 1, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-2-0
+    worldFace: 2
+    gridPos: {x: 2, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-3-0
+    worldFace: 2
+    gridPos: {x: 3, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-0-1
+    worldFace: 2
+    gridPos: {x: 0, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-1-1
+    worldFace: 2
+    gridPos: {x: 1, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-2-1
+    worldFace: 2
+    gridPos: {x: 2, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-3-1
+    worldFace: 2
+    gridPos: {x: 3, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-0-2
+    worldFace: 2
+    gridPos: {x: 0, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-1-2
+    worldFace: 2
+    gridPos: {x: 1, y: 2}
+    colorId: amber
+    required: 1
+    captured: 0
+    active: 1
+  - id: l5-North-2-2
+    worldFace: 2
+    gridPos: {x: 2, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-3-2
+    worldFace: 2
+    gridPos: {x: 3, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-0-3
+    worldFace: 2
+    gridPos: {x: 0, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-1-3
+    worldFace: 2
+    gridPos: {x: 1, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-2-3
+    worldFace: 2
+    gridPos: {x: 2, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-North-3-3
+    worldFace: 2
+    gridPos: {x: 3, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-0-0
+    worldFace: 3
+    gridPos: {x: 0, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-1-0
+    worldFace: 3
+    gridPos: {x: 1, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-2-0
+    worldFace: 3
+    gridPos: {x: 2, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-3-0
+    worldFace: 3
+    gridPos: {x: 3, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-0-1
+    worldFace: 3
+    gridPos: {x: 0, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-1-1
+    worldFace: 3
+    gridPos: {x: 1, y: 1}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l5-South-2-1
+    worldFace: 3
+    gridPos: {x: 2, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-3-1
+    worldFace: 3
+    gridPos: {x: 3, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-0-2
+    worldFace: 3
+    gridPos: {x: 0, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-1-2
+    worldFace: 3
+    gridPos: {x: 1, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-2-2
+    worldFace: 3
+    gridPos: {x: 2, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-3-2
+    worldFace: 3
+    gridPos: {x: 3, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-0-3
+    worldFace: 3
+    gridPos: {x: 0, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-1-3
+    worldFace: 3
+    gridPos: {x: 1, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-2-3
+    worldFace: 3
+    gridPos: {x: 2, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-South-3-3
+    worldFace: 3
+    gridPos: {x: 3, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-0-0
+    worldFace: 4
+    gridPos: {x: 0, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-1-0
+    worldFace: 4
+    gridPos: {x: 1, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-2-0
+    worldFace: 4
+    gridPos: {x: 2, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-3-0
+    worldFace: 4
+    gridPos: {x: 3, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-0-1
+    worldFace: 4
+    gridPos: {x: 0, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-1-1
+    worldFace: 4
+    gridPos: {x: 1, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-2-1
+    worldFace: 4
+    gridPos: {x: 2, y: 1}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l5-East-3-1
+    worldFace: 4
+    gridPos: {x: 3, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-0-2
+    worldFace: 4
+    gridPos: {x: 0, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-1-2
+    worldFace: 4
+    gridPos: {x: 1, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-2-2
+    worldFace: 4
+    gridPos: {x: 2, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-3-2
+    worldFace: 4
+    gridPos: {x: 3, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-0-3
+    worldFace: 4
+    gridPos: {x: 0, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-1-3
+    worldFace: 4
+    gridPos: {x: 1, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-2-3
+    worldFace: 4
+    gridPos: {x: 2, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-East-3-3
+    worldFace: 4
+    gridPos: {x: 3, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-0-0
+    worldFace: 5
+    gridPos: {x: 0, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-1-0
+    worldFace: 5
+    gridPos: {x: 1, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-2-0
+    worldFace: 5
+    gridPos: {x: 2, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-3-0
+    worldFace: 5
+    gridPos: {x: 3, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-0-1
+    worldFace: 5
+    gridPos: {x: 0, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-1-1
+    worldFace: 5
+    gridPos: {x: 1, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-2-1
+    worldFace: 5
+    gridPos: {x: 2, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-3-1
+    worldFace: 5
+    gridPos: {x: 3, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-0-2
+    worldFace: 5
+    gridPos: {x: 0, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-1-2
+    worldFace: 5
+    gridPos: {x: 1, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-2-2
+    worldFace: 5
+    gridPos: {x: 2, y: 2}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l5-West-3-2
+    worldFace: 5
+    gridPos: {x: 3, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-0-3
+    worldFace: 5
+    gridPos: {x: 0, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-1-3
+    worldFace: 5
+    gridPos: {x: 1, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-2-3
+    worldFace: 5
+    gridPos: {x: 2, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l5-West-3-3
+    worldFace: 5
+    gridPos: {x: 3, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  faceColorMap:
+  - face: 0
+    colorId: mint
+  - face: 1
+    colorId: slate
+  - face: 2
+    colorId: amber
+  - face: 3
+    colorId: ocean
+  - face: 4
+    colorId: lavender
+  - face: 5
+    colorId: coral

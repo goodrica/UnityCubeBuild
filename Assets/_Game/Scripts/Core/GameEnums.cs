@@ -29,4 +29,14 @@ namespace ChromaCube.Core
         Classic,
         WorldCube
     }
+
+    public enum WorldCubeFace
+    {
+        Top,
+        Bottom,
+        North,
+        South,
+        East,
+        West
+    }
 }

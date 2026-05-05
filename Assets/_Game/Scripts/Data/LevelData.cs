@@ -16,6 +16,7 @@ namespace ChromaCube.Data
         public int height;
         public Vector2Int start;
         public MechanicsMode mechanicsMode = MechanicsMode.Classic;
+        public Texture2D backgroundTexture;
         public List<TileData> tiles = new List<TileData>();
         public List<FaceColorEntry> faceColorMap = new List<FaceColorEntry>();
 

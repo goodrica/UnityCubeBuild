@@ -1,0 +1,332 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChromaCube.Data.LevelData
+  levelId: level-8
+  index: 8
+  title: Open Drift
+  subtitle: The puzzle breathes outward.
+  hint: Each claimed tile fades back, leaving the remaining colors clear.
+  width: 7
+  height: 6
+  start: {x: 1, y: 5}
+  mechanicsMode: 0
+  backgroundTexture: {fileID: 2800000, guid: 91d57a59e36890f459883026186b3875, type: 3}
+  tiles:
+  - id: l8-floor-0-0
+    worldFace: 0
+    gridPos: {x: 0, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-1-0
+    worldFace: 0
+    gridPos: {x: 1, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-2-0
+    worldFace: 0
+    gridPos: {x: 2, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-3-0
+    worldFace: 0
+    gridPos: {x: 3, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-4-0
+    worldFace: 0
+    gridPos: {x: 4, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-5-0
+    worldFace: 0
+    gridPos: {x: 5, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-6-0
+    worldFace: 0
+    gridPos: {x: 6, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-0-1
+    worldFace: 0
+    gridPos: {x: 0, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-12
+    worldFace: 0
+    gridPos: {x: 1, y: 1}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l8-13
+    worldFace: 0
+    gridPos: {x: 2, y: 1}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l8-14
+    worldFace: 0
+    gridPos: {x: 3, y: 1}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l8-15
+    worldFace: 0
+    gridPos: {x: 4, y: 1}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l8-16
+    worldFace: 0
+    gridPos: {x: 5, y: 1}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l8-floor-6-1
+    worldFace: 0
+    gridPos: {x: 6, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-0-2
+    worldFace: 0
+    gridPos: {x: 0, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-11
+    worldFace: 0
+    gridPos: {x: 1, y: 2}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l8-floor-2-2
+    worldFace: 0
+    gridPos: {x: 2, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-3-2
+    worldFace: 0
+    gridPos: {x: 3, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-4-2
+    worldFace: 0
+    gridPos: {x: 4, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-5-2
+    worldFace: 0
+    gridPos: {x: 5, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-6-2
+    worldFace: 0
+    gridPos: {x: 6, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-0-3
+    worldFace: 0
+    gridPos: {x: 0, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-10
+    worldFace: 0
+    gridPos: {x: 1, y: 3}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l8-09
+    worldFace: 0
+    gridPos: {x: 2, y: 3}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l8-08
+    worldFace: 0
+    gridPos: {x: 3, y: 3}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l8-floor-4-3
+    worldFace: 0
+    gridPos: {x: 4, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-5-3
+    worldFace: 0
+    gridPos: {x: 5, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-6-3
+    worldFace: 0
+    gridPos: {x: 6, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-0-4
+    worldFace: 0
+    gridPos: {x: 0, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-1-4
+    worldFace: 0
+    gridPos: {x: 1, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-2-4
+    worldFace: 0
+    gridPos: {x: 2, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-3-4
+    worldFace: 0
+    gridPos: {x: 3, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-4-4
+    worldFace: 0
+    gridPos: {x: 4, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-5-4
+    worldFace: 0
+    gridPos: {x: 5, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-6-4
+    worldFace: 0
+    gridPos: {x: 6, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-0-5
+    worldFace: 0
+    gridPos: {x: 0, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-1-5
+    worldFace: 0
+    gridPos: {x: 1, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-2-5
+    worldFace: 0
+    gridPos: {x: 2, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-3-5
+    worldFace: 0
+    gridPos: {x: 3, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-4-5
+    worldFace: 0
+    gridPos: {x: 4, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-5-5
+    worldFace: 0
+    gridPos: {x: 5, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l8-floor-6-5
+    worldFace: 0
+    gridPos: {x: 6, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  faceColorMap:
+  - face: 0
+    colorId: mint
+  - face: 1
+    colorId: slate
+  - face: 2
+    colorId: amber
+  - face: 3
+    colorId: ocean
+  - face: 4
+    colorId: lavender
+  - face: 5
+    colorId: coral

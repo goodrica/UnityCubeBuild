@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
-  m_Name: Level_03_level-3
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChromaCube.Data.LevelData
   levelId: level-3
   index: 3
@@ -21,38 +21,45 @@ MonoBehaviour:
   height: 4
   start: {x: 1, y: 2}
   mechanicsMode: 0
+  backgroundTexture: {fileID: 0}
   tiles:
   - id: l3-a
+    worldFace: 0
     gridPos: {x: 1, y: 2}
     colorId: stone
     required: 0
     captured: 0
     active: 1
   - id: l3-b
+    worldFace: 0
     gridPos: {x: 1, y: 1}
     colorId: ocean
     required: 1
     captured: 0
     active: 1
   - id: l3-c
+    worldFace: 0
     gridPos: {x: 2, y: 1}
     colorId: coral
     required: 1
     captured: 0
     active: 1
   - id: l3-d
+    worldFace: 0
     gridPos: {x: 2, y: 2}
     colorId: mint
     required: 1
     captured: 0
     active: 1
   - id: l3-e
+    worldFace: 0
     gridPos: {x: 0, y: 2}
     colorId: stone
     required: 0
     captured: 0
     active: 1
   - id: l3-f
+    worldFace: 0
     gridPos: {x: 0, y: 1}
     colorId: stone
     required: 0

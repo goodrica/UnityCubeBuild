@@ -27,6 +27,7 @@ namespace ChromaCube.Level
         private LevelData currentLevel;
         private CubeOrientation orientation;
         private Vector2Int cubeGridPosition;
+        private WorldCubeFace cubeWorldFace;
         private bool completed;
 
         public bool AcceptsInput => currentLevel != null && !completed && movementController != null && !movementController.IsMoving;
@@ -52,15 +53,32 @@ namespace ChromaCube.Level
             CurrentLevelIndex = listIndex;
             currentLevel = Instantiate(levels[listIndex]);
             currentLevel.tiles = CloneTiles(levels[listIndex].tiles);
+            if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
+            {
+                PopulateWorldCubeTiles(currentLevel);
+            }
+
             orientation = CubeOrientation.Identity();
             cubeGridPosition = currentLevel.start;
+            cubeWorldFace = WorldCubeFace.Top;
             completed = false;
 
             boardRenderer.Render(currentLevel);
             cubeRenderer.Build(currentLevel);
-            cubeRenderer.transform.position = boardRenderer.GridToWorld(cubeGridPosition, currentLevel) + Vector3.up * 0.62f;
-            cubeRenderer.transform.rotation = Quaternion.identity;
-            movementController.Configure(CanMove, GetTargetPosition, CommitMove);
+            if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
+            {
+                var frame = BoardRenderer.GetWorldCubeFrame(cubeWorldFace);
+                cubeRenderer.transform.position = boardRenderer.WorldCubeTileCenter(cubeWorldFace, cubeGridPosition, currentLevel) + frame.normal * 0.62f;
+                cubeRenderer.transform.rotation = boardRenderer.WorldCubeSurfaceRotation(cubeWorldFace);
+                movementController.Configure(CanMove, GetTargetPosition, GetRotationAxis, CommitMove);
+            }
+            else
+            {
+                cubeRenderer.transform.position = boardRenderer.GridToWorld(cubeGridPosition, currentLevel) + Vector3.up * 0.62f;
+                cubeRenderer.transform.rotation = Quaternion.identity;
+                movementController.Configure(CanMove, GetTargetPosition, CommitMove);
+            }
+
             cameraRig.Configure(cubeRenderer.transform, currentLevel);
 
             ResolveCapture();
@@ -90,14 +108,19 @@ namespace ChromaCube.Level
                 return;
             }
 
-            var cubeScreenPosition = viewCamera.WorldToScreenPoint(boardRenderer.GridToWorld(cubeGridPosition, currentLevel));
+            var cubeWorldPosition = currentLevel.mechanicsMode == MechanicsMode.WorldCube
+                ? GetCurrentWorldCubePosition()
+                : boardRenderer.GridToWorld(cubeGridPosition, currentLevel);
+            var cubeScreenPosition = viewCamera.WorldToScreenPoint(cubeWorldPosition);
             var bestDirection = Direction.North;
             var bestDot = float.NegativeInfinity;
 
             foreach (var direction in new[] { Direction.North, Direction.South, Direction.East, Direction.West })
             {
-                var targetGridPosition = cubeGridPosition + DirectionToGridOffset(direction);
-                var targetScreenPosition = viewCamera.WorldToScreenPoint(boardRenderer.GridToWorld(targetGridPosition, currentLevel));
+                var targetWorldPosition = currentLevel.mechanicsMode == MechanicsMode.WorldCube
+                    ? GetWorldCubeTargetCenter(direction)
+                    : boardRenderer.GridToWorld(cubeGridPosition + DirectionToGridOffset(direction), currentLevel);
+                var targetScreenPosition = viewCamera.WorldToScreenPoint(targetWorldPosition);
                 var screenDelta = new Vector2(targetScreenPosition.x - cubeScreenPosition.x, targetScreenPosition.y - cubeScreenPosition.y);
                 if (screenDelta.sqrMagnitude < 0.001f)
                 {
@@ -136,19 +159,59 @@ namespace ChromaCube.Level
 
         private bool CanMove(Direction direction)
         {
+            if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
+            {
+                var worldTarget = GetWorldCubeTarget(direction);
+                return GetTileAt(worldTarget.face, worldTarget.gridPosition) != null;
+            }
+
             var target = cubeGridPosition + DirectionToGridOffset(direction);
             return GetTileAt(target) != null;
         }
 
         private Vector3 GetTargetPosition(Direction direction)
         {
+            if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
+            {
+                var worldTarget = GetWorldCubeTarget(direction);
+                return boardRenderer.WorldCubeTileCenter(worldTarget.face, worldTarget.gridPosition, currentLevel) + worldTarget.frame.normal * 0.62f;
+            }
+
             var target = cubeGridPosition + DirectionToGridOffset(direction);
             return boardRenderer.GridToWorld(target, currentLevel) + Vector3.up * 0.62f;
         }
 
+        private Vector3 GetRotationAxis(Direction direction)
+        {
+            var frame = BoardRenderer.GetWorldCubeFrame(cubeWorldFace);
+            switch (direction)
+            {
+                case Direction.North:
+                    return frame.right;
+                case Direction.South:
+                    return -frame.right;
+                case Direction.East:
+                    return -frame.forward;
+                case Direction.West:
+                    return frame.forward;
+                default:
+                    return frame.right;
+            }
+        }
+
         private void CommitMove(Direction direction)
         {
-            cubeGridPosition += DirectionToGridOffset(direction);
+            if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
+            {
+                var target = GetWorldCubeTarget(direction);
+                cubeWorldFace = target.face;
+                cubeGridPosition = target.gridPosition;
+            }
+            else
+            {
+                cubeGridPosition += DirectionToGridOffset(direction);
+            }
+
             orientation.Roll(direction);
             ResolveCapture();
         }
@@ -174,6 +237,11 @@ namespace ChromaCube.Level
 
         private TileData GetTileAt(Vector2Int gridPosition)
         {
+            if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
+            {
+                return GetTileAt(cubeWorldFace, gridPosition);
+            }
+
             foreach (var tile in currentLevel.tiles)
             {
                 if (tile.active && tile.gridPos == gridPosition)
@@ -183,6 +251,74 @@ namespace ChromaCube.Level
             }
 
             return null;
+        }
+
+        private TileData GetTileAt(WorldCubeFace face, Vector2Int gridPosition)
+        {
+            foreach (var tile in currentLevel.tiles)
+            {
+                if (tile.active && tile.worldFace == face && tile.gridPos == gridPosition)
+                {
+                    return tile;
+                }
+            }
+
+            return null;
+        }
+
+        private Vector3 GetCurrentWorldCubePosition()
+        {
+            var frame = BoardRenderer.GetWorldCubeFrame(cubeWorldFace);
+            return boardRenderer.WorldCubeTileCenter(cubeWorldFace, cubeGridPosition, currentLevel) + frame.normal * 0.62f;
+        }
+
+        private Vector3 GetWorldCubeTargetCenter(Direction direction)
+        {
+            var target = GetWorldCubeTarget(direction);
+            return boardRenderer.WorldCubeTileCenter(target.face, target.gridPosition, currentLevel) + target.frame.normal * 0.62f;
+        }
+
+        private WorldCubeTarget GetWorldCubeTarget(Direction direction)
+        {
+            var gridPosition = cubeGridPosition + DirectionToGridOffset(direction);
+            var frame = BoardRenderer.GetWorldCubeFrame(cubeWorldFace);
+            var size = Mathf.Max(currentLevel.width, currentLevel.height);
+
+            if (gridPosition.x >= 0 && gridPosition.x < size && gridPosition.y >= 0 && gridPosition.y < size)
+            {
+                return new WorldCubeTarget(cubeWorldFace, gridPosition, frame);
+            }
+
+            var nextFrame = frame;
+            if (gridPosition.y < 0)
+            {
+                nextFrame = RotateWorldCubeFrame(frame, frame.right, 90f);
+                gridPosition.y = size - 1;
+            }
+            else if (gridPosition.y >= size)
+            {
+                nextFrame = RotateWorldCubeFrame(frame, frame.right, -90f);
+                gridPosition.y = 0;
+            }
+            else if (gridPosition.x >= size)
+            {
+                nextFrame = RotateWorldCubeFrame(frame, frame.forward, -90f);
+                gridPosition.x = 0;
+            }
+            else if (gridPosition.x < 0)
+            {
+                nextFrame = RotateWorldCubeFrame(frame, frame.forward, 90f);
+                gridPosition.x = size - 1;
+            }
+
+            var face = BoardRenderer.FaceFromNormal(nextFrame.normal);
+            return new WorldCubeTarget(face, gridPosition, nextFrame);
+        }
+
+        private static WorldCubeFrame RotateWorldCubeFrame(WorldCubeFrame frame, Vector3 axis, float angle)
+        {
+            var rotation = Quaternion.AngleAxis(angle, axis);
+            return new WorldCubeFrame(rotation * frame.normal, rotation * frame.right, rotation * frame.forward);
         }
 
         private int CountRequired()
@@ -235,6 +371,68 @@ namespace ChromaCube.Level
             }
 
             return clone;
+        }
+
+        private static void PopulateWorldCubeTiles(LevelData level)
+        {
+            var size = Mathf.Max(4, Mathf.Max(level.width, level.height));
+            level.width = size;
+            level.height = size;
+            level.tiles = new List<TileData>();
+
+            foreach (WorldCubeFace face in Enum.GetValues(typeof(WorldCubeFace)))
+            {
+                for (var row = 0; row < size; row++)
+                {
+                    for (var col = 0; col < size; col++)
+                    {
+                        level.tiles.Add(new TileData
+                        {
+                            id = $"world-{face}-{col}-{row}",
+                            worldFace = face,
+                            gridPos = new Vector2Int(col, row),
+                            colorId = "stone",
+                            required = false,
+                            captured = false,
+                            active = true
+                        });
+                    }
+                }
+            }
+
+            SetWorldGoal(level.tiles, WorldCubeFace.Top, 2, 1, "lavender");
+            SetWorldGoal(level.tiles, WorldCubeFace.North, 1, 2, "amber");
+            SetWorldGoal(level.tiles, WorldCubeFace.East, 2, 1, "mint");
+            SetWorldGoal(level.tiles, WorldCubeFace.South, 1, 1, "ocean");
+            SetWorldGoal(level.tiles, WorldCubeFace.West, 2, 2, "coral");
+            SetWorldGoal(level.tiles, WorldCubeFace.Bottom, 1, 2, "slate");
+        }
+
+        private static void SetWorldGoal(List<TileData> tiles, WorldCubeFace face, int col, int row, string colorId)
+        {
+            foreach (var tile in tiles)
+            {
+                if (tile.worldFace == face && tile.gridPos == new Vector2Int(col, row))
+                {
+                    tile.colorId = colorId;
+                    tile.required = true;
+                    return;
+                }
+            }
+        }
+
+        private readonly struct WorldCubeTarget
+        {
+            public readonly WorldCubeFace face;
+            public readonly Vector2Int gridPosition;
+            public readonly WorldCubeFrame frame;
+
+            public WorldCubeTarget(WorldCubeFace face, Vector2Int gridPosition, WorldCubeFrame frame)
+            {
+                this.face = face;
+                this.gridPosition = gridPosition;
+                this.frame = frame;
+            }
         }
     }
 }

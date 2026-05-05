@@ -126,7 +126,64 @@ namespace ChromaCube.EditorTools
                         Tile("l4-g", 1, 0, "stone", false),
                         Tile("l4-h", 2, 0, "amber", true),
                         Tile("l4-i", 3, 0, "stone", false)
-                    })
+                    }),
+                WorldCubeLevel(
+                    "level-5",
+                    5,
+                    "World Cube",
+                    "Bonus round: roll across every side.",
+                    "Cross the edges of the large cube and solve colored tiles on each face.",
+                    4,
+                    new Vector2Int(1, 1),
+                    LoadBackgroundTexture(5)),
+                PathLevel(
+                    "level-6",
+                    6,
+                    "Soft Crossing",
+                    "More floor, more color.",
+                    "Use the extra space to prepare the next bottom face.",
+                    6,
+                    5,
+                    new Vector2Int(1, 4),
+                    new[] { Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.West, Direction.West, Direction.West, Direction.North, Direction.East, Direction.East, Direction.East },
+                    7,
+                    LoadBackgroundTexture(6)),
+                PathLevel(
+                    "level-7",
+                    7,
+                    "Gentle Switchback",
+                    "A longer calm route.",
+                    "Rotate the view and move by what you see on screen.",
+                    6,
+                    6,
+                    new Vector2Int(0, 5),
+                    new[] { Direction.East, Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.West, Direction.West, Direction.West, Direction.North, Direction.North, Direction.East, Direction.East, Direction.East },
+                    8,
+                    LoadBackgroundTexture(5)),
+                PathLevel(
+                    "level-8",
+                    8,
+                    "Open Drift",
+                    "The puzzle breathes outward.",
+                    "Each claimed tile fades back, leaving the remaining colors clear.",
+                    7,
+                    6,
+                    new Vector2Int(1, 5),
+                    new[] { Direction.East, Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.West, Direction.West, Direction.West, Direction.West, Direction.North, Direction.North, Direction.East, Direction.East, Direction.East, Direction.East },
+                    9,
+                    LoadBackgroundTexture(6)),
+                PathLevel(
+                    "level-9",
+                    9,
+                    "Chroma Garden",
+                    "The largest classic board so far.",
+                    "Plan the route and let the camera guide your directions.",
+                    7,
+                    7,
+                    new Vector2Int(0, 6),
+                    new[] { Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.West, Direction.West, Direction.West, Direction.West, Direction.West, Direction.North, Direction.North, Direction.East, Direction.East, Direction.East, Direction.East },
+                    10,
+                    LoadBackgroundTexture(5))
             };
 
             for (var i = 0; i < levels.Count; i++)
@@ -174,17 +231,169 @@ namespace ChromaCube.EditorTools
             return level;
         }
 
+        private static LevelData PathLevel(string id, int index, string title, string subtitle, string hint, int width, int height, Vector2Int start, Direction[] path, int requiredCount, Texture2D backgroundTexture)
+        {
+            var tiles = new List<TileData>();
+            var position = start;
+            var orientation = CubeOrientation.Identity();
+            var requiredByPosition = new Dictionary<Vector2Int, TileData>();
+            var pathTiles = new List<TileData>
+            {
+                Tile($"l{index}-00", position.x, position.y, "stone", false)
+            };
+
+            for (var i = 0; i < path.Length; i++)
+            {
+                orientation.Roll(path[i]);
+                position += DirectionToGridOffset(path[i]);
+                var bottomColor = ColorForFace(orientation.GetBottomFace());
+                pathTiles.Add(Tile($"l{index}-{i + 1:00}", position.x, position.y, bottomColor, true));
+            }
+
+            var firstRequiredIndex = Mathf.Max(1, pathTiles.Count - requiredCount);
+            for (var i = 0; i < pathTiles.Count; i++)
+            {
+                if (i < firstRequiredIndex)
+                {
+                    pathTiles[i].colorId = "stone";
+                    pathTiles[i].required = false;
+                }
+                else
+                {
+                    requiredByPosition[pathTiles[i].gridPos] = pathTiles[i];
+                }
+            }
+
+            for (var row = 0; row < height; row++)
+            {
+                for (var col = 0; col < width; col++)
+                {
+                    var gridPos = new Vector2Int(col, row);
+                    if (requiredByPosition.TryGetValue(gridPos, out var requiredTile))
+                    {
+                        tiles.Add(requiredTile);
+                    }
+                    else
+                    {
+                        tiles.Add(Tile($"l{index}-floor-{col}-{row}", col, row, "stone", false));
+                    }
+                }
+            }
+
+            var level = Level(id, index, title, subtitle, hint, width, height, start, tiles.ToArray());
+            level.backgroundTexture = backgroundTexture;
+            return level;
+        }
+
+        private static LevelData WorldCubeLevel(string id, int index, string title, string subtitle, string hint, int size, Vector2Int start, Texture2D backgroundTexture)
+        {
+            var tiles = new List<TileData>();
+            foreach (WorldCubeFace face in System.Enum.GetValues(typeof(WorldCubeFace)))
+            {
+                for (var row = 0; row < size; row++)
+                {
+                    for (var col = 0; col < size; col++)
+                    {
+                        tiles.Add(WorldTile($"l{index}-{face}-{col}-{row}", face, col, row, "stone", false));
+                    }
+                }
+            }
+
+            AddGoal(tiles, WorldCubeFace.Top, 2, 1, "lavender");
+            AddGoal(tiles, WorldCubeFace.North, 1, 2, "amber");
+            AddGoal(tiles, WorldCubeFace.East, 2, 1, "mint");
+            AddGoal(tiles, WorldCubeFace.South, 1, 1, "ocean");
+            AddGoal(tiles, WorldCubeFace.West, 2, 2, "coral");
+            AddGoal(tiles, WorldCubeFace.Bottom, 1, 2, "slate");
+
+            var level = Level(id, index, title, subtitle, hint, size, size, start, tiles.ToArray());
+            level.mechanicsMode = MechanicsMode.WorldCube;
+            level.backgroundTexture = backgroundTexture;
+            return level;
+        }
+
+        private static void AddGoal(List<TileData> tiles, WorldCubeFace face, int col, int row, string colorId)
+        {
+            for (var i = 0; i < tiles.Count; i++)
+            {
+                if (tiles[i].worldFace == face && tiles[i].gridPos == new Vector2Int(col, row))
+                {
+                    tiles[i].colorId = colorId;
+                    tiles[i].required = true;
+                    return;
+                }
+            }
+        }
+
         private static TileData Tile(string id, int col, int row, string colorId, bool required)
         {
             return new TileData
             {
                 id = id,
+                worldFace = WorldCubeFace.Top,
                 gridPos = new Vector2Int(col, row),
                 colorId = colorId,
                 required = required,
                 captured = false,
                 active = true
             };
+        }
+
+        private static TileData WorldTile(string id, WorldCubeFace face, int col, int row, string colorId, bool required)
+        {
+            return new TileData
+            {
+                id = id,
+                worldFace = face,
+                gridPos = new Vector2Int(col, row),
+                colorId = colorId,
+                required = required,
+                captured = false,
+                active = true
+            };
+        }
+
+        private static Vector2Int DirectionToGridOffset(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.North:
+                    return new Vector2Int(0, -1);
+                case Direction.South:
+                    return new Vector2Int(0, 1);
+                case Direction.East:
+                    return new Vector2Int(1, 0);
+                case Direction.West:
+                    return new Vector2Int(-1, 0);
+                default:
+                    return Vector2Int.zero;
+            }
+        }
+
+        private static string ColorForFace(FaceKey face)
+        {
+            switch (face)
+            {
+                case FaceKey.Top:
+                    return "mint";
+                case FaceKey.Bottom:
+                    return "slate";
+                case FaceKey.North:
+                    return "amber";
+                case FaceKey.South:
+                    return "ocean";
+                case FaceKey.East:
+                    return "lavender";
+                case FaceKey.West:
+                    return "coral";
+                default:
+                    return "stone";
+            }
+        }
+
+        private static Texture2D LoadBackgroundTexture(int levelIndex)
+        {
+            return AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/_Game/Textures/{levelIndex}.png");
         }
 
         private static void CreateGameScene(List<LevelData> levels)

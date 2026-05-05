@@ -14,8 +14,11 @@ namespace ChromaCube.Cameras
         [SerializeField] private float pitchSensitivity = 0.12f;
         [SerializeField] private float minPitch = 24f;
         [SerializeField] private float maxPitch = 68f;
+        [SerializeField] private float backgroundDistance = 35f;
 
         private Transform target;
+        private GameObject backgroundQuad;
+        private Material backgroundMaterial;
         private float yaw = 35f;
         private float pitch = 42f;
 
@@ -38,6 +41,7 @@ namespace ChromaCube.Cameras
             }
 
             EnsureAudioListener();
+            ConfigureBackground(level);
             Snap();
         }
 
@@ -57,6 +61,7 @@ namespace ChromaCube.Cameras
 
             targetCamera.transform.position = Vector3.Lerp(targetCamera.transform.position, desired, Time.deltaTime * smooth);
             targetCamera.transform.LookAt(lookAt);
+            PositionBackground();
         }
 
         private void ReadOrbitDrag()
@@ -82,6 +87,7 @@ namespace ChromaCube.Cameras
             var lookAt = target.position + Vector3.up * 0.25f;
             targetCamera.transform.position = lookAt + orbitRotation * new Vector3(0f, 0f, -distance) + Vector3.up * height * 0.18f;
             targetCamera.transform.LookAt(lookAt);
+            PositionBackground();
         }
 
         private void EnsureAudioListener()
@@ -92,6 +98,60 @@ namespace ChromaCube.Cameras
             }
 
             targetCamera.gameObject.AddComponent<AudioListener>();
+        }
+
+        private void ConfigureBackground(LevelData level)
+        {
+            if (targetCamera == null)
+            {
+                return;
+            }
+
+            if (backgroundQuad == null)
+            {
+                backgroundQuad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+                backgroundQuad.name = "CameraBackground";
+                backgroundQuad.transform.SetParent(targetCamera.transform, false);
+                var collider = backgroundQuad.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    Destroy(collider);
+                }
+            }
+
+            if (level.backgroundTexture == null)
+            {
+                backgroundQuad.SetActive(false);
+                targetCamera.clearFlags = CameraClearFlags.SolidColor;
+                return;
+            }
+
+            if (backgroundMaterial == null)
+            {
+                var shader = Shader.Find("Unlit/Texture");
+                backgroundMaterial = new Material(shader);
+            }
+
+            backgroundMaterial.mainTexture = level.backgroundTexture;
+            backgroundQuad.GetComponent<Renderer>().sharedMaterial = backgroundMaterial;
+            backgroundQuad.SetActive(true);
+            targetCamera.clearFlags = CameraClearFlags.SolidColor;
+            PositionBackground();
+        }
+
+        private void PositionBackground()
+        {
+            if (targetCamera == null || backgroundQuad == null || !backgroundQuad.activeSelf)
+            {
+                return;
+            }
+
+            var distanceToPlane = backgroundDistance;
+            var frustumHeight = 2f * distanceToPlane * Mathf.Tan(targetCamera.fieldOfView * 0.5f * Mathf.Deg2Rad);
+            var frustumWidth = frustumHeight * targetCamera.aspect;
+            backgroundQuad.transform.localPosition = new Vector3(0f, 0f, distanceToPlane);
+            backgroundQuad.transform.localRotation = Quaternion.identity;
+            backgroundQuad.transform.localScale = new Vector3(frustumWidth, frustumHeight, 1f);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using ChromaCube.Core;
 using UnityEngine;
 
 namespace ChromaCube.Data
@@ -7,6 +8,7 @@ namespace ChromaCube.Data
     public class TileData
     {
         public string id;
+        public WorldCubeFace worldFace = WorldCubeFace.Top;
         public Vector2Int gridPos;
         public string colorId;
         public bool required;
@@ -18,6 +20,7 @@ namespace ChromaCube.Data
             return new TileData
             {
                 id = id,
+                worldFace = worldFace,
                 gridPos = gridPos,
                 colorId = colorId,
                 required = required,

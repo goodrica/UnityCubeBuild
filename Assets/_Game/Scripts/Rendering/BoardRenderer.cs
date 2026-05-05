@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ChromaCube.Core;
 using ChromaCube.Data;
 using ChromaCube.Level;
 using UnityEngine;
@@ -42,6 +43,12 @@ namespace ChromaCube.Rendering
         {
             Clear();
             DiscoverTexturesInEditor();
+
+            if (level.mechanicsMode == MechanicsMode.WorldCube)
+            {
+                RenderWorldCube(level);
+                return;
+            }
 
             foreach (var tile in level.tiles)
             {
@@ -89,6 +96,109 @@ namespace ChromaCube.Rendering
             return new Vector3(centeredX * tileSize, 0f, centeredZ * tileSize);
         }
 
+        public Vector3 WorldCubeTileCenter(WorldCubeFace face, Vector2Int gridPos, LevelData level)
+        {
+            var frame = GetWorldCubeFrame(face);
+            return WorldCubeTileCenter(frame, gridPos, level);
+        }
+
+        public Quaternion WorldCubeSurfaceRotation(WorldCubeFace face)
+        {
+            var frame = GetWorldCubeFrame(face);
+            return Quaternion.LookRotation(frame.forward, frame.normal);
+        }
+
+        public static WorldCubeFace FaceFromNormal(Vector3 normal)
+        {
+            normal.Normalize();
+            if (Vector3.Dot(normal, Vector3.up) > 0.9f)
+            {
+                return WorldCubeFace.Top;
+            }
+
+            if (Vector3.Dot(normal, Vector3.down) > 0.9f)
+            {
+                return WorldCubeFace.Bottom;
+            }
+
+            if (Vector3.Dot(normal, Vector3.forward) > 0.9f)
+            {
+                return WorldCubeFace.North;
+            }
+
+            if (Vector3.Dot(normal, Vector3.back) > 0.9f)
+            {
+                return WorldCubeFace.South;
+            }
+
+            if (Vector3.Dot(normal, Vector3.right) > 0.9f)
+            {
+                return WorldCubeFace.East;
+            }
+
+            return WorldCubeFace.West;
+        }
+
+        public static WorldCubeFrame GetWorldCubeFrame(WorldCubeFace face)
+        {
+            switch (face)
+            {
+                case WorldCubeFace.Top:
+                    return new WorldCubeFrame(Vector3.up, Vector3.right, Vector3.forward);
+                case WorldCubeFace.Bottom:
+                    return new WorldCubeFrame(Vector3.down, Vector3.right, Vector3.back);
+                case WorldCubeFace.North:
+                    return new WorldCubeFrame(Vector3.forward, Vector3.right, Vector3.down);
+                case WorldCubeFace.South:
+                    return new WorldCubeFrame(Vector3.back, Vector3.right, Vector3.up);
+                case WorldCubeFace.East:
+                    return new WorldCubeFrame(Vector3.right, Vector3.down, Vector3.forward);
+                case WorldCubeFace.West:
+                    return new WorldCubeFrame(Vector3.left, Vector3.up, Vector3.forward);
+                default:
+                    return new WorldCubeFrame(Vector3.up, Vector3.right, Vector3.forward);
+            }
+        }
+
+        private void RenderWorldCube(LevelData level)
+        {
+            foreach (var tile in level.tiles)
+            {
+                if (!tile.active)
+                {
+                    continue;
+                }
+
+                var frame = GetWorldCubeFrame(tile.worldFace);
+                var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                visual.name = tile.required ? $"GoalTile_{tile.worldFace}_{tile.id}" : $"Tile_{tile.worldFace}_{tile.id}";
+                visual.transform.SetParent(transform, false);
+                visual.transform.position = WorldCubeTileCenter(frame, tile.gridPos, level);
+                visual.transform.rotation = Quaternion.LookRotation(frame.forward, frame.normal);
+                visual.transform.localScale = new Vector3(tileSize * 0.9f, tileHeight, tileSize * 0.9f);
+
+                var renderer = visual.GetComponent<Renderer>();
+                renderer.sharedMaterial = GetMaterial(tile.colorId);
+
+                runtimeTiles.Add(new TileRuntime
+                {
+                    data = tile,
+                    visual = visual,
+                    renderer = renderer
+                });
+            }
+        }
+
+        private Vector3 WorldCubeTileCenter(WorldCubeFrame frame, Vector2Int gridPos, LevelData level)
+        {
+            var size = Mathf.Max(level.width, level.height);
+            var half = (size - 1) * 0.5f;
+            var shellRadius = size * tileSize * 0.5f;
+            var rightOffset = (gridPos.x - half) * tileSize;
+            var forwardOffset = (half - gridPos.y) * tileSize;
+            return frame.normal * shellRadius + frame.right * rightOffset + frame.forward * forwardOffset;
+        }
+
         private IEnumerator FadeCapturedTile(TileRuntime tile)
         {
             if (tile == null || tile.renderer == null)
@@ -96,7 +206,8 @@ namespace ChromaCube.Rendering
                 yield break;
             }
 
-            tile.visual.transform.localPosition = new Vector3(tile.visual.transform.localPosition.x, -0.04f, tile.visual.transform.localPosition.z);
+            var frame = GetWorldCubeFrame(tile.data.worldFace);
+            tile.visual.transform.position -= frame.normal * 0.04f;
             yield return new WaitForSeconds(capturedFadeDelay);
 
             var material = new Material(GetMaterial(tile.data.colorId));
@@ -169,6 +280,20 @@ namespace ChromaCube.Rendering
                 textureCache[texture.name.ToLowerInvariant()] = texture;
             }
 #endif
+        }
+    }
+
+    public readonly struct WorldCubeFrame
+    {
+        public readonly Vector3 normal;
+        public readonly Vector3 right;
+        public readonly Vector3 forward;
+
+        public WorldCubeFrame(Vector3 normal, Vector3 right, Vector3 forward)
+        {
+            this.normal = normal.normalized;
+            this.right = right.normalized;
+            this.forward = forward.normalized;
         }
     }
 }
