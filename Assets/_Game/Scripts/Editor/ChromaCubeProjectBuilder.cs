@@ -183,7 +183,43 @@ namespace ChromaCube.EditorTools
                     new Vector2Int(0, 6),
                     new[] { Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.West, Direction.West, Direction.West, Direction.West, Direction.West, Direction.North, Direction.North, Direction.East, Direction.East, Direction.East, Direction.East },
                     10,
-                    LoadBackgroundTexture(5))
+                    LoadBackgroundTexture(5)),
+                PathLevel(
+                    "level-10",
+                    10,
+                    "Prism Lanes",
+                    "A longer classic route with room to recover.",
+                    "Use the open lanes to reset the bottom face before each color tile.",
+                    8,
+                    7,
+                    new Vector2Int(0, 6),
+                    new[] { Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.West, Direction.West, Direction.West, Direction.North, Direction.North, Direction.East, Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.West, Direction.West },
+                    11,
+                    LoadBackgroundTexture(10)),
+                PathLevel(
+                    "level-11",
+                    11,
+                    "Aurora Bend",
+                    "Wide turns and sharper color timing.",
+                    "The route bends back on itself; rotate the view and plan two captures ahead.",
+                    8,
+                    8,
+                    new Vector2Int(1, 7),
+                    new[] { Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.North, Direction.West, Direction.West, Direction.West, Direction.West, Direction.North, Direction.North, Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.South, Direction.West, Direction.West, Direction.North, Direction.North, Direction.North },
+                    12,
+                    LoadBackgroundTexture(10)),
+                PathLevel(
+                    "level-12",
+                    12,
+                    "Glass Spiral",
+                    "A large classic finale.",
+                    "Work around the spiral and use the neutral floor to prepare difficult faces.",
+                    9,
+                    8,
+                    new Vector2Int(0, 7),
+                    new[] { Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.West, Direction.West, Direction.West, Direction.West, Direction.West, Direction.North, Direction.North, Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.East, Direction.North, Direction.North, Direction.North, Direction.West, Direction.West, Direction.West, Direction.West, Direction.South, Direction.South, Direction.West, Direction.West, Direction.West },
+                    13,
+                    LoadBackgroundTexture(10))
             };
 
             for (var i = 0; i < levels.Count; i++)
