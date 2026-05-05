@@ -1,3 +1,4 @@
+using ChromaCube.Core;
 using ChromaCube.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +15,9 @@ namespace ChromaCube.Cameras
         [SerializeField] private float pitchSensitivity = 0.12f;
         [SerializeField] private float minPitch = 24f;
         [SerializeField] private float maxPitch = 68f;
+        [SerializeField] private float worldCubeDistance = 8.8f;
+        [SerializeField] private float worldCubeMinPitch = -82f;
+        [SerializeField] private float worldCubeMaxPitch = 82f;
         [SerializeField] private float backgroundDistance = 35f;
 
         private Transform target;
@@ -21,6 +25,7 @@ namespace ChromaCube.Cameras
         private Material backgroundMaterial;
         private float yaw = 35f;
         private float pitch = 42f;
+        private bool worldCubeMode;
 
         private void Awake()
         {
@@ -35,6 +40,7 @@ namespace ChromaCube.Cameras
         public void Configure(Transform followTarget, LevelData level)
         {
             target = followTarget;
+            worldCubeMode = level != null && level.mechanicsMode == MechanicsMode.WorldCube;
             if (targetCamera == null)
             {
                 targetCamera = UnityEngine.Camera.main;
@@ -42,6 +48,11 @@ namespace ChromaCube.Cameras
 
             EnsureAudioListener();
             ConfigureBackground(level);
+            if (worldCubeMode)
+            {
+                pitch = Mathf.Clamp(pitch, worldCubeMinPitch, worldCubeMaxPitch);
+            }
+
             Snap();
         }
 
@@ -55,9 +66,11 @@ namespace ChromaCube.Cameras
             ReadOrbitDrag();
 
             var orbitRotation = Quaternion.Euler(pitch, yaw, 0f);
-            var offset = orbitRotation * new Vector3(0f, 0f, -distance);
-            var lookAt = target.position + Vector3.up * 0.25f;
-            var desired = lookAt + offset + Vector3.up * height * 0.18f;
+            var lookAt = GetLookAtPosition();
+            var orbitDistance = worldCubeMode ? worldCubeDistance : distance;
+            var offset = orbitRotation * new Vector3(0f, 0f, -orbitDistance);
+            var heightOffset = worldCubeMode ? Vector3.zero : Vector3.up * height * 0.18f;
+            var desired = lookAt + offset + heightOffset;
 
             targetCamera.transform.position = Vector3.Lerp(targetCamera.transform.position, desired, Time.deltaTime * smooth);
             targetCamera.transform.LookAt(lookAt);
@@ -73,7 +86,9 @@ namespace ChromaCube.Cameras
 
             var delta = Mouse.current.delta.ReadValue();
             yaw += delta.x * dragSensitivity;
-            pitch = Mathf.Clamp(pitch - delta.y * pitchSensitivity, minPitch, maxPitch);
+            var lowPitch = worldCubeMode ? worldCubeMinPitch : minPitch;
+            var highPitch = worldCubeMode ? worldCubeMaxPitch : maxPitch;
+            pitch = Mathf.Clamp(pitch - delta.y * pitchSensitivity, lowPitch, highPitch);
         }
 
         private void Snap()
@@ -84,10 +99,17 @@ namespace ChromaCube.Cameras
             }
 
             var orbitRotation = Quaternion.Euler(pitch, yaw, 0f);
-            var lookAt = target.position + Vector3.up * 0.25f;
-            targetCamera.transform.position = lookAt + orbitRotation * new Vector3(0f, 0f, -distance) + Vector3.up * height * 0.18f;
+            var lookAt = GetLookAtPosition();
+            var orbitDistance = worldCubeMode ? worldCubeDistance : distance;
+            var heightOffset = worldCubeMode ? Vector3.zero : Vector3.up * height * 0.18f;
+            targetCamera.transform.position = lookAt + orbitRotation * new Vector3(0f, 0f, -orbitDistance) + heightOffset;
             targetCamera.transform.LookAt(lookAt);
             PositionBackground();
+        }
+
+        private Vector3 GetLookAtPosition()
+        {
+            return worldCubeMode ? Vector3.zero : target.position + Vector3.up * 0.25f;
         }
 
         private void EnsureAudioListener()
