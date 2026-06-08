@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChromaCube.Data.LevelData
+  m_EditorClassIdentifier: 
   levelId: level-3
   index: 3
   title: Soft Sequence
@@ -21,7 +21,7 @@ MonoBehaviour:
   height: 4
   start: {x: 1, y: 2}
   mechanicsMode: 0
-  backgroundTexture: {fileID: 0}
+  backgroundTexture: {fileID: 2800000, guid: 2a29bb0cbed2b28408422da9ff60ef5f, type: 3}
   tiles:
   - id: l3-a
     worldFace: 0

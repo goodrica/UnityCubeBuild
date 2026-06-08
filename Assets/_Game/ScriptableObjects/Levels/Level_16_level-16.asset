@@ -1,0 +1,963 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelId: level-16
+  index: 16
+  title: Open Horizon
+  subtitle: More room to recover and reorient.
+  hint: The safest move is often a setup move. Let the empty floor help you reset
+    the cube.
+  width: 12
+  height: 11
+  start: {x: 6, y: 10}
+  mechanicsMode: 0
+  backgroundTexture: {fileID: 2800000, guid: 92c458e2bfd91dd4bb5be7a54ab5ec1f, type: 3}
+  tiles:
+  - id: l16-floor-0-0
+    worldFace: 0
+    gridPos: {x: 0, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-105
+    worldFace: 0
+    gridPos: {x: 1, y: 0}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-decoy-01
+    worldFace: 0
+    gridPos: {x: 2, y: 0}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-3-0
+    worldFace: 0
+    gridPos: {x: 3, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-4-0
+    worldFace: 0
+    gridPos: {x: 4, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-5-0
+    worldFace: 0
+    gridPos: {x: 5, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-100
+    worldFace: 0
+    gridPos: {x: 6, y: 0}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-7-0
+    worldFace: 0
+    gridPos: {x: 7, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-8-0
+    worldFace: 0
+    gridPos: {x: 8, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-9-0
+    worldFace: 0
+    gridPos: {x: 9, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-10-0
+    worldFace: 0
+    gridPos: {x: 10, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-11-0
+    worldFace: 0
+    gridPos: {x: 11, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-0-1
+    worldFace: 0
+    gridPos: {x: 0, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-decoy-02
+    worldFace: 0
+    gridPos: {x: 1, y: 1}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-2-1
+    worldFace: 0
+    gridPos: {x: 2, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-3-1
+    worldFace: 0
+    gridPos: {x: 3, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-4-1
+    worldFace: 0
+    gridPos: {x: 4, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-5-1
+    worldFace: 0
+    gridPos: {x: 5, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-6-1
+    worldFace: 0
+    gridPos: {x: 6, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-92
+    worldFace: 0
+    gridPos: {x: 7, y: 1}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-8-1
+    worldFace: 0
+    gridPos: {x: 8, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-94
+    worldFace: 0
+    gridPos: {x: 9, y: 1}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-10-1
+    worldFace: 0
+    gridPos: {x: 10, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-11-1
+    worldFace: 0
+    gridPos: {x: 11, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-decoy-03
+    worldFace: 0
+    gridPos: {x: 0, y: 2}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-1-2
+    worldFace: 0
+    gridPos: {x: 1, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-84
+    worldFace: 0
+    gridPos: {x: 2, y: 2}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-3-2
+    worldFace: 0
+    gridPos: {x: 3, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-82
+    worldFace: 0
+    gridPos: {x: 4, y: 2}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-5-2
+    worldFace: 0
+    gridPos: {x: 5, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-6-2
+    worldFace: 0
+    gridPos: {x: 6, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-7-2
+    worldFace: 0
+    gridPos: {x: 7, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-8-2
+    worldFace: 0
+    gridPos: {x: 8, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-9-2
+    worldFace: 0
+    gridPos: {x: 9, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-10-2
+    worldFace: 0
+    gridPos: {x: 10, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-decoy-04
+    worldFace: 0
+    gridPos: {x: 11, y: 2}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-0-3
+    worldFace: 0
+    gridPos: {x: 0, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-1-3
+    worldFace: 0
+    gridPos: {x: 1, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-2-3
+    worldFace: 0
+    gridPos: {x: 2, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-3-3
+    worldFace: 0
+    gridPos: {x: 3, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-4-3
+    worldFace: 0
+    gridPos: {x: 4, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-5-3
+    worldFace: 0
+    gridPos: {x: 5, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-6-3
+    worldFace: 0
+    gridPos: {x: 6, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-7-3
+    worldFace: 0
+    gridPos: {x: 7, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-8-3
+    worldFace: 0
+    gridPos: {x: 8, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-9-3
+    worldFace: 0
+    gridPos: {x: 9, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-75
+    worldFace: 0
+    gridPos: {x: 10, y: 3}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-11-3
+    worldFace: 0
+    gridPos: {x: 11, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-0-4
+    worldFace: 0
+    gridPos: {x: 0, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-1-4
+    worldFace: 0
+    gridPos: {x: 1, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-2-4
+    worldFace: 0
+    gridPos: {x: 2, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-3-4
+    worldFace: 0
+    gridPos: {x: 3, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-4-4
+    worldFace: 0
+    gridPos: {x: 4, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-5-4
+    worldFace: 0
+    gridPos: {x: 5, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-6-4
+    worldFace: 0
+    gridPos: {x: 6, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-7-4
+    worldFace: 0
+    gridPos: {x: 7, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-58
+    worldFace: 0
+    gridPos: {x: 8, y: 4}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-decoy-05
+    worldFace: 0
+    gridPos: {x: 9, y: 4}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-10-4
+    worldFace: 0
+    gridPos: {x: 10, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-11-4
+    worldFace: 0
+    gridPos: {x: 11, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-0-5
+    worldFace: 0
+    gridPos: {x: 0, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-1-5
+    worldFace: 0
+    gridPos: {x: 1, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-2-5
+    worldFace: 0
+    gridPos: {x: 2, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-48
+    worldFace: 0
+    gridPos: {x: 3, y: 5}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-4-5
+    worldFace: 0
+    gridPos: {x: 4, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-5-5
+    worldFace: 0
+    gridPos: {x: 5, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-6-5
+    worldFace: 0
+    gridPos: {x: 6, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-7-5
+    worldFace: 0
+    gridPos: {x: 7, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-decoy-06
+    worldFace: 0
+    gridPos: {x: 8, y: 5}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-9-5
+    worldFace: 0
+    gridPos: {x: 9, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-10-5
+    worldFace: 0
+    gridPos: {x: 10, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-11-5
+    worldFace: 0
+    gridPos: {x: 11, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-0-6
+    worldFace: 0
+    gridPos: {x: 0, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-1-6
+    worldFace: 0
+    gridPos: {x: 1, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-2-6
+    worldFace: 0
+    gridPos: {x: 2, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-3-6
+    worldFace: 0
+    gridPos: {x: 3, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-4-6
+    worldFace: 0
+    gridPos: {x: 4, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-41
+    worldFace: 0
+    gridPos: {x: 5, y: 6}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-6-6
+    worldFace: 0
+    gridPos: {x: 6, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-decoy-07
+    worldFace: 0
+    gridPos: {x: 7, y: 6}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-8-6
+    worldFace: 0
+    gridPos: {x: 8, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-9-6
+    worldFace: 0
+    gridPos: {x: 9, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-10-6
+    worldFace: 0
+    gridPos: {x: 10, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-11-6
+    worldFace: 0
+    gridPos: {x: 11, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-0-7
+    worldFace: 0
+    gridPos: {x: 0, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-1-7
+    worldFace: 0
+    gridPos: {x: 1, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-27
+    worldFace: 0
+    gridPos: {x: 2, y: 7}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-3-7
+    worldFace: 0
+    gridPos: {x: 3, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-4-7
+    worldFace: 0
+    gridPos: {x: 4, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-5-7
+    worldFace: 0
+    gridPos: {x: 5, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-decoy-08
+    worldFace: 0
+    gridPos: {x: 6, y: 7}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-7-7
+    worldFace: 0
+    gridPos: {x: 7, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-8-7
+    worldFace: 0
+    gridPos: {x: 8, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-9-7
+    worldFace: 0
+    gridPos: {x: 9, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-10-7
+    worldFace: 0
+    gridPos: {x: 10, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-11-7
+    worldFace: 0
+    gridPos: {x: 11, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-0-8
+    worldFace: 0
+    gridPos: {x: 0, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-1-8
+    worldFace: 0
+    gridPos: {x: 1, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-2-8
+    worldFace: 0
+    gridPos: {x: 2, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-3-8
+    worldFace: 0
+    gridPos: {x: 3, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-4-8
+    worldFace: 0
+    gridPos: {x: 4, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-decoy-09
+    worldFace: 0
+    gridPos: {x: 5, y: 8}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-6-8
+    worldFace: 0
+    gridPos: {x: 6, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-19
+    worldFace: 0
+    gridPos: {x: 7, y: 8}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-18
+    worldFace: 0
+    gridPos: {x: 8, y: 8}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-9-8
+    worldFace: 0
+    gridPos: {x: 9, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-10-8
+    worldFace: 0
+    gridPos: {x: 10, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-11-8
+    worldFace: 0
+    gridPos: {x: 11, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-0-9
+    worldFace: 0
+    gridPos: {x: 0, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-1-9
+    worldFace: 0
+    gridPos: {x: 1, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-2-9
+    worldFace: 0
+    gridPos: {x: 2, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-08
+    worldFace: 0
+    gridPos: {x: 3, y: 9}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-decoy-10
+    worldFace: 0
+    gridPos: {x: 4, y: 9}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-5-9
+    worldFace: 0
+    gridPos: {x: 5, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-6-9
+    worldFace: 0
+    gridPos: {x: 6, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-7-9
+    worldFace: 0
+    gridPos: {x: 7, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-8-9
+    worldFace: 0
+    gridPos: {x: 8, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-9-9
+    worldFace: 0
+    gridPos: {x: 9, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-15
+    worldFace: 0
+    gridPos: {x: 10, y: 9}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-11-9
+    worldFace: 0
+    gridPos: {x: 11, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-0-10
+    worldFace: 0
+    gridPos: {x: 0, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-05
+    worldFace: 0
+    gridPos: {x: 1, y: 10}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-2-10
+    worldFace: 0
+    gridPos: {x: 2, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-decoy-00
+    worldFace: 0
+    gridPos: {x: 3, y: 10}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-02
+    worldFace: 0
+    gridPos: {x: 4, y: 10}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l16-floor-5-10
+    worldFace: 0
+    gridPos: {x: 5, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-6-10
+    worldFace: 0
+    gridPos: {x: 6, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-7-10
+    worldFace: 0
+    gridPos: {x: 7, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-8-10
+    worldFace: 0
+    gridPos: {x: 8, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-9-10
+    worldFace: 0
+    gridPos: {x: 9, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-10-10
+    worldFace: 0
+    gridPos: {x: 10, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l16-floor-11-10
+    worldFace: 0
+    gridPos: {x: 11, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  faceColorMap:
+  - face: 0
+    colorId: mint
+  - face: 1
+    colorId: slate
+  - face: 2
+    colorId: amber
+  - face: 3
+    colorId: ocean
+  - face: 4
+    colorId: lavender
+  - face: 5
+    colorId: coral

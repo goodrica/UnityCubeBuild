@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChromaCube.Data.LevelData
+  m_EditorClassIdentifier: 
   levelId: level-9
   index: 9
   title: Chroma Garden
@@ -19,9 +19,9 @@ MonoBehaviour:
   hint: Plan the route and let the camera guide your directions.
   width: 7
   height: 7
-  start: {x: 0, y: 6}
+  start: {x: 3, y: 6}
   mechanicsMode: 0
-  backgroundTexture: {fileID: 2800000, guid: c5944936ff0b0b7419b82413128567dd, type: 3}
+  backgroundTexture: {fileID: 2800000, guid: 351850fc065f87b4b8abdb610939f4c6, type: 3}
   tiles:
   - id: l9-floor-0-0
     worldFace: 0
@@ -51,17 +51,17 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-4-0
+  - id: l9-decoy-05
     worldFace: 0
     gridPos: {x: 4, y: 0}
-    colorId: stone
+    colorId: amber
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-5-0
+  - id: l9-decoy-10
     worldFace: 0
     gridPos: {x: 5, y: 0}
-    colorId: stone
+    colorId: slate
     required: 0
     captured: 0
     active: 1
@@ -86,18 +86,18 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-2-1
+  - id: l9-38
     worldFace: 0
     gridPos: {x: 2, y: 1}
-    colorId: stone
-    required: 0
+    colorId: amber
+    required: 1
     captured: 0
     active: 1
-  - id: l9-floor-3-1
+  - id: l9-37
     worldFace: 0
     gridPos: {x: 3, y: 1}
-    colorId: stone
-    required: 0
+    colorId: slate
+    required: 1
     captured: 0
     active: 1
   - id: l9-floor-4-1
@@ -121,39 +121,39 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l9-14
+  - id: l9-floor-0-2
     worldFace: 0
     gridPos: {x: 0, y: 2}
-    colorId: mint
-    required: 1
+    colorId: stone
+    required: 0
     captured: 0
     active: 1
-  - id: l9-15
+  - id: l9-decoy-06
     worldFace: 0
     gridPos: {x: 1, y: 2}
-    colorId: coral
-    required: 1
+    colorId: ocean
+    required: 0
     captured: 0
     active: 1
-  - id: l9-16
+  - id: l9-decoy-11
     worldFace: 0
     gridPos: {x: 2, y: 2}
-    colorId: slate
-    required: 1
+    colorId: amber
+    required: 0
     captured: 0
     active: 1
-  - id: l9-17
+  - id: l9-floor-3-2
     worldFace: 0
     gridPos: {x: 3, y: 2}
-    colorId: lavender
-    required: 1
+    colorId: stone
+    required: 0
     captured: 0
     active: 1
-  - id: l9-18
+  - id: l9-floor-4-2
     worldFace: 0
     gridPos: {x: 4, y: 2}
-    colorId: mint
-    required: 1
+    colorId: stone
+    required: 0
     captured: 0
     active: 1
   - id: l9-floor-5-2
@@ -163,18 +163,18 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-6-2
+  - id: l9-decoy-02
     worldFace: 0
     gridPos: {x: 6, y: 2}
-    colorId: stone
+    colorId: coral
     required: 0
     captured: 0
     active: 1
-  - id: l9-13
+  - id: l9-decoy-09
     worldFace: 0
     gridPos: {x: 0, y: 3}
-    colorId: ocean
-    required: 1
+    colorId: mint
+    required: 0
     captured: 0
     active: 1
   - id: l9-floor-1-3
@@ -198,60 +198,60 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-4-3
+  - id: l9-34
     worldFace: 0
     gridPos: {x: 4, y: 3}
-    colorId: stone
-    required: 0
+    colorId: mint
+    required: 1
     captured: 0
     active: 1
-  - id: l9-floor-5-3
+  - id: l9-decoy-07
     worldFace: 0
     gridPos: {x: 5, y: 3}
-    colorId: stone
+    colorId: lavender
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-6-3
+  - id: l9-32
     worldFace: 0
     gridPos: {x: 6, y: 3}
-    colorId: stone
-    required: 0
-    captured: 0
-    active: 1
-  - id: l9-12
-    worldFace: 0
-    gridPos: {x: 0, y: 4}
     colorId: slate
     required: 1
     captured: 0
     active: 1
-  - id: l9-11
+  - id: l9-floor-0-4
+    worldFace: 0
+    gridPos: {x: 0, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l9-08
     worldFace: 0
     gridPos: {x: 1, y: 4}
     colorId: coral
     required: 1
     captured: 0
     active: 1
-  - id: l9-10
+  - id: l9-floor-2-4
     worldFace: 0
     gridPos: {x: 2, y: 4}
-    colorId: mint
-    required: 1
-    captured: 0
-    active: 1
-  - id: l9-09
-    worldFace: 0
-    gridPos: {x: 3, y: 4}
-    colorId: lavender
-    required: 1
-    captured: 0
-    active: 1
-  - id: l9-floor-4-4
-    worldFace: 0
-    gridPos: {x: 4, y: 4}
     colorId: stone
     required: 0
+    captured: 0
+    active: 1
+  - id: l9-decoy-03
+    worldFace: 0
+    gridPos: {x: 3, y: 4}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l9-13
+    worldFace: 0
+    gridPos: {x: 4, y: 4}
+    colorId: mint
+    required: 1
     captured: 0
     active: 1
   - id: l9-floor-5-4
@@ -268,32 +268,32 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-0-5
+  - id: l9-06
     worldFace: 0
     gridPos: {x: 0, y: 5}
-    colorId: stone
-    required: 0
+    colorId: mint
+    required: 1
     captured: 0
     active: 1
-  - id: l9-floor-1-5
+  - id: l9-decoy-00
     worldFace: 0
     gridPos: {x: 1, y: 5}
-    colorId: stone
+    colorId: ocean
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-2-5
+  - id: l9-decoy-08
     worldFace: 0
     gridPos: {x: 2, y: 5}
-    colorId: stone
+    colorId: coral
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-3-5
+  - id: l9-19
     worldFace: 0
     gridPos: {x: 3, y: 5}
-    colorId: stone
-    required: 0
+    colorId: mint
+    required: 1
     captured: 0
     active: 1
   - id: l9-floor-4-5
@@ -317,18 +317,18 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-0-6
+  - id: l9-decoy-04
     worldFace: 0
     gridPos: {x: 0, y: 6}
-    colorId: stone
+    colorId: slate
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-1-6
+  - id: l9-04
     worldFace: 0
     gridPos: {x: 1, y: 6}
-    colorId: stone
-    required: 0
+    colorId: coral
+    required: 1
     captured: 0
     active: 1
   - id: l9-floor-2-6
@@ -352,18 +352,18 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-5-6
+  - id: l9-decoy-01
     worldFace: 0
     gridPos: {x: 5, y: 6}
-    colorId: stone
+    colorId: lavender
     required: 0
     captured: 0
     active: 1
-  - id: l9-floor-6-6
+  - id: l9-27
     worldFace: 0
     gridPos: {x: 6, y: 6}
-    colorId: stone
-    required: 0
+    colorId: mint
+    required: 1
     captured: 0
     active: 1
   faceColorMap:

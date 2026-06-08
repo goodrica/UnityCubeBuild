@@ -89,15 +89,17 @@ namespace ChromaCube.UI
 
             levelSelectPanel = CreatePanel("LevelSelectPanel");
             CreateText(levelSelectPanel.transform, "Select Level", 42, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.84f), new Vector2(520f, 70f));
+            const int maxRowsPerColumn = 6;
+            var columnCount = Mathf.Max(1, Mathf.CeilToInt(levelManager.Levels.Count / (float)maxRowsPerColumn));
             for (var i = 0; i < levelManager.Levels.Count; i++)
             {
                 var localIndex = i;
                 var level = levelManager.Levels[i];
-                var column = i < 5 ? 0 : 1;
-                var row = column == 0 ? i : i - 5;
-                var anchorX = column == 0 ? 0.36f : 0.64f;
-                var anchorY = 0.68f - row * 0.115f;
-                levelSelectButtons.Add(CreateButton(levelSelectPanel.transform, $"{level.index}. {level.title}", new Vector2(anchorX, anchorY), () => StartLevel(localIndex), new Vector2(260f, 52f)));
+                var column = i / maxRowsPerColumn;
+                var row = i % maxRowsPerColumn;
+                var anchorX = columnCount == 1 ? 0.5f : Mathf.Lerp(0.24f, 0.76f, column / (float)(columnCount - 1));
+                var anchorY = 0.70f - row * 0.10f;
+                levelSelectButtons.Add(CreateButton(levelSelectPanel.transform, $"{level.index}. {level.title}", new Vector2(anchorX, anchorY), () => StartLevel(localIndex), new Vector2(270f, 52f)));
             }
 
             levelSelectButtons.Add(CreateButton(levelSelectPanel.transform, "Back", new Vector2(0.5f, 0.14f), ShowTitle, new Vector2(220f, 52f)));

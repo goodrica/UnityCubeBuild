@@ -1,0 +1,1677 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelId: level-24
+  index: 24
+  title: Grand Pavilion
+  subtitle: A tall pentagon with a very forgiving base.
+  hint: You have room at the bottom to fix almost anything. Spend that space before
+    climbing into the narrow roof.
+  width: 18
+  height: 16
+  start: {x: 1, y: 15}
+  mechanicsMode: 0
+  backgroundTexture: {fileID: 2800000, guid: ea094401bce06f94890203f90d6c110a, type: 3}
+  tiles:
+  - id: l24-238
+    worldFace: 0
+    gridPos: {x: 6, y: 0}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-7-0
+    worldFace: 0
+    gridPos: {x: 7, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-0
+    worldFace: 0
+    gridPos: {x: 8, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-235
+    worldFace: 0
+    gridPos: {x: 9, y: 0}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-10-0
+    worldFace: 0
+    gridPos: {x: 10, y: 0}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-46
+    worldFace: 0
+    gridPos: {x: 11, y: 0}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-1
+    worldFace: 0
+    gridPos: {x: 5, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-6-1
+    worldFace: 0
+    gridPos: {x: 6, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-25
+    worldFace: 0
+    gridPos: {x: 7, y: 1}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-227
+    worldFace: 0
+    gridPos: {x: 8, y: 1}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-9-1
+    worldFace: 0
+    gridPos: {x: 9, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-05
+    worldFace: 0
+    gridPos: {x: 10, y: 1}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-230
+    worldFace: 0
+    gridPos: {x: 11, y: 1}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-12-1
+    worldFace: 0
+    gridPos: {x: 12, y: 1}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-2
+    worldFace: 0
+    gridPos: {x: 4, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-221
+    worldFace: 0
+    gridPos: {x: 5, y: 2}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-decoy-47
+    worldFace: 0
+    gridPos: {x: 6, y: 2}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-7-2
+    worldFace: 0
+    gridPos: {x: 7, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-2
+    worldFace: 0
+    gridPos: {x: 8, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-26
+    worldFace: 0
+    gridPos: {x: 9, y: 2}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-10-2
+    worldFace: 0
+    gridPos: {x: 10, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-11-2
+    worldFace: 0
+    gridPos: {x: 11, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-214
+    worldFace: 0
+    gridPos: {x: 12, y: 2}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-13-2
+    worldFace: 0
+    gridPos: {x: 13, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-3-3
+    worldFace: 0
+    gridPos: {x: 3, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-3
+    worldFace: 0
+    gridPos: {x: 4, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-3
+    worldFace: 0
+    gridPos: {x: 5, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-48
+    worldFace: 0
+    gridPos: {x: 6, y: 3}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-7-3
+    worldFace: 0
+    gridPos: {x: 7, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-3
+    worldFace: 0
+    gridPos: {x: 8, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-27
+    worldFace: 0
+    gridPos: {x: 9, y: 3}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-207
+    worldFace: 0
+    gridPos: {x: 10, y: 3}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-11-3
+    worldFace: 0
+    gridPos: {x: 11, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-06
+    worldFace: 0
+    gridPos: {x: 12, y: 3}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-3
+    worldFace: 0
+    gridPos: {x: 13, y: 3}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-211
+    worldFace: 0
+    gridPos: {x: 14, y: 3}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-198
+    worldFace: 0
+    gridPos: {x: 2, y: 4}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-3-4
+    worldFace: 0
+    gridPos: {x: 3, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-49
+    worldFace: 0
+    gridPos: {x: 4, y: 4}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-4
+    worldFace: 0
+    gridPos: {x: 5, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-194
+    worldFace: 0
+    gridPos: {x: 6, y: 4}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-decoy-28
+    worldFace: 0
+    gridPos: {x: 7, y: 4}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-4
+    worldFace: 0
+    gridPos: {x: 8, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-9-4
+    worldFace: 0
+    gridPos: {x: 9, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-07
+    worldFace: 0
+    gridPos: {x: 10, y: 4}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-11-4
+    worldFace: 0
+    gridPos: {x: 11, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-12-4
+    worldFace: 0
+    gridPos: {x: 12, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-4
+    worldFace: 0
+    gridPos: {x: 13, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-14-4
+    worldFace: 0
+    gridPos: {x: 14, y: 4}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-50
+    worldFace: 0
+    gridPos: {x: 15, y: 4}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-2-5
+    worldFace: 0
+    gridPos: {x: 2, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-3-5
+    worldFace: 0
+    gridPos: {x: 3, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-29
+    worldFace: 0
+    gridPos: {x: 4, y: 5}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-5
+    worldFace: 0
+    gridPos: {x: 5, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-6-5
+    worldFace: 0
+    gridPos: {x: 6, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-08
+    worldFace: 0
+    gridPos: {x: 7, y: 5}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-177
+    worldFace: 0
+    gridPos: {x: 8, y: 5}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-9-5
+    worldFace: 0
+    gridPos: {x: 9, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-10-5
+    worldFace: 0
+    gridPos: {x: 10, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-11-5
+    worldFace: 0
+    gridPos: {x: 11, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-51
+    worldFace: 0
+    gridPos: {x: 12, y: 5}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-5
+    worldFace: 0
+    gridPos: {x: 13, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-14-5
+    worldFace: 0
+    gridPos: {x: 14, y: 5}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-30
+    worldFace: 0
+    gridPos: {x: 15, y: 5}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-169
+    worldFace: 0
+    gridPos: {x: 1, y: 6}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-2-6
+    worldFace: 0
+    gridPos: {x: 2, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-09
+    worldFace: 0
+    gridPos: {x: 3, y: 6}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-6
+    worldFace: 0
+    gridPos: {x: 4, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-6
+    worldFace: 0
+    gridPos: {x: 5, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-6-6
+    worldFace: 0
+    gridPos: {x: 6, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-7-6
+    worldFace: 0
+    gridPos: {x: 7, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-52
+    worldFace: 0
+    gridPos: {x: 8, y: 6}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-9-6
+    worldFace: 0
+    gridPos: {x: 9, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-10-6
+    worldFace: 0
+    gridPos: {x: 10, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-31
+    worldFace: 0
+    gridPos: {x: 11, y: 6}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-12-6
+    worldFace: 0
+    gridPos: {x: 12, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-6
+    worldFace: 0
+    gridPos: {x: 13, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-10
+    worldFace: 0
+    gridPos: {x: 14, y: 6}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-15-6
+    worldFace: 0
+    gridPos: {x: 15, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-16-6
+    worldFace: 0
+    gridPos: {x: 16, y: 6}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-1-7
+    worldFace: 0
+    gridPos: {x: 1, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-2-7
+    worldFace: 0
+    gridPos: {x: 2, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-53
+    worldFace: 0
+    gridPos: {x: 3, y: 7}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-7
+    worldFace: 0
+    gridPos: {x: 4, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-7
+    worldFace: 0
+    gridPos: {x: 5, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-32
+    worldFace: 0
+    gridPos: {x: 6, y: 7}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-7-7
+    worldFace: 0
+    gridPos: {x: 7, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-7
+    worldFace: 0
+    gridPos: {x: 8, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-11
+    worldFace: 0
+    gridPos: {x: 9, y: 7}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-10-7
+    worldFace: 0
+    gridPos: {x: 10, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-11-7
+    worldFace: 0
+    gridPos: {x: 11, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-12-7
+    worldFace: 0
+    gridPos: {x: 12, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-7
+    worldFace: 0
+    gridPos: {x: 13, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-54
+    worldFace: 0
+    gridPos: {x: 14, y: 7}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-15-7
+    worldFace: 0
+    gridPos: {x: 15, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-153
+    worldFace: 0
+    gridPos: {x: 16, y: 7}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-decoy-33
+    worldFace: 0
+    gridPos: {x: 1, y: 8}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-2-8
+    worldFace: 0
+    gridPos: {x: 2, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-3-8
+    worldFace: 0
+    gridPos: {x: 3, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-12
+    worldFace: 0
+    gridPos: {x: 4, y: 8}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-8
+    worldFace: 0
+    gridPos: {x: 5, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-6-8
+    worldFace: 0
+    gridPos: {x: 6, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-7-8
+    worldFace: 0
+    gridPos: {x: 7, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-8
+    worldFace: 0
+    gridPos: {x: 8, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-55
+    worldFace: 0
+    gridPos: {x: 9, y: 8}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-10-8
+    worldFace: 0
+    gridPos: {x: 10, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-11-8
+    worldFace: 0
+    gridPos: {x: 11, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-34
+    worldFace: 0
+    gridPos: {x: 12, y: 8}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-8
+    worldFace: 0
+    gridPos: {x: 13, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-14-8
+    worldFace: 0
+    gridPos: {x: 14, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-13
+    worldFace: 0
+    gridPos: {x: 15, y: 8}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-16-8
+    worldFace: 0
+    gridPos: {x: 16, y: 8}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-0-9
+    worldFace: 0
+    gridPos: {x: 0, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-1-9
+    worldFace: 0
+    gridPos: {x: 1, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-105
+    worldFace: 0
+    gridPos: {x: 2, y: 9}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-decoy-56
+    worldFace: 0
+    gridPos: {x: 3, y: 9}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-9
+    worldFace: 0
+    gridPos: {x: 4, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-9
+    worldFace: 0
+    gridPos: {x: 5, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-35
+    worldFace: 0
+    gridPos: {x: 6, y: 9}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-7-9
+    worldFace: 0
+    gridPos: {x: 7, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-9
+    worldFace: 0
+    gridPos: {x: 8, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-14
+    worldFace: 0
+    gridPos: {x: 9, y: 9}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-10-9
+    worldFace: 0
+    gridPos: {x: 10, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-11-9
+    worldFace: 0
+    gridPos: {x: 11, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-12-9
+    worldFace: 0
+    gridPos: {x: 12, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-9
+    worldFace: 0
+    gridPos: {x: 13, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-57
+    worldFace: 0
+    gridPos: {x: 14, y: 9}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-15-9
+    worldFace: 0
+    gridPos: {x: 15, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-16-9
+    worldFace: 0
+    gridPos: {x: 16, y: 9}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-36
+    worldFace: 0
+    gridPos: {x: 17, y: 9}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-0-10
+    worldFace: 0
+    gridPos: {x: 0, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-1-10
+    worldFace: 0
+    gridPos: {x: 1, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-15
+    worldFace: 0
+    gridPos: {x: 2, y: 10}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-3-10
+    worldFace: 0
+    gridPos: {x: 3, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-10
+    worldFace: 0
+    gridPos: {x: 4, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-10
+    worldFace: 0
+    gridPos: {x: 5, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-6-10
+    worldFace: 0
+    gridPos: {x: 6, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-58
+    worldFace: 0
+    gridPos: {x: 7, y: 10}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-10
+    worldFace: 0
+    gridPos: {x: 8, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-9-10
+    worldFace: 0
+    gridPos: {x: 9, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-37
+    worldFace: 0
+    gridPos: {x: 10, y: 10}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-11-10
+    worldFace: 0
+    gridPos: {x: 11, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-12-10
+    worldFace: 0
+    gridPos: {x: 12, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-16
+    worldFace: 0
+    gridPos: {x: 13, y: 10}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-88
+    worldFace: 0
+    gridPos: {x: 14, y: 10}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-15-10
+    worldFace: 0
+    gridPos: {x: 15, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-16-10
+    worldFace: 0
+    gridPos: {x: 16, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-17-10
+    worldFace: 0
+    gridPos: {x: 17, y: 10}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-59
+    worldFace: 0
+    gridPos: {x: 0, y: 11}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-1-11
+    worldFace: 0
+    gridPos: {x: 1, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-2-11
+    worldFace: 0
+    gridPos: {x: 2, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-38
+    worldFace: 0
+    gridPos: {x: 3, y: 11}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-11
+    worldFace: 0
+    gridPos: {x: 4, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-72
+    worldFace: 0
+    gridPos: {x: 5, y: 11}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-decoy-17
+    worldFace: 0
+    gridPos: {x: 6, y: 11}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-7-11
+    worldFace: 0
+    gridPos: {x: 7, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-11
+    worldFace: 0
+    gridPos: {x: 8, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-9-11
+    worldFace: 0
+    gridPos: {x: 9, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-10-11
+    worldFace: 0
+    gridPos: {x: 10, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-11-11
+    worldFace: 0
+    gridPos: {x: 11, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-12-11
+    worldFace: 0
+    gridPos: {x: 12, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-11
+    worldFace: 0
+    gridPos: {x: 13, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-39
+    worldFace: 0
+    gridPos: {x: 14, y: 11}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-15-11
+    worldFace: 0
+    gridPos: {x: 15, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-16-11
+    worldFace: 0
+    gridPos: {x: 16, y: 11}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-18
+    worldFace: 0
+    gridPos: {x: 17, y: 11}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-0-12
+    worldFace: 0
+    gridPos: {x: 0, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-1-12
+    worldFace: 0
+    gridPos: {x: 1, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-2-12
+    worldFace: 0
+    gridPos: {x: 2, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-3-12
+    worldFace: 0
+    gridPos: {x: 3, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-12
+    worldFace: 0
+    gridPos: {x: 4, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-12
+    worldFace: 0
+    gridPos: {x: 5, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-6-12
+    worldFace: 0
+    gridPos: {x: 6, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-40
+    worldFace: 0
+    gridPos: {x: 7, y: 12}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-12
+    worldFace: 0
+    gridPos: {x: 8, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-9-12
+    worldFace: 0
+    gridPos: {x: 9, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-19
+    worldFace: 0
+    gridPos: {x: 10, y: 12}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-11-12
+    worldFace: 0
+    gridPos: {x: 11, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-12-12
+    worldFace: 0
+    gridPos: {x: 12, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-00
+    worldFace: 0
+    gridPos: {x: 13, y: 12}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-14-12
+    worldFace: 0
+    gridPos: {x: 14, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-15-12
+    worldFace: 0
+    gridPos: {x: 15, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-16-12
+    worldFace: 0
+    gridPos: {x: 16, y: 12}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-49
+    worldFace: 0
+    gridPos: {x: 17, y: 12}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-decoy-41
+    worldFace: 0
+    gridPos: {x: 0, y: 13}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-32
+    worldFace: 0
+    gridPos: {x: 1, y: 13}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-2-13
+    worldFace: 0
+    gridPos: {x: 2, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-20
+    worldFace: 0
+    gridPos: {x: 3, y: 13}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-13
+    worldFace: 0
+    gridPos: {x: 4, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-13
+    worldFace: 0
+    gridPos: {x: 5, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-01
+    worldFace: 0
+    gridPos: {x: 6, y: 13}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-7-13
+    worldFace: 0
+    gridPos: {x: 7, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-8-13
+    worldFace: 0
+    gridPos: {x: 8, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-40
+    worldFace: 0
+    gridPos: {x: 9, y: 13}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-10-13
+    worldFace: 0
+    gridPos: {x: 10, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-42
+    worldFace: 0
+    gridPos: {x: 11, y: 13}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-12-13
+    worldFace: 0
+    gridPos: {x: 12, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-13
+    worldFace: 0
+    gridPos: {x: 13, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-21
+    worldFace: 0
+    gridPos: {x: 14, y: 13}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-15-13
+    worldFace: 0
+    gridPos: {x: 15, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-16-13
+    worldFace: 0
+    gridPos: {x: 16, y: 13}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-02
+    worldFace: 0
+    gridPos: {x: 17, y: 13}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-1-14
+    worldFace: 0
+    gridPos: {x: 1, y: 14}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-2-14
+    worldFace: 0
+    gridPos: {x: 2, y: 14}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-29
+    worldFace: 0
+    gridPos: {x: 3, y: 14}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-4-14
+    worldFace: 0
+    gridPos: {x: 4, y: 14}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-43
+    worldFace: 0
+    gridPos: {x: 5, y: 14}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-6-14
+    worldFace: 0
+    gridPos: {x: 6, y: 14}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-7-14
+    worldFace: 0
+    gridPos: {x: 7, y: 14}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-22
+    worldFace: 0
+    gridPos: {x: 8, y: 14}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-9-14
+    worldFace: 0
+    gridPos: {x: 9, y: 14}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-10-14
+    worldFace: 0
+    gridPos: {x: 10, y: 14}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-03
+    worldFace: 0
+    gridPos: {x: 11, y: 14}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-20
+    worldFace: 0
+    gridPos: {x: 12, y: 14}
+    colorId: amber
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-19
+    worldFace: 0
+    gridPos: {x: 13, y: 14}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-14-14
+    worldFace: 0
+    gridPos: {x: 14, y: 14}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-15-14
+    worldFace: 0
+    gridPos: {x: 15, y: 14}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-44
+    worldFace: 0
+    gridPos: {x: 16, y: 14}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-1-15
+    worldFace: 0
+    gridPos: {x: 1, y: 15}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-2-15
+    worldFace: 0
+    gridPos: {x: 2, y: 15}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-23
+    worldFace: 0
+    gridPos: {x: 3, y: 15}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-4-15
+    worldFace: 0
+    gridPos: {x: 4, y: 15}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-5-15
+    worldFace: 0
+    gridPos: {x: 5, y: 15}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-04
+    worldFace: 0
+    gridPos: {x: 6, y: 15}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-06
+    worldFace: 0
+    gridPos: {x: 7, y: 15}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-floor-8-15
+    worldFace: 0
+    gridPos: {x: 8, y: 15}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-9-15
+    worldFace: 0
+    gridPos: {x: 9, y: 15}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-09
+    worldFace: 0
+    gridPos: {x: 10, y: 15}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l24-decoy-45
+    worldFace: 0
+    gridPos: {x: 11, y: 15}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-12-15
+    worldFace: 0
+    gridPos: {x: 12, y: 15}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-13-15
+    worldFace: 0
+    gridPos: {x: 13, y: 15}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-decoy-24
+    worldFace: 0
+    gridPos: {x: 14, y: 15}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-floor-15-15
+    worldFace: 0
+    gridPos: {x: 15, y: 15}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l24-15
+    worldFace: 0
+    gridPos: {x: 16, y: 15}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  faceColorMap:
+  - face: 0
+    colorId: mint
+  - face: 1
+    colorId: slate
+  - face: 2
+    colorId: amber
+  - face: 3
+    colorId: ocean
+  - face: 4
+    colorId: lavender
+  - face: 5
+    colorId: coral

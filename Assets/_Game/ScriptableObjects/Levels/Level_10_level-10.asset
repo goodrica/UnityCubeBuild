@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
-  m_Name: Level_10_level-10
-  m_EditorClassIdentifier: Assembly-CSharp::ChromaCube.Data.LevelData
+  m_Name: 
+  m_EditorClassIdentifier: 
   levelId: level-10
   index: 10
   title: Prism Lanes
   subtitle: A longer classic route with room to recover.
   hint: Use the open lanes to reset the bottom face before each color tile.
   width: 8
-  height: 7
-  start: {x: 0, y: 6}
+  height: 8
+  start: {x: 3, y: 7}
   mechanicsMode: 0
-  backgroundTexture: {fileID: 2800000, guid: ade8c4b4b81206947bbbeb2ebc275237, type: 3}
+  backgroundTexture: {fileID: 2800000, guid: ff53d367c9bbbd94fad323c27441478d, type: 3}
   tiles:
   - id: l10-floor-0-0
     worldFace: 0
@@ -30,18 +30,18 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-1-0
+  - id: l10-decoy-14
     worldFace: 0
     gridPos: {x: 1, y: 0}
-    colorId: stone
+    colorId: mint
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-2-0
+  - id: l10-18
     worldFace: 0
     gridPos: {x: 2, y: 0}
-    colorId: stone
-    required: 0
+    colorId: coral
+    required: 1
     captured: 0
     active: 1
   - id: l10-floor-3-0
@@ -51,39 +51,39 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-20
+  - id: l10-floor-4-0
     worldFace: 0
     gridPos: {x: 4, y: 0}
-    colorId: slate
-    required: 1
+    colorId: stone
+    required: 0
     captured: 0
     active: 1
-  - id: l10-19
+  - id: l10-floor-5-0
     worldFace: 0
     gridPos: {x: 5, y: 0}
-    colorId: coral
-    required: 1
+    colorId: stone
+    required: 0
     captured: 0
     active: 1
-  - id: l10-18
+  - id: l10-floor-6-0
     worldFace: 0
     gridPos: {x: 6, y: 0}
-    colorId: mint
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-45
+    worldFace: 0
+    gridPos: {x: 7, y: 0}
+    colorId: amber
     required: 1
     captured: 0
     active: 1
-  - id: l10-floor-7-0
-    worldFace: 0
-    gridPos: {x: 7, y: 0}
-    colorId: stone
-    required: 0
-    captured: 0
-    active: 1
-  - id: l10-floor-0-1
+  - id: l10-15
     worldFace: 0
     gridPos: {x: 0, y: 1}
-    colorId: stone
-    required: 0
+    colorId: mint
+    required: 1
     captured: 0
     active: 1
   - id: l10-floor-1-1
@@ -93,10 +93,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-2-1
+  - id: l10-decoy-10
     worldFace: 0
     gridPos: {x: 2, y: 1}
-    colorId: stone
+    colorId: amber
     required: 0
     captured: 0
     active: 1
@@ -107,10 +107,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-4-1
+  - id: l10-decoy-15
     worldFace: 0
     gridPos: {x: 4, y: 1}
-    colorId: stone
+    colorId: slate
     required: 0
     captured: 0
     active: 1
@@ -121,10 +121,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-17
+  - id: l10-43
     worldFace: 0
     gridPos: {x: 6, y: 1}
-    colorId: amber
+    colorId: coral
     required: 1
     captured: 0
     active: 1
@@ -142,53 +142,53 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-1-2
+  - id: l10-decoy-00
     worldFace: 0
     gridPos: {x: 1, y: 2}
-    colorId: stone
+    colorId: lavender
     required: 0
     captured: 0
     active: 1
-  - id: l10-12
+  - id: l10-floor-2-2
     worldFace: 0
     gridPos: {x: 2, y: 2}
-    colorId: slate
-    required: 1
-    captured: 0
-    active: 1
-  - id: l10-13
-    worldFace: 0
-    gridPos: {x: 3, y: 2}
-    colorId: lavender
-    required: 1
-    captured: 0
-    active: 1
-  - id: l10-14
-    worldFace: 0
-    gridPos: {x: 4, y: 2}
-    colorId: mint
-    required: 1
-    captured: 0
-    active: 1
-  - id: l10-15
-    worldFace: 0
-    gridPos: {x: 5, y: 2}
-    colorId: coral
-    required: 1
-    captured: 0
-    active: 1
-  - id: l10-16
-    worldFace: 0
-    gridPos: {x: 6, y: 2}
-    colorId: slate
-    required: 1
-    captured: 0
-    active: 1
-  - id: l10-floor-7-2
-    worldFace: 0
-    gridPos: {x: 7, y: 2}
     colorId: stone
     required: 0
+    captured: 0
+    active: 1
+  - id: l10-decoy-05
+    worldFace: 0
+    gridPos: {x: 3, y: 2}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-floor-4-2
+    worldFace: 0
+    gridPos: {x: 4, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-decoy-11
+    worldFace: 0
+    gridPos: {x: 5, y: 2}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-floor-6-2
+    worldFace: 0
+    gridPos: {x: 6, y: 2}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-41
+    worldFace: 0
+    gridPos: {x: 7, y: 2}
+    colorId: slate
+    required: 1
     captured: 0
     active: 1
   - id: l10-floor-0-3
@@ -205,10 +205,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-11
+  - id: l10-29
     worldFace: 0
     gridPos: {x: 2, y: 3}
-    colorId: ocean
+    colorId: coral
     required: 1
     captured: 0
     active: 1
@@ -219,10 +219,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-4-3
+  - id: l10-decoy-01
     worldFace: 0
     gridPos: {x: 4, y: 3}
-    colorId: stone
+    colorId: coral
     required: 0
     captured: 0
     active: 1
@@ -233,10 +233,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-6-3
+  - id: l10-decoy-06
     worldFace: 0
     gridPos: {x: 6, y: 3}
-    colorId: stone
+    colorId: lavender
     required: 0
     captured: 0
     active: 1
@@ -247,10 +247,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-0-4
+  - id: l10-decoy-12
     worldFace: 0
     gridPos: {x: 0, y: 4}
-    colorId: stone
+    colorId: lavender
     required: 0
     captured: 0
     active: 1
@@ -261,11 +261,11 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-10
+  - id: l10-floor-2-4
     worldFace: 0
     gridPos: {x: 2, y: 4}
-    colorId: mint
-    required: 1
+    colorId: stone
+    required: 0
     captured: 0
     active: 1
   - id: l10-floor-3-4
@@ -282,38 +282,38 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-5-4
+  - id: l10-37
     worldFace: 0
     gridPos: {x: 5, y: 4}
-    colorId: stone
-    required: 0
+    colorId: coral
+    required: 1
     captured: 0
     active: 1
-  - id: l10-floor-6-4
+  - id: l10-38
     worldFace: 0
     gridPos: {x: 6, y: 4}
-    colorId: stone
-    required: 0
+    colorId: mint
+    required: 1
     captured: 0
     active: 1
-  - id: l10-floor-7-4
+  - id: l10-decoy-02
     worldFace: 0
     gridPos: {x: 7, y: 4}
-    colorId: stone
+    colorId: mint
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-0-5
+  - id: l10-07
     worldFace: 0
     gridPos: {x: 0, y: 5}
-    colorId: stone
-    required: 0
+    colorId: amber
+    required: 1
     captured: 0
     active: 1
-  - id: l10-floor-1-5
+  - id: l10-decoy-07
     worldFace: 0
     gridPos: {x: 1, y: 5}
-    colorId: stone
+    colorId: coral
     required: 0
     captured: 0
     active: 1
@@ -324,11 +324,11 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-3-5
+  - id: l10-34
     worldFace: 0
     gridPos: {x: 3, y: 5}
-    colorId: stone
-    required: 0
+    colorId: ocean
+    required: 1
     captured: 0
     active: 1
   - id: l10-floor-4-5
@@ -373,10 +373,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-2-6
+  - id: l10-decoy-03
     worldFace: 0
     gridPos: {x: 2, y: 6}
-    colorId: stone
+    colorId: slate
     required: 0
     captured: 0
     active: 1
@@ -387,10 +387,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-4-6
+  - id: l10-decoy-08
     worldFace: 0
     gridPos: {x: 4, y: 6}
-    colorId: stone
+    colorId: mint
     required: 0
     captured: 0
     active: 1
@@ -401,10 +401,10 @@ MonoBehaviour:
     required: 0
     captured: 0
     active: 1
-  - id: l10-floor-6-6
+  - id: l10-decoy-13
     worldFace: 0
     gridPos: {x: 6, y: 6}
-    colorId: stone
+    colorId: coral
     required: 0
     captured: 0
     active: 1
@@ -412,6 +412,62 @@ MonoBehaviour:
     worldFace: 0
     gridPos: {x: 7, y: 6}
     colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-floor-0-7
+    worldFace: 0
+    gridPos: {x: 0, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-04
+    worldFace: 0
+    gridPos: {x: 1, y: 7}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l10-floor-2-7
+    worldFace: 0
+    gridPos: {x: 2, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-floor-3-7
+    worldFace: 0
+    gridPos: {x: 3, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-floor-4-7
+    worldFace: 0
+    gridPos: {x: 4, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-decoy-04
+    worldFace: 0
+    gridPos: {x: 5, y: 7}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-floor-6-7
+    worldFace: 0
+    gridPos: {x: 6, y: 7}
+    colorId: stone
+    required: 0
+    captured: 0
+    active: 1
+  - id: l10-decoy-09
+    worldFace: 0
+    gridPos: {x: 7, y: 7}
+    colorId: slate
     required: 0
     captured: 0
     active: 1

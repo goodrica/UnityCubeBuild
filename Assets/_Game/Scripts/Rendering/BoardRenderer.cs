@@ -245,15 +245,39 @@ namespace ChromaCube.Rendering
 
         private void ApplyTileTexture(Material material, string colorId)
         {
-            if (textureCache.TryGetValue(colorId.ToLowerInvariant(), out var texture))
+            var textureKey = colorId.ToLowerInvariant();
+            if (textureCache.TryGetValue(textureKey, out var texture))
             {
                 material.mainTexture = texture;
                 material.SetTexture("_BaseMap", texture);
+                ApplySurfaceMaps(material, textureKey);
             }
-            else if (textureCache.TryGetValue("floor", out var floorTexture))
+            else if (textureKey == "stone" && textureCache.TryGetValue("floor", out var floorTexture))
             {
                 material.mainTexture = floorTexture;
                 material.SetTexture("_BaseMap", floorTexture);
+                ApplySurfaceMaps(material, "floor");
+            }
+        }
+
+        private void ApplySurfaceMaps(Material material, string textureKey)
+        {
+            if (textureCache.TryGetValue($"{textureKey}_normal", out var normalTexture) && material.HasProperty("_BumpMap"))
+            {
+                material.SetTexture("_BumpMap", normalTexture);
+                material.SetFloat("_BumpScale", 0.6f);
+                material.EnableKeyword("_NORMALMAP");
+            }
+
+            if (textureCache.TryGetValue($"{textureKey}_ao", out var occlusionTexture) && material.HasProperty("_OcclusionMap"))
+            {
+                material.SetTexture("_OcclusionMap", occlusionTexture);
+                material.SetFloat("_OcclusionStrength", 0.45f);
+            }
+
+            if (textureKey == "poliigon_floor")
+            {
+                material.SetFloat("_Smoothness", 0.32f);
             }
         }
 

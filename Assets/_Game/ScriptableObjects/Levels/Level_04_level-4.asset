@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChromaCube.Data.LevelData
+  m_EditorClassIdentifier: 
   levelId: level-4
   index: 4
   title: Color Weave
@@ -21,7 +21,7 @@ MonoBehaviour:
   height: 4
   start: {x: 2, y: 2}
   mechanicsMode: 0
-  backgroundTexture: {fileID: 0}
+  backgroundTexture: {fileID: 2800000, guid: 12283b98fe1fcf140ab1e9f1106ef8a9, type: 3}
   tiles:
   - id: l4-a
     worldFace: 0

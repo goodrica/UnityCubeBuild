@@ -1,0 +1,1215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd75333dc6ae41e439a67b29771de785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelId: level-20
+  index: 20
+  title: Crown Path
+  subtitle: A pentagon-like board with a narrower peak.
+  hint: The middle is stable, but the crown at the top changes your rhythm. Save
+    a few setup moves for the ascent.
+  width: 16
+  height: 14
+  start: {x: 2, y: 13}
+  mechanicsMode: 0
+  backgroundTexture: {fileID: 2800000, guid: aa6f50fcedf5ade4a8c5c9b9237b8c9b, type: 3}
+  tiles:
+  - id: l20-171
+    worldFace: 0
+    gridPos: {x: 6, y: 0}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-170
+    worldFace: 0
+    gridPos: {x: 7, y: 0}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-decoy-15
+    worldFace: 0
+    gridPos: {x: 8, y: 0}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-9-0
+    worldFace: 0
+    gridPos: {x: 9, y: 0}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-5-1
+    worldFace: 0
+    gridPos: {x: 5, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-02
+    worldFace: 0
+    gridPos: {x: 6, y: 1}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-163
+    worldFace: 0
+    gridPos: {x: 7, y: 1}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-decoy-42
+    worldFace: 0
+    gridPos: {x: 8, y: 1}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-9-1
+    worldFace: 0
+    gridPos: {x: 9, y: 1}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-166
+    worldFace: 0
+    gridPos: {x: 10, y: 1}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-decoy-27
+    worldFace: 0
+    gridPos: {x: 4, y: 2}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-158
+    worldFace: 0
+    gridPos: {x: 5, y: 2}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-6-2
+    worldFace: 0
+    gridPos: {x: 6, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-16
+    worldFace: 0
+    gridPos: {x: 7, y: 2}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-8-2
+    worldFace: 0
+    gridPos: {x: 8, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-9-2
+    worldFace: 0
+    gridPos: {x: 9, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-03
+    worldFace: 0
+    gridPos: {x: 10, y: 2}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-11-2
+    worldFace: 0
+    gridPos: {x: 11, y: 2}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-43
+    worldFace: 0
+    gridPos: {x: 3, y: 3}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-4-3
+    worldFace: 0
+    gridPos: {x: 4, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-5-3
+    worldFace: 0
+    gridPos: {x: 5, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-28
+    worldFace: 0
+    gridPos: {x: 6, y: 3}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-7-3
+    worldFace: 0
+    gridPos: {x: 7, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-8-3
+    worldFace: 0
+    gridPos: {x: 8, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-17
+    worldFace: 0
+    gridPos: {x: 9, y: 3}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-10-3
+    worldFace: 0
+    gridPos: {x: 10, y: 3}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-149
+    worldFace: 0
+    gridPos: {x: 11, y: 3}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-150
+    worldFace: 0
+    gridPos: {x: 12, y: 3}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-139
+    worldFace: 0
+    gridPos: {x: 2, y: 4}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-decoy-44
+    worldFace: 0
+    gridPos: {x: 3, y: 4}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-4-4
+    worldFace: 0
+    gridPos: {x: 4, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-136
+    worldFace: 0
+    gridPos: {x: 5, y: 4}
+    colorId: amber
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-decoy-29
+    worldFace: 0
+    gridPos: {x: 6, y: 4}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-7-4
+    worldFace: 0
+    gridPos: {x: 7, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-8-4
+    worldFace: 0
+    gridPos: {x: 8, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-18
+    worldFace: 0
+    gridPos: {x: 9, y: 4}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-10-4
+    worldFace: 0
+    gridPos: {x: 10, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-11-4
+    worldFace: 0
+    gridPos: {x: 11, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-04
+    worldFace: 0
+    gridPos: {x: 12, y: 4}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-13-4
+    worldFace: 0
+    gridPos: {x: 13, y: 4}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-45
+    worldFace: 0
+    gridPos: {x: 2, y: 5}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-3-5
+    worldFace: 0
+    gridPos: {x: 3, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-4-5
+    worldFace: 0
+    gridPos: {x: 4, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-30
+    worldFace: 0
+    gridPos: {x: 5, y: 5}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-6-5
+    worldFace: 0
+    gridPos: {x: 6, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-7-5
+    worldFace: 0
+    gridPos: {x: 7, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-122
+    worldFace: 0
+    gridPos: {x: 8, y: 5}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-9-5
+    worldFace: 0
+    gridPos: {x: 9, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-10-5
+    worldFace: 0
+    gridPos: {x: 10, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-05
+    worldFace: 0
+    gridPos: {x: 11, y: 5}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-12-5
+    worldFace: 0
+    gridPos: {x: 12, y: 5}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-127
+    worldFace: 0
+    gridPos: {x: 13, y: 5}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-1-6
+    worldFace: 0
+    gridPos: {x: 1, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-2-6
+    worldFace: 0
+    gridPos: {x: 2, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-31
+    worldFace: 0
+    gridPos: {x: 3, y: 6}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-4-6
+    worldFace: 0
+    gridPos: {x: 4, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-5-6
+    worldFace: 0
+    gridPos: {x: 5, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-19
+    worldFace: 0
+    gridPos: {x: 6, y: 6}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-7-6
+    worldFace: 0
+    gridPos: {x: 7, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-8-6
+    worldFace: 0
+    gridPos: {x: 8, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-06
+    worldFace: 0
+    gridPos: {x: 9, y: 6}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-10-6
+    worldFace: 0
+    gridPos: {x: 10, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-11-6
+    worldFace: 0
+    gridPos: {x: 11, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-12-6
+    worldFace: 0
+    gridPos: {x: 12, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-13-6
+    worldFace: 0
+    gridPos: {x: 13, y: 6}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-32
+    worldFace: 0
+    gridPos: {x: 14, y: 6}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-1-7
+    worldFace: 0
+    gridPos: {x: 1, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-2-7
+    worldFace: 0
+    gridPos: {x: 2, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-20
+    worldFace: 0
+    gridPos: {x: 3, y: 7}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-4-7
+    worldFace: 0
+    gridPos: {x: 4, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-5-7
+    worldFace: 0
+    gridPos: {x: 5, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-07
+    worldFace: 0
+    gridPos: {x: 6, y: 7}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-7-7
+    worldFace: 0
+    gridPos: {x: 7, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-8-7
+    worldFace: 0
+    gridPos: {x: 8, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-9-7
+    worldFace: 0
+    gridPos: {x: 9, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-10-7
+    worldFace: 0
+    gridPos: {x: 10, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-33
+    worldFace: 0
+    gridPos: {x: 11, y: 7}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-12-7
+    worldFace: 0
+    gridPos: {x: 12, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-13-7
+    worldFace: 0
+    gridPos: {x: 13, y: 7}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-21
+    worldFace: 0
+    gridPos: {x: 14, y: 7}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-0-8
+    worldFace: 0
+    gridPos: {x: 0, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-1-8
+    worldFace: 0
+    gridPos: {x: 1, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-08
+    worldFace: 0
+    gridPos: {x: 2, y: 8}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-3-8
+    worldFace: 0
+    gridPos: {x: 3, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-4-8
+    worldFace: 0
+    gridPos: {x: 4, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-5-8
+    worldFace: 0
+    gridPos: {x: 5, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-6-8
+    worldFace: 0
+    gridPos: {x: 6, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-34
+    worldFace: 0
+    gridPos: {x: 7, y: 8}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-8-8
+    worldFace: 0
+    gridPos: {x: 8, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-9-8
+    worldFace: 0
+    gridPos: {x: 9, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-22
+    worldFace: 0
+    gridPos: {x: 10, y: 8}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-11-8
+    worldFace: 0
+    gridPos: {x: 11, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-12-8
+    worldFace: 0
+    gridPos: {x: 12, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-09
+    worldFace: 0
+    gridPos: {x: 13, y: 8}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-14-8
+    worldFace: 0
+    gridPos: {x: 14, y: 8}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-70
+    worldFace: 0
+    gridPos: {x: 15, y: 8}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-0-9
+    worldFace: 0
+    gridPos: {x: 0, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-1-9
+    worldFace: 0
+    gridPos: {x: 1, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-35
+    worldFace: 0
+    gridPos: {x: 2, y: 9}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-57
+    worldFace: 0
+    gridPos: {x: 3, y: 9}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-4-9
+    worldFace: 0
+    gridPos: {x: 4, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-23
+    worldFace: 0
+    gridPos: {x: 5, y: 9}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-6-9
+    worldFace: 0
+    gridPos: {x: 6, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-7-9
+    worldFace: 0
+    gridPos: {x: 7, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-10
+    worldFace: 0
+    gridPos: {x: 8, y: 9}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-9-9
+    worldFace: 0
+    gridPos: {x: 9, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-10-9
+    worldFace: 0
+    gridPos: {x: 10, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-11-9
+    worldFace: 0
+    gridPos: {x: 11, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-12-9
+    worldFace: 0
+    gridPos: {x: 12, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-36
+    worldFace: 0
+    gridPos: {x: 13, y: 9}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-14-9
+    worldFace: 0
+    gridPos: {x: 14, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-15-9
+    worldFace: 0
+    gridPos: {x: 15, y: 9}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-24
+    worldFace: 0
+    gridPos: {x: 0, y: 10}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-1-10
+    worldFace: 0
+    gridPos: {x: 1, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-2-10
+    worldFace: 0
+    gridPos: {x: 2, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-11
+    worldFace: 0
+    gridPos: {x: 3, y: 10}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-4-10
+    worldFace: 0
+    gridPos: {x: 4, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-5-10
+    worldFace: 0
+    gridPos: {x: 5, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-6-10
+    worldFace: 0
+    gridPos: {x: 6, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-7-10
+    worldFace: 0
+    gridPos: {x: 7, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-37
+    worldFace: 0
+    gridPos: {x: 8, y: 10}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-9-10
+    worldFace: 0
+    gridPos: {x: 9, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-10-10
+    worldFace: 0
+    gridPos: {x: 10, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-42
+    worldFace: 0
+    gridPos: {x: 11, y: 10}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-12-10
+    worldFace: 0
+    gridPos: {x: 12, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-13-10
+    worldFace: 0
+    gridPos: {x: 13, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-39
+    worldFace: 0
+    gridPos: {x: 14, y: 10}
+    colorId: ocean
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-15-10
+    worldFace: 0
+    gridPos: {x: 15, y: 10}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-25
+    worldFace: 0
+    gridPos: {x: 1, y: 11}
+    colorId: lavender
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-2-11
+    worldFace: 0
+    gridPos: {x: 2, y: 11}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-27
+    worldFace: 0
+    gridPos: {x: 3, y: 11}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-decoy-38
+    worldFace: 0
+    gridPos: {x: 4, y: 11}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-5-11
+    worldFace: 0
+    gridPos: {x: 5, y: 11}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-6-11
+    worldFace: 0
+    gridPos: {x: 6, y: 11}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-25
+    worldFace: 0
+    gridPos: {x: 7, y: 11}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-8-11
+    worldFace: 0
+    gridPos: {x: 8, y: 11}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-9-11
+    worldFace: 0
+    gridPos: {x: 9, y: 11}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-12
+    worldFace: 0
+    gridPos: {x: 10, y: 11}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-11-11
+    worldFace: 0
+    gridPos: {x: 11, y: 11}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-12-11
+    worldFace: 0
+    gridPos: {x: 12, y: 11}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-13-11
+    worldFace: 0
+    gridPos: {x: 13, y: 11}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-14-11
+    worldFace: 0
+    gridPos: {x: 14, y: 11}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-39
+    worldFace: 0
+    gridPos: {x: 1, y: 12}
+    colorId: coral
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-2-12
+    worldFace: 0
+    gridPos: {x: 2, y: 12}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-3-12
+    worldFace: 0
+    gridPos: {x: 3, y: 12}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-21
+    worldFace: 0
+    gridPos: {x: 4, y: 12}
+    colorId: mint
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-5-12
+    worldFace: 0
+    gridPos: {x: 5, y: 12}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-6-12
+    worldFace: 0
+    gridPos: {x: 6, y: 12}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-13
+    worldFace: 0
+    gridPos: {x: 7, y: 12}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-8-12
+    worldFace: 0
+    gridPos: {x: 8, y: 12}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-16
+    worldFace: 0
+    gridPos: {x: 9, y: 12}
+    colorId: amber
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-decoy-00
+    worldFace: 0
+    gridPos: {x: 10, y: 12}
+    colorId: amber
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-11-12
+    worldFace: 0
+    gridPos: {x: 11, y: 12}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-40
+    worldFace: 0
+    gridPos: {x: 12, y: 12}
+    colorId: mint
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-13-12
+    worldFace: 0
+    gridPos: {x: 13, y: 12}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-14-12
+    worldFace: 0
+    gridPos: {x: 14, y: 12}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-26
+    worldFace: 0
+    gridPos: {x: 2, y: 13}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-3-13
+    worldFace: 0
+    gridPos: {x: 3, y: 13}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-4-13
+    worldFace: 0
+    gridPos: {x: 4, y: 13}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-14
+    worldFace: 0
+    gridPos: {x: 5, y: 13}
+    colorId: lavender
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-04
+    worldFace: 0
+    gridPos: {x: 6, y: 13}
+    colorId: slate
+    required: 1
+    captured: 0
+    active: 1
+  - id: l20-floor-7-13
+    worldFace: 0
+    gridPos: {x: 7, y: 13}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-01
+    worldFace: 0
+    gridPos: {x: 8, y: 13}
+    colorId: ocean
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-9-13
+    worldFace: 0
+    gridPos: {x: 9, y: 13}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-decoy-41
+    worldFace: 0
+    gridPos: {x: 10, y: 13}
+    colorId: slate
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-11-13
+    worldFace: 0
+    gridPos: {x: 11, y: 13}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-floor-12-13
+    worldFace: 0
+    gridPos: {x: 12, y: 13}
+    colorId: poliigon_floor
+    required: 0
+    captured: 0
+    active: 1
+  - id: l20-11
+    worldFace: 0
+    gridPos: {x: 13, y: 13}
+    colorId: coral
+    required: 1
+    captured: 0
+    active: 1
+  faceColorMap:
+  - face: 0
+    colorId: mint
+  - face: 1
+    colorId: slate
+  - face: 2
+    colorId: amber
+  - face: 3
+    colorId: ocean
+  - face: 4
+    colorId: lavender
+  - face: 5
+    colorId: coral
