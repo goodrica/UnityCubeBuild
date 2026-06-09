@@ -12,6 +12,20 @@ namespace ChromaCube.Movement
 
         [SerializeField] private float moveDuration = 0.22f;
 
+        private void OnValidate()
+        {
+            // Prevent divide-by-zero in RollRoutine if moveDuration is set to 0 or negative in the Inspector
+            moveDuration = Mathf.Max(0.01f, moveDuration);
+        }
+
+        private void OnDisable()
+        {
+            // If the GameObject is disabled mid-roll (e.g. level restart), stop all coroutines
+            // and release the isMoving lock so future moves aren't permanently blocked.
+            StopAllCoroutines();
+            isMoving = false;
+        }
+
         private Func<Direction, bool> canMove;
         private Func<Direction, Vector3> getTargetWorldPosition;
         private Func<Direction, Vector3> getRotationAxis;
@@ -65,6 +79,10 @@ namespace ChromaCube.Movement
 
             while (elapsed < moveDuration)
             {
+                // Guard: if this object is destroyed or deactivated mid-roll, bail out cleanly.
+                // isMoving is already reset by OnDisable, so no cleanup needed here.
+                if (this == null || !gameObject.activeInHierarchy) yield break;
+
                 elapsed += Time.deltaTime;
                 var t = Mathf.Clamp01(elapsed / moveDuration);
                 var eased = Mathf.SmoothStep(0f, 1f, t);
@@ -75,9 +93,13 @@ namespace ChromaCube.Movement
 
             transform.position = targetPosition;
             transform.rotation = Quaternion.AngleAxis(90f, axis) * startRotation;
+
+            // Release the lock BEFORE commitMove so that any level-load triggered inside
+            // commitMove (which may call Configure/TryMove) doesn't see isMoving=true
+            // and silently drop the first input of the new level.
+            isMoving = false;
             commitMove(direction);
             OnMoveCompleted?.Invoke(direction);
-            isMoving = false;
         }
 
         private static Vector3 GetClassicRotationAxis(Direction direction)
