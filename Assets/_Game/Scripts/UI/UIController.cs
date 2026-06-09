@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using ChromaCube.Data;
 using ChromaCube.Level;
@@ -27,10 +28,20 @@ namespace ChromaCube.UI
         private readonly Dictionary<Button, string> buttonBaseLabels = new Dictionary<Button, string>();
         private int selectedButtonIndex;
 
+        // ── Chroma palette ──────────────────────────────────────────────────────
+        private static readonly Color CMint    = new Color(0.20f, 0.96f, 0.62f, 1f);
+        private static readonly Color CBlue    = new Color(0.38f, 0.85f, 1.00f, 1f);
+        private static readonly Color CAmber   = new Color(1.00f, 0.82f, 0.18f, 1f);
+        private static readonly Color CPurple  = new Color(0.76f, 0.48f, 1.00f, 1f);
+        private static readonly Color CRed     = new Color(1.00f, 0.36f, 0.42f, 1f);
+        private static readonly Color CDark    = new Color(0.04f, 0.06f, 0.09f, 1f);
+        private static readonly Color CDarker  = new Color(0.02f, 0.03f, 0.05f, 1f);
+        private static readonly Color CPanel   = new Color(0.07f, 0.10f, 0.14f, 0.97f);
+
         public void Initialize(LevelManager manager)
         {
             levelManager = manager;
-            levelManager.OnLevelLoaded += HandleLevelLoaded;
+            levelManager.OnLevelLoaded    += HandleLevelLoaded;
             levelManager.OnCaptureChanged += HandleCaptureChanged;
             levelManager.OnLevelCompleted += HandleLevelCompleted;
             BuildUi();
@@ -42,84 +53,241 @@ namespace ChromaCube.UI
             SetMenuButtons(titleButtons);
         }
 
+        // ── Input (keyboard + gamepad menu navigation) ───────────────────────
         private void Update()
         {
             HandleMouseClick();
 
-            if (currentButtons.Count == 0)
-            {
-                return;
-            }
+            if (currentButtons.Count == 0) return;
 
-            if (Keyboard.current == null)
-            {
-                return;
-            }
+            var kb  = Keyboard.current;
+            var gp  = Gamepad.current;
 
-            var keyboard = Keyboard.current;
+            bool navUp   = (kb != null && (kb.upArrowKey.wasPressedThisFrame   || kb.wKey.wasPressedThisFrame))
+                        || (gp != null && (gp.dpad.up.wasPressedThisFrame      || gp.leftStick.up.wasPressedThisFrame));
+            bool navDown = (kb != null && (kb.downArrowKey.wasPressedThisFrame || kb.sKey.wasPressedThisFrame))
+                        || (gp != null && (gp.dpad.down.wasPressedThisFrame    || gp.leftStick.down.wasPressedThisFrame));
+            bool confirm = (kb != null && (kb.enterKey.wasPressedThisFrame     || kb.numpadEnterKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame))
+                        || (gp != null && (gp.buttonSouth.wasPressedThisFrame));
 
-            if (keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame)
-            {
-                SelectButton(selectedButtonIndex - 1);
-            }
-            else if (keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame)
-            {
-                SelectButton(selectedButtonIndex + 1);
-            }
-            else if (keyboard.enterKey.wasPressedThisFrame || keyboard.numpadEnterKey.wasPressedThisFrame || keyboard.spaceKey.wasPressedThisFrame)
-            {
-                currentButtons[selectedButtonIndex].onClick.Invoke();
-            }
+            if      (navUp)   SelectButton(selectedButtonIndex - 1);
+            else if (navDown) SelectButton(selectedButtonIndex + 1);
+            else if (confirm) currentButtons[selectedButtonIndex].onClick.Invoke();
         }
 
+        // ── Build all panels ─────────────────────────────────────────────────
         private void BuildUi()
         {
             var canvas = gameObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            gameObject.AddComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            canvas.sortingOrder = 10;
+            var scaler = gameObject.AddComponent<CanvasScaler>();
+            scaler.uiScaleMode             = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution     = new Vector2(1920, 1080);
+            scaler.matchWidthOrHeight      = 0.5f;
             gameObject.AddComponent<GraphicRaycaster>();
 
-            titlePanel = CreatePanel("TitlePanel");
-            titlePanel.GetComponent<Image>().color = new Color(0.035f, 0.055f, 0.07f, 0.98f);
-            CreateTitleBackdrop(titlePanel.transform);
-            CreateTitleText(titlePanel.transform, ColorfulTitle(), "CHROMA CUBE", 68, new Vector2(0.5f, 0.68f), new Vector2(900f, 96f));
-            CreateText(titlePanel.transform, "A calm color-matching cube puzzle", 23, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.575f), new Vector2(760f, 46f), new Color(0.84f, 0.93f, 0.96f));
-            titleButtons.Add(CreateButton(titlePanel.transform, "Start", new Vector2(0.5f, 0.43f), () => StartLevel(0), new Vector2(290f, 58f)));
-            titleButtons.Add(CreateButton(titlePanel.transform, "Level Select", new Vector2(0.5f, 0.325f), ShowLevelSelect, new Vector2(290f, 58f)));
+            BuildTitlePanel();
+            BuildLevelSelectPanel();
+            BuildHudPanel();
+            BuildCompletePanel();
+        }
 
-            levelSelectPanel = CreatePanel("LevelSelectPanel");
-            CreateText(levelSelectPanel.transform, "Select Level", 42, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.84f), new Vector2(520f, 70f));
+        // ════════════════════════════════════════════════════════════════════
+        //  TITLE PANEL – modern redesign
+        // ════════════════════════════════════════════════════════════════════
+        private void BuildTitlePanel()
+        {
+            titlePanel = CreateFullPanel("TitlePanel", CDarker);
+
+            // ── deep gradient overlay (two stacked rects) ───────────────────
+            CreateRect(titlePanel.transform, "GradTop",
+                new Vector2(0f, 0.5f), new Vector2(1f, 1f),
+                new Color(0.05f, 0.08f, 0.18f, 0.70f));
+            CreateRect(titlePanel.transform, "GradBottom",
+                new Vector2(0f, 0f), new Vector2(1f, 0.5f),
+                new Color(0.02f, 0.03f, 0.07f, 0.85f));
+
+            // ── large blurred orbs (ambient glow) ───────────────────────────
+            CreateOrb(titlePanel.transform, "OrbMint",   new Vector2(0.18f, 0.72f), 420f, new Color(CMint.r,   CMint.g,   CMint.b,   0.18f));
+            CreateOrb(titlePanel.transform, "OrbBlue",   new Vector2(0.80f, 0.60f), 500f, new Color(CBlue.r,   CBlue.g,   CBlue.b,   0.14f));
+            CreateOrb(titlePanel.transform, "OrbPurple", new Vector2(0.65f, 0.22f), 360f, new Color(CPurple.r, CPurple.g, CPurple.b, 0.16f));
+            CreateOrb(titlePanel.transform, "OrbAmber",  new Vector2(0.30f, 0.20f), 300f, new Color(CAmber.r,  CAmber.g,  CAmber.b,  0.12f));
+
+            // ── top accent bar (full-width neon gradient line) ───────────────
+            CreateHorizBar(titlePanel.transform, "TopBar",
+                new Vector2(0f, 1f), new Vector2(1f, 1f),
+                new Color(CBlue.r, CBlue.g, CBlue.b, 0.85f), 3f);
+
+            // ── bottom accent bar ────────────────────────────────────────────
+            CreateHorizBar(titlePanel.transform, "BottomBar",
+                new Vector2(0f, 0f), new Vector2(1f, 0f),
+                new Color(CMint.r, CMint.g, CMint.b, 0.60f), 2f);
+
+            // ── rotating cube-face accent shapes ────────────────────────────
+            CreateSpinBox(titlePanel.transform, "SpinMint",   new Vector2(0.12f, 0.78f), 90f,  90f,  new Color(CMint.r,   CMint.g,   CMint.b,   0.22f),  6f);
+            CreateSpinBox(titlePanel.transform, "SpinAmber",  new Vector2(0.88f, 0.72f), 110f, 70f,  new Color(CAmber.r,  CAmber.g,  CAmber.b,  0.20f), -8f);
+            CreateSpinBox(titlePanel.transform, "SpinPurple", new Vector2(0.78f, 0.18f), 80f,  80f,  new Color(CPurple.r, CPurple.g, CPurple.b, 0.20f), 12f);
+            CreateSpinBox(titlePanel.transform, "SpinBlue",   new Vector2(0.22f, 0.22f), 120f, 50f,  new Color(CBlue.r,   CBlue.g,   CBlue.b,   0.18f), -5f);
+
+            // ── logo card (frosted glass backing behind title text) ──────────
+            var logoCard = CreateRect(titlePanel.transform, "LogoCard",
+                new Vector2(0.15f, 0.58f), new Vector2(0.85f, 0.78f),
+                new Color(0.06f, 0.09f, 0.13f, 0.72f));
+            // thin coloured left-edge strip on logo card
+            CreateVertStrip(logoCard.transform, "LogoStrip", new Color(CMint.r, CMint.g, CMint.b, 0.90f));
+
+            // ── main title ───────────────────────────────────────────────────
+            CreateTitleText(titlePanel.transform, ColorfulTitle(), "CHROMA CUBE",
+                76, new Vector2(0.5f, 0.675f), new Vector2(1000f, 110f));
+
+            // ── tagline ──────────────────────────────────────────────────────
+            var tagline = CreateText(titlePanel.transform,
+                "A COLOR-MATCHING CUBE PUZZLE",
+                18, TextAnchor.MiddleCenter,
+                new Vector2(0.5f, 0.565f), new Vector2(900f, 34f),
+                new Color(CBlue.r, CBlue.g, CBlue.b, 0.85f));
+            tagline.fontStyle = FontStyle.Normal;
+
+            // ── thin separator under tagline ────────────────────────────────
+            CreateHorizBar(titlePanel.transform, "TitleSep",
+                new Vector2(0.3f, 0.528f), new Vector2(0.7f, 0.528f),
+                new Color(CBlue.r, CBlue.g, CBlue.b, 0.45f), 1f);
+
+            // ── buttons (pill style) ─────────────────────────────────────────
+            titleButtons.Add(CreatePillButton(titlePanel.transform,
+                "PLAY",        new Vector2(0.5f, 0.415f), () => StartLevel(0),    new Vector2(320f, 62f), CMint));
+            titleButtons.Add(CreatePillButton(titlePanel.transform,
+                "LEVEL SELECT", new Vector2(0.5f, 0.315f), ShowLevelSelect,       new Vector2(320f, 62f), CBlue));
+
+            // ── controller hint (bottom center) ─────────────────────────────
+            CreateText(titlePanel.transform,
+                "Keyboard / Controller supported  |  WASD · Arrow Keys · D-Pad · Stick",
+                14, TextAnchor.MiddleCenter,
+                new Vector2(0.5f, 0.055f), new Vector2(1100f, 28f),
+                new Color(1f, 1f, 1f, 0.28f));
+
+            // ── version stamp ────────────────────────────────────────────────
+            CreateText(titlePanel.transform,
+                "v1.3",
+                13, TextAnchor.MiddleRight,
+                new Vector2(0.985f, 0.04f), new Vector2(120f, 24f),
+                new Color(1f, 1f, 1f, 0.20f));
+        }
+
+        // ════════════════════════════════════════════════════════════════════
+        //  LEVEL SELECT PANEL
+        // ════════════════════════════════════════════════════════════════════
+        private void BuildLevelSelectPanel()
+        {
+            levelSelectPanel = CreateFullPanel("LevelSelectPanel", CDarker);
+            CreateRect(levelSelectPanel.transform, "BgGrad",
+                new Vector2(0f, 0f), new Vector2(1f, 1f),
+                new Color(0.03f, 0.05f, 0.09f, 0.80f));
+
+            CreateHorizBar(levelSelectPanel.transform, "TopBar",
+                new Vector2(0f, 1f), new Vector2(1f, 1f),
+                new Color(CBlue.r, CBlue.g, CBlue.b, 0.70f), 3f);
+
+            // header
+            CreateText(levelSelectPanel.transform, "SELECT LEVEL",
+                38, TextAnchor.MiddleCenter,
+                new Vector2(0.5f, 0.88f), new Vector2(600f, 64f),
+                CBlue);
+            CreateHorizBar(levelSelectPanel.transform, "HeadSep",
+                new Vector2(0.25f, 0.824f), new Vector2(0.75f, 0.824f),
+                new Color(CBlue.r, CBlue.g, CBlue.b, 0.40f), 1f);
+
             const int maxRowsPerColumn = 6;
             var columnCount = Mathf.Max(1, Mathf.CeilToInt(levelManager.Levels.Count / (float)maxRowsPerColumn));
             for (var i = 0; i < levelManager.Levels.Count; i++)
             {
                 var localIndex = i;
-                var level = levelManager.Levels[i];
-                var column = i / maxRowsPerColumn;
-                var row = i % maxRowsPerColumn;
-                var anchorX = columnCount == 1 ? 0.5f : Mathf.Lerp(0.24f, 0.76f, column / (float)(columnCount - 1));
-                var anchorY = 0.70f - row * 0.10f;
-                levelSelectButtons.Add(CreateButton(levelSelectPanel.transform, $"{level.index}. {level.title}", new Vector2(anchorX, anchorY), () => StartLevel(localIndex), new Vector2(270f, 52f)));
+                var level      = levelManager.Levels[i];
+                var column     = i / maxRowsPerColumn;
+                var row        = i % maxRowsPerColumn;
+                var anchorX    = columnCount == 1 ? 0.5f : Mathf.Lerp(0.22f, 0.78f, column / (float)(columnCount - 1));
+                var anchorY    = 0.745f - row * 0.098f;
+                // alternate accent colour per column
+                var accentCol  = (column % 3 == 0) ? CMint : (column % 3 == 1) ? CBlue : CPurple;
+                levelSelectButtons.Add(CreatePillButton(levelSelectPanel.transform,
+                    $"{level.index}.  {level.title}",
+                    new Vector2(anchorX, anchorY),
+                    () => StartLevel(localIndex),
+                    new Vector2(280f, 50f),
+                    accentCol));
             }
 
-            levelSelectButtons.Add(CreateButton(levelSelectPanel.transform, "Back", new Vector2(0.5f, 0.14f), ShowTitle, new Vector2(220f, 52f)));
-
-            hudPanel = CreatePanel("HudPanel");
-            hudPanel.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
-            titleText = CreateText(hudPanel.transform, string.Empty, 28, TextAnchor.UpperLeft, new Vector2(0.02f, 0.96f), new Vector2(520f, 50f));
-            subtitleText = CreateText(hudPanel.transform, string.Empty, 17, TextAnchor.UpperLeft, new Vector2(0.02f, 0.91f), new Vector2(640f, 40f));
-            hintText = CreateText(hudPanel.transform, string.Empty, 16, TextAnchor.LowerLeft, new Vector2(0.02f, 0.04f), new Vector2(860f, 52f));
-            captureText = CreateText(hudPanel.transform, string.Empty, 22, TextAnchor.UpperRight, new Vector2(0.98f, 0.96f), new Vector2(320f, 48f));
-            CreateButton(hudPanel.transform, "Restart", new Vector2(0.87f, 0.06f), () => levelManager.RestartCurrentLevel(), new Vector2(150f, 44f));
-            CreateButton(hudPanel.transform, "Levels", new Vector2(0.97f, 0.06f), ShowLevelSelect, new Vector2(130f, 44f));
-
-            completePanel = CreatePanel("CompletePanel");
-            completePanel.GetComponent<Image>().color = new Color(0.02f, 0.03f, 0.04f, 0.82f);
-            completeText = CreateText(completePanel.transform, "Level Complete", 42, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.58f), new Vector2(640f, 80f));
-            CreateButton(completePanel.transform, "Next Level", new Vector2(0.5f, 0.44f), () => levelManager.LoadNextLevel());
-            CreateButton(completePanel.transform, "Level Select", new Vector2(0.5f, 0.34f), ShowLevelSelect);
+            levelSelectButtons.Add(CreatePillButton(levelSelectPanel.transform,
+                "← BACK", new Vector2(0.5f, 0.095f), ShowTitle,
+                new Vector2(220f, 50f), CRed));
         }
 
+        // ════════════════════════════════════════════════════════════════════
+        //  HUD PANEL
+        // ════════════════════════════════════════════════════════════════════
+        private void BuildHudPanel()
+        {
+            hudPanel = CreateFullPanel("HudPanel", Color.clear);
+
+            // top-left level info pill
+            var infoBar = CreateRect(hudPanel.transform, "InfoBar",
+                new Vector2(0f, 0.90f), new Vector2(0.42f, 1.00f),
+                new Color(0.04f, 0.06f, 0.10f, 0.80f));
+            titleText    = CreateText(infoBar.transform, string.Empty, 26, TextAnchor.MiddleLeft,
+                new Vector2(0.04f, 0.62f), new Vector2(600f, 40f));
+            subtitleText = CreateText(infoBar.transform, string.Empty, 15, TextAnchor.MiddleLeft,
+                new Vector2(0.04f, 0.22f), new Vector2(700f, 30f),
+                new Color(CBlue.r, CBlue.g, CBlue.b, 0.80f));
+
+            // top-right score pill
+            var scorePill = CreateRect(hudPanel.transform, "ScorePill",
+                new Vector2(0.80f, 0.90f), new Vector2(1.00f, 1.00f),
+                new Color(0.04f, 0.06f, 0.10f, 0.80f));
+            captureText = CreateText(scorePill.transform, string.Empty, 28, TextAnchor.MiddleCenter,
+                new Vector2(0.5f, 0.5f), new Vector2(260f, 50f), CMint);
+
+            hintText = CreateText(hudPanel.transform, string.Empty, 15, TextAnchor.MiddleLeft,
+                new Vector2(0.02f, 0.03f), new Vector2(900f, 36f),
+                new Color(1f, 1f, 1f, 0.38f));
+
+            // bottom-right buttons
+            CreatePillButton(hudPanel.transform, "RESTART",
+                new Vector2(0.84f, 0.045f), () => levelManager.RestartCurrentLevel(),
+                new Vector2(160f, 42f), CAmber);
+            CreatePillButton(hudPanel.transform, "LEVELS",
+                new Vector2(0.955f, 0.045f), ShowLevelSelect,
+                new Vector2(130f, 42f), CBlue);
+        }
+
+        // ════════════════════════════════════════════════════════════════════
+        //  LEVEL COMPLETE PANEL
+        // ════════════════════════════════════════════════════════════════════
+        private void BuildCompletePanel()
+        {
+            completePanel = CreateFullPanel("CompletePanel", new Color(0.02f, 0.03f, 0.05f, 0.88f));
+
+            CreateOrb(completePanel.transform, "OrbComplete", new Vector2(0.5f, 0.5f), 600f,
+                new Color(CMint.r, CMint.g, CMint.b, 0.10f));
+
+            completeText = CreateText(completePanel.transform, "LEVEL COMPLETE",
+                52, TextAnchor.MiddleCenter,
+                new Vector2(0.5f, 0.60f), new Vector2(800f, 80f), CMint);
+            completeText.fontStyle = FontStyle.Bold;
+
+            CreateHorizBar(completePanel.transform, "CompleteSep",
+                new Vector2(0.3f, 0.545f), new Vector2(0.7f, 0.545f),
+                new Color(CMint.r, CMint.g, CMint.b, 0.40f), 1f);
+
+            CreatePillButton(completePanel.transform, "NEXT LEVEL",
+                new Vector2(0.5f, 0.44f), () => levelManager.LoadNextLevel(),
+                new Vector2(300f, 62f), CMint);
+            CreatePillButton(completePanel.transform, "LEVEL SELECT",
+                new Vector2(0.5f, 0.335f), ShowLevelSelect,
+                new Vector2(300f, 62f), CBlue);
+        }
+
+        // ── Panel / level helpers ────────────────────────────────────────────
         private void StartLevel(int index)
         {
             currentButtons.Clear();
@@ -136,21 +304,21 @@ namespace ChromaCube.UI
 
         private void HandleLevelLoaded(LevelData level, int captured, int required)
         {
-            titleText.text = $"Level {level.index}: {level.title}";
+            titleText.text    = $"Level {level.index}:  {level.title}";
             subtitleText.text = level.subtitle;
-            hintText.text = $"Hint: {level.hint}";
+            hintText.text     = $"Hint: {level.hint}";
             HandleCaptureChanged(captured, required);
             SetPanel(hudPanel);
         }
 
         private void HandleCaptureChanged(int captured, int required)
         {
-            captureText.text = $"{captured}/{required}";
+            captureText.text = $"{captured} / {required}";
         }
 
         private void HandleLevelCompleted(LevelData level)
         {
-            completeText.text = $"Level {level.index} Complete";
+            completeText.text = $"Level {level.index}  Complete";
             SetPanel(completePanel);
         }
 
@@ -171,178 +339,256 @@ namespace ChromaCube.UI
 
         private void SelectButton(int index)
         {
-            if (currentButtons.Count == 0)
-            {
-                return;
-            }
-
+            if (currentButtons.Count == 0) return;
             selectedButtonIndex = (index + currentButtons.Count) % currentButtons.Count;
             ResetButtonLabels();
-
-            var selectedButton = currentButtons[selectedButtonIndex];
-            if (buttonLabels.TryGetValue(selectedButton, out var selectedLabel))
-            {
-                selectedLabel.text = "> " + buttonBaseLabels[selectedButton];
-            }
-
+            var sel = currentButtons[selectedButtonIndex];
+            if (buttonLabels.TryGetValue(sel, out var lbl))
+                lbl.text = "▶  " + buttonBaseLabels[sel];
         }
 
         private void ResetButtonLabels()
         {
-            foreach (var pair in buttonLabels)
-            {
-                pair.Value.text = "  " + buttonBaseLabels[pair.Key];
-            }
+            foreach (var p in buttonLabels)
+                p.Value.text = "   " + buttonBaseLabels[p.Key];
         }
 
         private void HandleMouseClick()
         {
-            if (Mouse.current == null || !Mouse.current.leftButton.wasPressedThisFrame)
-            {
-                return;
-            }
-
-            var screenPosition = Mouse.current.position.ReadValue();
+            if (Mouse.current == null || !Mouse.current.leftButton.wasPressedThisFrame) return;
+            var pos = Mouse.current.position.ReadValue();
             foreach (var pair in buttonLabels)
             {
-                var button = pair.Key;
-                if (!button.gameObject.activeInHierarchy)
+                var btn = pair.Key;
+                if (!btn.gameObject.activeInHierarchy) continue;
+                if (RectTransformUtility.RectangleContainsScreenPoint(btn.GetComponent<RectTransform>(), pos))
                 {
-                    continue;
-                }
-
-                var rectTransform = button.GetComponent<RectTransform>();
-                if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, screenPosition))
-                {
-                    button.onClick.Invoke();
+                    btn.onClick.Invoke();
                     return;
                 }
             }
         }
 
-        private GameObject CreatePanel(string panelName)
+        // ════════════════════════════════════════════════════════════════════
+        //  FACTORY HELPERS
+        // ════════════════════════════════════════════════════════════════════
+
+        /// Full-screen panel
+        private GameObject CreateFullPanel(string name, Color bg)
         {
-            var panel = new GameObject(panelName, typeof(RectTransform), typeof(Image));
-            panel.transform.SetParent(transform, false);
-            var rect = panel.GetComponent<RectTransform>();
-            rect.anchorMin = Vector2.zero;
-            rect.anchorMax = Vector2.one;
-            rect.offsetMin = Vector2.zero;
-            rect.offsetMax = Vector2.zero;
-            panel.GetComponent<Image>().color = new Color(0.055f, 0.065f, 0.08f, 0.94f);
-            return panel;
+            var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+            go.transform.SetParent(transform, false);
+            var r = go.GetComponent<RectTransform>();
+            r.anchorMin = Vector2.zero;
+            r.anchorMax = Vector2.one;
+            r.offsetMin = Vector2.zero;
+            r.offsetMax = Vector2.zero;
+            go.GetComponent<Image>().color = bg;
+            return go;
         }
 
-        private Text CreateText(Transform parent, string content, int size, TextAnchor anchor, Vector2 anchorPosition, Vector2 dimensions)
+        /// Anchored rect (stretches between anchorMin / anchorMax in parent)
+        private GameObject CreateRect(Transform parent, string name, Vector2 anchorMin, Vector2 anchorMax, Color color)
         {
-            return CreateText(parent, content, size, anchor, anchorPosition, dimensions, Color.white);
+            var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+            go.transform.SetParent(parent, false);
+            var r = go.GetComponent<RectTransform>();
+            r.anchorMin = anchorMin;
+            r.anchorMax = anchorMax;
+            r.offsetMin = Vector2.zero;
+            r.offsetMax = Vector2.zero;
+            go.GetComponent<Image>().color = color;
+            return go;
         }
 
-        private Text CreateText(Transform parent, string content, int size, TextAnchor anchor, Vector2 anchorPosition, Vector2 dimensions, Color color)
+        /// Circular glow orb (square image that reads as soft circle)
+        private void CreateOrb(Transform parent, string name, Vector2 anchor, float size, Color color)
         {
-            var textObject = new GameObject("Text", typeof(RectTransform), typeof(Text));
-            textObject.transform.SetParent(parent, false);
-            var rect = textObject.GetComponent<RectTransform>();
-            rect.sizeDelta = dimensions;
-            rect.anchorMin = anchorPosition;
-            rect.anchorMax = anchorPosition;
-            rect.anchoredPosition = Vector2.zero;
-
-            var text = textObject.GetComponent<Text>();
-            text.text = content;
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            text.fontSize = size;
-            text.alignment = anchor;
-            text.color = color;
-            text.horizontalOverflow = HorizontalWrapMode.Wrap;
-            text.verticalOverflow = VerticalWrapMode.Truncate;
-            text.raycastTarget = false;
-            return text;
+            var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+            go.transform.SetParent(parent, false);
+            var r = go.GetComponent<RectTransform>();
+            r.anchorMin        = anchor;
+            r.anchorMax        = anchor;
+            r.sizeDelta        = new Vector2(size, size);
+            r.anchoredPosition = Vector2.zero;
+            go.GetComponent<Image>().color = color;
         }
 
-        private void CreateTitleText(Transform parent, string coloredContent, string shadowContent, int size, Vector2 anchorPosition, Vector2 dimensions)
+        /// Full-width (or partial) horizontal line bar
+        private void CreateHorizBar(Transform parent, string name, Vector2 anchorMin, Vector2 anchorMax, Color color, float height)
         {
-            var shadow = CreateText(parent, shadowContent, size, TextAnchor.MiddleCenter, anchorPosition, dimensions, new Color(0.05f, 0.08f, 0.10f, 0.9f));
-            shadow.GetComponent<RectTransform>().anchoredPosition = new Vector2(4f, -5f);
+            var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+            go.transform.SetParent(parent, false);
+            var r = go.GetComponent<RectTransform>();
+            r.anchorMin = anchorMin;
+            r.anchorMax = anchorMax;
+            r.offsetMin = new Vector2(0f, -height * 0.5f);
+            r.offsetMax = new Vector2(0f,  height * 0.5f);
+            go.GetComponent<Image>().color = color;
+        }
 
-            var title = CreateText(parent, coloredContent, size, TextAnchor.MiddleCenter, anchorPosition, dimensions, Color.white);
-            title.fontStyle = FontStyle.Bold;
+        /// Small left-edge vertical colour strip (useful on cards)
+        private void CreateVertStrip(Transform parent, string name, Color color)
+        {
+            var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+            go.transform.SetParent(parent, false);
+            var r = go.GetComponent<RectTransform>();
+            r.anchorMin = new Vector2(0f, 0f);
+            r.anchorMax = new Vector2(0f, 1f);
+            r.offsetMin = Vector2.zero;
+            r.offsetMax = new Vector2(4f, 0f);
+            go.GetComponent<Image>().color = color;
+        }
+
+        /// Spinning rect accent (replaces old accent blocks)
+        private void CreateSpinBox(Transform parent, string name, Vector2 anchor,
+            float w, float h, Color color, float speed)
+        {
+            var go = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(UIAmbientAnimator));
+            go.transform.SetParent(parent, false);
+            var r = go.GetComponent<RectTransform>();
+            r.anchorMin        = anchor;
+            r.anchorMax        = anchor;
+            r.sizeDelta        = new Vector2(w, h);
+            r.anchoredPosition = Vector2.zero;
+            r.localRotation    = Quaternion.Euler(0f, 0f, speed * 5f);
+            go.GetComponent<Image>().color = color;
+            go.GetComponent<UIAmbientAnimator>().Configure(speed);
+        }
+
+        // ── Text ─────────────────────────────────────────────────────────────
+        private Text CreateText(Transform parent, string content, int size,
+            TextAnchor anchor, Vector2 anchorPos, Vector2 dims)
+            => CreateText(parent, content, size, anchor, anchorPos, dims, Color.white);
+
+        private Text CreateText(Transform parent, string content, int size,
+            TextAnchor anchor, Vector2 anchorPos, Vector2 dims, Color color)
+        {
+            var go = new GameObject("Text_" + content.Substring(0, Mathf.Min(12, content.Length)),
+                typeof(RectTransform), typeof(Text));
+            go.transform.SetParent(parent, false);
+            var r = go.GetComponent<RectTransform>();
+            r.sizeDelta        = dims;
+            r.anchorMin        = anchorPos;
+            r.anchorMax        = anchorPos;
+            r.anchoredPosition = Vector2.zero;
+
+            var t = go.GetComponent<Text>();
+            t.text             = content;
+            t.font             = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            t.fontSize         = size;
+            t.alignment        = anchor;
+            t.color            = color;
+            t.horizontalOverflow = HorizontalWrapMode.Wrap;
+            t.verticalOverflow   = VerticalWrapMode.Truncate;
+            t.raycastTarget    = false;
+            return t;
+        }
+
+        // ── Double-layer title text (shadow + coloured) ───────────────────────
+        private void CreateTitleText(Transform parent, string coloredContent,
+            string shadowContent, int size, Vector2 anchorPos, Vector2 dims)
+        {
+            // drop-shadow
+            var shadow = CreateText(parent, shadowContent, size,
+                TextAnchor.MiddleCenter, anchorPos, dims,
+                new Color(0f, 0f, 0f, 0.75f));
+            shadow.GetComponent<RectTransform>().anchoredPosition = new Vector2(5f, -6f);
+
+            // coloured text on top
+            var title = CreateText(parent, coloredContent, size,
+                TextAnchor.MiddleCenter, anchorPos, dims, Color.white);
+            title.fontStyle      = FontStyle.Bold;
             title.supportRichText = true;
+
+            // outer glow: slightly larger, low-alpha, same anchor
+            var glow = CreateText(parent, coloredContent, size + 2,
+                TextAnchor.MiddleCenter, anchorPos,
+                new Vector2(dims.x + 20f, dims.y + 20f),
+                new Color(CBlue.r, CBlue.g, CBlue.b, 0.22f));
+            glow.fontStyle       = FontStyle.Bold;
+            glow.supportRichText  = true;
         }
 
         private static string ColorfulTitle()
         {
-            return "<color=#33F59E>C</color><color=#61D7FF>H</color><color=#FFD12E>R</color><color=#C27AFF>O</color><color=#FF5C6B>M</color><color=#33F59E>A</color> " +
-                   "<color=#61D7FF>C</color><color=#FFD12E>U</color><color=#C27AFF>B</color><color=#FF5C6B>E</color>";
+            return "<color=#33F59E>C</color>" +
+                   "<color=#61D7FF>H</color>" +
+                   "<color=#FFD12E>R</color>" +
+                   "<color=#C27AFF>O</color>" +
+                   "<color=#FF5C6B>M</color>" +
+                   "<color=#33F59E>A</color>" +
+                   "  " +
+                   "<color=#61D7FF>C</color>" +
+                   "<color=#FFD12E>U</color>" +
+                   "<color=#C27AFF>B</color>" +
+                   "<color=#FF5C6B>E</color>";
         }
 
-        private void CreateTitleBackdrop(Transform parent)
+        // ── Pill-style button ─────────────────────────────────────────────────
+        private Button CreatePillButton(Transform parent, string label,
+            Vector2 anchorPos, UnityEngine.Events.UnityAction action,
+            Vector2 dims, Color accent)
         {
-            CreateAccentBlock(parent, "MintGlow", new Vector2(0.17f, 0.70f), new Vector2(170f, 170f), 18f, new Color(0.20f, 0.96f, 0.62f, 0.34f), 7f);
-            CreateAccentBlock(parent, "AmberGlow", new Vector2(0.82f, 0.65f), new Vector2(210f, 130f), -16f, new Color(1.00f, 0.82f, 0.18f, 0.30f), -5f);
-            CreateAccentBlock(parent, "LavenderGlow", new Vector2(0.73f, 0.24f), new Vector2(150f, 150f), 32f, new Color(0.76f, 0.48f, 1.00f, 0.26f), 9f);
-            CreateAccentBlock(parent, "OceanGlow", new Vector2(0.26f, 0.28f), new Vector2(230f, 82f), -20f, new Color(0.12f, 0.58f, 1.00f, 0.22f), -8f);
-            CreateAccentLine(parent, new Vector2(0.5f, 0.515f), new Vector2(520f, 3f), new Color(0.66f, 0.94f, 1.00f, 0.72f));
-        }
+            // outer container
+            var go = new GameObject($"Btn_{label}", typeof(RectTransform), typeof(Image), typeof(Button));
+            go.transform.SetParent(parent, false);
+            var r = go.GetComponent<RectTransform>();
+            r.sizeDelta        = dims;
+            r.anchorMin        = anchorPos;
+            r.anchorMax        = anchorPos;
+            r.anchoredPosition = Vector2.zero;
 
-        private void CreateAccentBlock(Transform parent, string name, Vector2 anchorPosition, Vector2 dimensions, float rotation, Color color, float rotationSpeed)
-        {
-            var block = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(UIAmbientAnimator));
-            block.transform.SetParent(parent, false);
-            var rect = block.GetComponent<RectTransform>();
-            rect.anchorMin = anchorPosition;
-            rect.anchorMax = anchorPosition;
-            rect.sizeDelta = dimensions;
-            rect.anchoredPosition = Vector2.zero;
-            rect.localRotation = Quaternion.Euler(0f, 0f, rotation);
-            block.GetComponent<Image>().color = color;
-            block.GetComponent<UIAmbientAnimator>().Configure(rotationSpeed);
-        }
+            // base colour: very dark, slight accent tint
+            var baseCol = new Color(
+                Mathf.Lerp(0.06f, accent.r, 0.10f),
+                Mathf.Lerp(0.09f, accent.g, 0.10f),
+                Mathf.Lerp(0.13f, accent.b, 0.10f),
+                0.94f);
+            var hoverCol = new Color(
+                Mathf.Lerp(0.10f, accent.r, 0.22f),
+                Mathf.Lerp(0.14f, accent.g, 0.22f),
+                Mathf.Lerp(0.20f, accent.b, 0.22f),
+                1f);
+            var pressCol = new Color(
+                Mathf.Lerp(0.04f, accent.r, 0.55f),
+                Mathf.Lerp(0.06f, accent.g, 0.55f),
+                Mathf.Lerp(0.08f, accent.b, 0.55f),
+                1f);
 
-        private void CreateAccentLine(Transform parent, Vector2 anchorPosition, Vector2 dimensions, Color color)
-        {
-            var line = new GameObject("TitleAccentLine", typeof(RectTransform), typeof(Image));
-            line.transform.SetParent(parent, false);
-            var rect = line.GetComponent<RectTransform>();
-            rect.anchorMin = anchorPosition;
-            rect.anchorMax = anchorPosition;
-            rect.sizeDelta = dimensions;
-            rect.anchoredPosition = Vector2.zero;
-            line.GetComponent<Image>().color = color;
-        }
+            var img = go.GetComponent<Image>();
+            img.color = baseCol;
 
-        private Button CreateButton(Transform parent, string label, Vector2 anchorPosition, UnityEngine.Events.UnityAction action)
-        {
-            return CreateButton(parent, label, anchorPosition, action, new Vector2(230f, 54f));
-        }
+            var btn = go.GetComponent<Button>();
+            btn.onClick.AddListener(action);
+            var cols = btn.colors;
+            cols.normalColor      = baseCol;
+            cols.highlightedColor = hoverCol;
+            cols.pressedColor     = pressCol;
+            cols.selectedColor    = hoverCol;
+            cols.colorMultiplier  = 1f;
+            cols.fadeDuration     = 0.08f;
+            btn.colors = cols;
 
-        private Button CreateButton(Transform parent, string label, Vector2 anchorPosition, UnityEngine.Events.UnityAction action, Vector2 dimensions)
-        {
-            var buttonObject = new GameObject($"Button_{label}", typeof(RectTransform), typeof(Image), typeof(Button));
-            buttonObject.transform.SetParent(parent, false);
-            var rect = buttonObject.GetComponent<RectTransform>();
-            rect.sizeDelta = dimensions;
-            rect.anchorMin = anchorPosition;
-            rect.anchorMax = anchorPosition;
-            rect.anchoredPosition = Vector2.zero;
+            // left accent strip
+            var strip = new GameObject("Strip", typeof(RectTransform), typeof(Image));
+            strip.transform.SetParent(go.transform, false);
+            var sr = strip.GetComponent<RectTransform>();
+            sr.anchorMin = new Vector2(0f, 0f);
+            sr.anchorMax = new Vector2(0f, 1f);
+            sr.offsetMin = Vector2.zero;
+            sr.offsetMax = new Vector2(4f, 0f);
+            strip.GetComponent<Image>().color = new Color(accent.r, accent.g, accent.b, 0.90f);
 
-            var image = buttonObject.GetComponent<Image>();
-            image.color = new Color(0.12f, 0.19f, 0.25f, 0.96f);
-            var button = buttonObject.GetComponent<Button>();
-            button.onClick.AddListener(action);
-            var colors = button.colors;
-            colors.normalColor = new Color(0.12f, 0.19f, 0.25f, 0.96f);
-            colors.highlightedColor = new Color(0.18f, 0.36f, 0.44f, 1f);
-            colors.pressedColor = new Color(0.08f, 0.78f, 0.96f, 1f);
-            colors.selectedColor = colors.highlightedColor;
-            button.colors = colors;
+            // label
+            var lbl = CreateText(go.transform, "   " + label, 20,
+                TextAnchor.MiddleCenter, new Vector2(0.5f, 0.5f), dims);
+            lbl.fontStyle = FontStyle.Bold;
+            lbl.color     = Color.white;
 
-            var labelText = CreateText(buttonObject.transform, label, 20, TextAnchor.MiddleCenter, new Vector2(0.5f, 0.5f), dimensions);
-            labelText.fontStyle = FontStyle.Bold;
-            labelText.color = Color.white;
-            buttonLabels[button] = labelText;
-            buttonBaseLabels[button] = label;
-            return button;
+            buttonLabels[btn]     = lbl;
+            buttonBaseLabels[btn] = label;
+            return btn;
         }
     }
 }
