@@ -22,9 +22,16 @@ namespace ChromaCube.Audio
         private AudioSource musicSource;
         private AudioSource effectsSource;
         private bool initialized;
+        private LevelManager subscribedManager; // held so we can unsubscribe in OnDestroy
 
         public void Initialize(LevelManager manager)
         {
+            if (manager == null)
+            {
+                Debug.LogError("[AudioManager] Initialize called with null LevelManager.", this);
+                return;
+            }
+
             EnsureSources();
             AutoDiscoverClipsInEditor();
 
@@ -33,9 +40,29 @@ namespace ChromaCube.Audio
                 return;
             }
 
-            manager.OnLevelLoaded += HandleLevelLoaded;
-            manager.OnTileCaptured += HandleTileCaptured;
+            subscribedManager = manager;
+            manager.OnLevelLoaded    += HandleLevelLoaded;
+            manager.OnTileCaptured   += HandleTileCaptured;
             initialized = true;
+
+#if !UNITY_EDITOR
+            // Warn at runtime if clips weren't wired up in the Inspector (editor auto-discovers them)
+            if (backgroundClips.Count == 0)
+                Debug.LogWarning("[AudioManager] No background clips assigned. Music will not play in this build.", this);
+            if (captureClip == null)
+                Debug.LogWarning("[AudioManager] No capture clip assigned. Tile-capture SFX will not play in this build.", this);
+#endif
+        }
+
+        private void OnDestroy()
+        {
+            // Always unsubscribe to prevent dead-delegate errors after scene reload or manager destruction
+            if (subscribedManager != null)
+            {
+                subscribedManager.OnLevelLoaded  -= HandleLevelLoaded;
+                subscribedManager.OnTileCaptured -= HandleTileCaptured;
+                subscribedManager = null;
+            }
         }
 
         private void EnsureSources()
@@ -78,7 +105,7 @@ namespace ChromaCube.Audio
 
         private void HandleTileCaptured(TileData tile)
         {
-            if (captureClip == null)
+            if (captureClip == null || effectsSource == null)
             {
                 return;
             }
