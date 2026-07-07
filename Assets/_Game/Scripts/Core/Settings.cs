@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace ChromaCube.Core
 {
     /// <summary>
@@ -8,10 +6,10 @@ namespace ChromaCube.Core
     /// </summary>
     public static class Settings
     {
-        [Tooltip("Enable verbose capture-system logging in the Console.")]
+        /// <summary>Enable verbose capture-system logging in the Console.</summary>
         public const bool DebugCapture = false;
 
-        [Tooltip("Enable verbose movement logging in the Console.")]
+        /// <summary>Enable verbose movement logging in the Console.</summary>
         public const bool DebugMovement = false;
     }
 }
