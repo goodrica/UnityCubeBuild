@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace ChromaCube.Core
 {
@@ -11,6 +12,42 @@ namespace ChromaCube.Core
         public FaceKey south;
         public FaceKey east;
         public FaceKey west;
+
+        /// <summary>
+        /// Derive which logical face is pointing DOWN from the cube's actual world rotation.
+        /// This is the ground-truth source for capture logic — it accounts for edge transitions
+        /// and frame rotations that the purely logical Roll() method cannot track.
+        /// </summary>
+        public static FaceKey GetBottomFaceFromRotation(Quaternion worldRotation)
+        {
+            // The six local face normals in identity orientation
+            var directions = new[]
+            {
+                (FaceKey.Top,    Vector3.up),
+                (FaceKey.Bottom, Vector3.down),
+                (FaceKey.North,  Vector3.forward),
+                (FaceKey.South,  Vector3.back),
+                (FaceKey.East,   Vector3.right),
+                (FaceKey.West,   Vector3.left)
+            };
+
+            var worldDown = Vector3.down;
+            var bestFace = FaceKey.Bottom;
+            var bestDot = float.NegativeInfinity;
+
+            foreach (var (face, localDir) in directions)
+            {
+                var worldDir = worldRotation * localDir;
+                var dot = Vector3.Dot(worldDir, worldDown);
+                if (dot > bestDot)
+                {
+                    bestDot = dot;
+                    bestFace = face;
+                }
+            }
+
+            return bestFace;
+        }
 
         public static CubeOrientation Identity()
         {

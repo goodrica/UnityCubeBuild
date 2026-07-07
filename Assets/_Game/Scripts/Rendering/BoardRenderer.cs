@@ -75,8 +75,26 @@ namespace ChromaCube.Rendering
             }
         }
 
-        public void RefreshCapturedState()
+        public void RefreshCapturedState() => RefreshCapturedState(null);
+
+        public void RefreshCapturedState(TileData specificTile)
         {
+            if (specificTile != null)
+            {
+                // Only fade the newly captured tile — avoids re-triggering coroutines
+                // on previously captured tiles which causes visual jitter and stacking.
+                foreach (var tile in runtimeTiles)
+                {
+                    if (tile.data == specificTile && tile.data.captured)
+                    {
+                        StartCoroutine(FadeCapturedTile(tile));
+                        break;
+                    }
+                }
+                return;
+            }
+
+            // Legacy path: refresh all (used on level load if needed)
             foreach (var tile in runtimeTiles)
             {
                 if (!tile.data.captured)
@@ -175,7 +193,7 @@ namespace ChromaCube.Rendering
                 visual.transform.SetParent(transform, false);
                 visual.transform.position = WorldCubeTileCenter(frame, tile.gridPos, level);
                 visual.transform.rotation = Quaternion.LookRotation(frame.forward, frame.normal);
-                visual.transform.localScale = new Vector3(tileSize * 0.9f, tileHeight, tileSize * 0.9f);
+                visual.transform.localScale = new Vector3(tileSize * 0.94f, tileHeight, tileSize * 0.94f);
 
                 var renderer = visual.GetComponent<Renderer>();
                 renderer.sharedMaterial = GetMaterial(tile.colorId);

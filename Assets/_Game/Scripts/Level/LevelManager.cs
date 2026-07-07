@@ -16,6 +16,13 @@ namespace ChromaCube.Level
         public event Action<TileData> OnTileCaptured;
         public event Action<LevelData> OnLevelCompleted;
 
+        /// <summary>
+        /// Distance from tile surface to cube center.
+        /// Cube half-height (0.46) + tile half-thickness (0.06) = 0.52.
+        /// The old value 0.62 left a visible 0.10-unit gap where the cube floated above tiles.
+        /// </summary>
+        private const float CubeSurfaceOffset = 0.52f;
+
         [SerializeField] private BoardRenderer boardRenderer;
         [SerializeField] private CubeRenderer cubeRenderer;
         [SerializeField] private ClassicMovementController movementController;
@@ -68,13 +75,13 @@ namespace ChromaCube.Level
             if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
             {
                 var frame = BoardRenderer.GetWorldCubeFrame(cubeWorldFace);
-                cubeRenderer.transform.position = boardRenderer.WorldCubeTileCenter(cubeWorldFace, cubeGridPosition, currentLevel) + frame.normal * 0.62f;
+                cubeRenderer.transform.position = boardRenderer.WorldCubeTileCenter(cubeWorldFace, cubeGridPosition, currentLevel) + frame.normal * CubeSurfaceOffset;
                 cubeRenderer.transform.rotation = boardRenderer.WorldCubeSurfaceRotation(cubeWorldFace);
                 movementController.Configure(CanMove, GetTargetPosition, GetRotationAxis, CommitMove);
             }
             else
             {
-                cubeRenderer.transform.position = boardRenderer.GridToWorld(cubeGridPosition, currentLevel) + Vector3.up * 0.62f;
+                cubeRenderer.transform.position = boardRenderer.GridToWorld(cubeGridPosition, currentLevel) + Vector3.up * CubeSurfaceOffset;
                 cubeRenderer.transform.rotation = Quaternion.identity;
                 movementController.Configure(CanMove, GetTargetPosition, CommitMove);
             }
@@ -174,11 +181,11 @@ namespace ChromaCube.Level
             if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
             {
                 var worldTarget = GetWorldCubeTarget(direction);
-                return boardRenderer.WorldCubeTileCenter(worldTarget.face, worldTarget.gridPosition, currentLevel) + worldTarget.frame.normal * 0.62f;
+                return boardRenderer.WorldCubeTileCenter(worldTarget.face, worldTarget.gridPosition, currentLevel) + worldTarget.frame.normal * CubeSurfaceOffset;
             }
 
             var target = cubeGridPosition + DirectionToGridOffset(direction);
-            return boardRenderer.GridToWorld(target, currentLevel) + Vector3.up * 0.62f;
+            return boardRenderer.GridToWorld(target, currentLevel) + Vector3.up * CubeSurfaceOffset;
         }
 
         private Vector3 GetRotationAxis(Direction direction)
@@ -219,10 +226,10 @@ namespace ChromaCube.Level
         private void ResolveCapture()
         {
             var tile = GetTileAt(cubeGridPosition);
-            var captured = captureSystem.TryCapture(currentLevel, orientation, tile);
+            var captured = captureSystem.TryCapture(currentLevel, orientation, tile, ResolveBottomFace(), cubeGridPosition, cubeWorldFace);
             if (captured)
             {
-                boardRenderer.RefreshCapturedState();
+                boardRenderer.RefreshCapturedState(tile);
                 OnTileCaptured?.Invoke(tile);
             }
 
@@ -233,6 +240,22 @@ namespace ChromaCube.Level
                 completed = true;
                 OnLevelCompleted?.Invoke(currentLevel);
             }
+        }
+
+        /// <summary>
+        /// Determine the bottom face using the cube's actual physical world rotation.
+        /// This is the ground truth — far more reliable than the logical CubeOrientation
+        /// which desyncs during WorldCube edge transitions.
+        /// </summary>
+        private FaceKey ResolveBottomFace()
+        {
+            if (cubeRenderer != null)
+            {
+                return CubeOrientation.GetBottomFaceFromRotation(cubeRenderer.transform.rotation);
+            }
+
+            // Fallback to logical orientation if renderer unavailable
+            return orientation.GetBottomFace();
         }
 
         private TileData GetTileAt(Vector2Int gridPosition)
@@ -269,13 +292,13 @@ namespace ChromaCube.Level
         private Vector3 GetCurrentWorldCubePosition()
         {
             var frame = BoardRenderer.GetWorldCubeFrame(cubeWorldFace);
-            return boardRenderer.WorldCubeTileCenter(cubeWorldFace, cubeGridPosition, currentLevel) + frame.normal * 0.62f;
+            return boardRenderer.WorldCubeTileCenter(cubeWorldFace, cubeGridPosition, currentLevel) + frame.normal * CubeSurfaceOffset;
         }
 
         private Vector3 GetWorldCubeTargetCenter(Direction direction)
         {
             var target = GetWorldCubeTarget(direction);
-            return boardRenderer.WorldCubeTileCenter(target.face, target.gridPosition, currentLevel) + target.frame.normal * 0.62f;
+            return boardRenderer.WorldCubeTileCenter(target.face, target.gridPosition, currentLevel) + target.frame.normal * CubeSurfaceOffset;
         }
 
         private WorldCubeTarget GetWorldCubeTarget(Direction direction)
