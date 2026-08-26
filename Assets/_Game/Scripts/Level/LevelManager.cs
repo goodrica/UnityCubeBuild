@@ -14,7 +14,8 @@ namespace ChromaCube.Level
         public event Action<LevelData, int, int> OnLevelLoaded;
         public event Action<int, int> OnCaptureChanged;
         public event Action<TileData> OnTileCaptured;
-        public event Action<LevelData> OnLevelCompleted;
+        public event Action<LevelData, int, int> OnLevelCompleted;
+        public event Action<int> OnMoveCountChanged;
 
         /// <summary>
         /// Distance from tile surface to cube center.
@@ -31,15 +32,18 @@ namespace ChromaCube.Level
 
         private readonly CaptureSystem captureSystem = new CaptureSystem();
         private readonly WinConditionSystem winConditionSystem = new WinConditionSystem();
+        private readonly System.Collections.Generic.List<System.Action> undoStack = new System.Collections.Generic.List<System.Action>();
         private LevelData currentLevel;
         private CubeOrientation orientation;
         private Vector2Int cubeGridPosition;
         private WorldCubeFace cubeWorldFace;
         private bool completed;
+        private int moveCount;
 
         public bool AcceptsInput => currentLevel != null && !completed && movementController != null && !movementController.IsMoving;
         public IReadOnlyList<LevelData> Levels => levels;
         public int CurrentLevelIndex { get; private set; } = -1;
+        public int MoveCount => moveCount;
 
         public void Initialize(BoardRenderer board, CubeRenderer cube, ClassicMovementController movement, CameraRigController rig, List<LevelData> availableLevels)
         {
@@ -69,6 +73,9 @@ namespace ChromaCube.Level
             cubeGridPosition = currentLevel.start;
             cubeWorldFace = WorldCubeFace.Top;
             completed = false;
+            undoStack.Clear();
+            moveCount = 0;
+            OnMoveCountChanged?.Invoke(moveCount);
 
             boardRenderer.Render(currentLevel);
             cubeRenderer.Build(currentLevel);
@@ -89,6 +96,7 @@ namespace ChromaCube.Level
             cameraRig.Configure(cubeRenderer.transform, currentLevel);
 
             ResolveCapture();
+            UpdateBottomFacePreview();
             OnLevelLoaded?.Invoke(currentLevel, captureSystem.CountCapturedRequired(currentLevel.tiles), CountRequired());
         }
 
@@ -153,6 +161,23 @@ namespace ChromaCube.Level
             }
         }
 
+        public void UndoLastMove()
+        {
+            if (completed)
+            {
+                return;
+            }
+
+            if (undoStack.Count == 0)
+            {
+                return;
+            }
+
+            var snapshot = undoStack[^1];
+            undoStack.RemoveAt(undoStack.Count - 1);
+            RestoreSnapshot(snapshot);
+        }
+
         public void LoadNextLevel()
         {
             var next = CurrentLevelIndex + 1;
@@ -208,6 +233,8 @@ namespace ChromaCube.Level
 
         private void CommitMove(Direction direction)
         {
+            undoStack.Add(CreateSnapshot());
+
             if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
             {
                 var target = GetWorldCubeTarget(direction);
@@ -219,7 +246,11 @@ namespace ChromaCube.Level
                 cubeGridPosition += DirectionToGridOffset(direction);
             }
 
+            moveCount++;
+            OnMoveCountChanged?.Invoke(moveCount);
+
             orientation.Roll(direction);
+            UpdateBottomFacePreview();
             ResolveCapture();
         }
 
@@ -238,8 +269,96 @@ namespace ChromaCube.Level
             if (winConditionSystem.IsComplete(currentLevel.tiles))
             {
                 completed = true;
-                OnLevelCompleted?.Invoke(currentLevel);
+
+                var stars = SaveSystem.EvaluateStars(
+                    moveCount,
+                    currentLevel.parMoveCount,
+                    currentLevel.star1Threshold,
+                    currentLevel.star2Threshold,
+                    currentLevel.star3Threshold);
+
+                SaveSystem.SetBestMoves(currentLevel.levelId, moveCount);
+                SaveSystem.SetBestStars(currentLevel.levelId, stars);
+
+                OnLevelCompleted?.Invoke(currentLevel, stars, moveCount);
             }
+        }
+
+        private void RestoreSnapshot(LevelSnapshot snapshot)
+        {
+            cubeGridPosition = snapshot.position;
+            cubeWorldFace = snapshot.face;
+            orientation = new CubeOrientation(snapshot.orientationFaceStates);
+            moveCount = snapshot.moveCount;
+            OnMoveCountChanged?.Invoke(moveCount);
+
+            foreach (var capturedId in snapshot.capturedTileIds)
+            {
+                foreach (var tile in currentLevel.tiles)
+                {
+                    if (tile.id == capturedId)
+                    {
+                        tile.captured = false;
+                        break;
+                    }
+                }
+            }
+
+            boardRenderer.RefreshCapturedState();
+            UpdateCubeTransform();
+            UpdateBottomFacePreview();
+        }
+
+        private void UpdateCubeTransform()
+        {
+            if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
+            {
+                var frame = BoardRenderer.GetWorldCubeFrame(cubeWorldFace);
+                cubeRenderer.transform.position = boardRenderer.WorldCubeTileCenter(cubeWorldFace, cubeGridPosition, currentLevel) + frame.normal * CubeSurfaceOffset;
+                cubeRenderer.transform.rotation = boardRenderer.WorldCubeSurfaceRotation(cubeWorldFace);
+            }
+            else
+            {
+                cubeRenderer.transform.position = boardRenderer.GridToWorld(cubeGridPosition, currentLevel) + Vector3.up * CubeSurfaceOffset;
+                cubeRenderer.transform.rotation = Quaternion.identity;
+            }
+        }
+
+        private readonly struct LevelSnapshot
+        {
+            public readonly Vector2Int position;
+            public readonly WorldCubeFace face;
+            public readonly string[] orientationFaceStates;
+            public readonly int moveCount;
+            public readonly string[] capturedTileIds;
+
+            public LevelSnapshot(Vector2Int position, WorldCubeFace face, string[] orientationFaceStates, int moveCount, string[] capturedTileIds)
+            {
+                this.position = position;
+                this.face = face;
+                this.orientationFaceStates = orientationFaceStates;
+                this.moveCount = moveCount;
+                this.capturedTileIds = capturedTileIds;
+            }
+        }
+
+        private LevelSnapshot CreateSnapshot()
+        {
+            var capturedIds = new System.Collections.Generic.List<string>();
+            foreach (var tile in currentLevel.tiles)
+            {
+                if (tile.active && tile.captured)
+                {
+                    capturedIds.Add(tile.id);
+                }
+            }
+
+            return new LevelSnapshot(
+                cubeGridPosition,
+                cubeWorldFace,
+                orientation.SerializeFaceStates(),
+                moveCount,
+                capturedIds.ToArray());
         }
 
         /// <summary>
@@ -256,6 +375,28 @@ namespace ChromaCube.Level
 
             // Fallback to logical orientation if renderer unavailable
             return orientation.GetBottomFace();
+        }
+
+        private void UpdateBottomFacePreview()
+        {
+            if (boardRenderer == null || currentLevel == null)
+            {
+                return;
+            }
+
+            var bottomFace = ResolveBottomFace();
+            var bottomColor = currentLevel.GetColorForFace(bottomFace);
+            if (currentLevel.mechanicsMode == MechanicsMode.WorldCube)
+            {
+                var frame = BoardRenderer.GetWorldCubeFrame(cubeWorldFace);
+                var pos = boardRenderer.WorldCubeTileCenter(cubeWorldFace, cubeGridPosition, currentLevel);
+                boardRenderer.ShowBottomFacePreview(pos, Quaternion.LookRotation(frame.forward, frame.normal), bottomColor);
+            }
+            else
+            {
+                var pos = boardRenderer.GridToWorld(cubeGridPosition, currentLevel);
+                boardRenderer.ShowBottomFacePreview(pos, Quaternion.identity, bottomColor);
+            }
         }
 
         private TileData GetTileAt(Vector2Int gridPosition)

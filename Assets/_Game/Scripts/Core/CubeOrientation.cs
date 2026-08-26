@@ -62,6 +62,21 @@ namespace ChromaCube.Core
             };
         }
 
+        public CubeOrientation(FaceKey top, FaceKey bottom, FaceKey north, FaceKey south, FaceKey east, FaceKey west)
+        {
+            this.top = top;
+            this.bottom = bottom;
+            this.north = north;
+            this.south = south;
+            this.east = east;
+            this.west = west;
+        }
+
+        public FaceKey[] SerializeFaceStates()
+        {
+            return new[] { top, bottom, north, south, east, west };
+        }
+
         public FaceKey GetBottomFace()
         {
             return bottom;

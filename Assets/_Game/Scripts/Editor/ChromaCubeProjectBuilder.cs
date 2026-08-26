@@ -86,7 +86,8 @@ namespace ChromaCube.EditorTools
                         Tile("l1-goal", 2, 1, "lavender", true),
                         Tile("l1-d", 1, 2, "stone", false),
                         Tile("l1-e", 2, 2, "stone", false)
-                    }),
+                    },
+                    parMoveCount: 3),
                 Level(
                     "level-2",
                     2,
@@ -106,7 +107,8 @@ namespace ChromaCube.EditorTools
                         Tile("l2-e", 0, 1, "stone", false),
                         Tile("l2-f", 0, 2, "stone", false),
                         Tile("l2-g", 1, 2, "stone", false)
-                    }),
+                    },
+                    parMoveCount: 5),
                 Level(
                     "level-3",
                     3,
@@ -124,7 +126,8 @@ namespace ChromaCube.EditorTools
                         Tile("l3-d", 2, 2, "mint", true),
                         Tile("l3-e", 0, 2, "stone", false),
                         Tile("l3-f", 0, 1, "stone", false)
-                    }),
+                    },
+                    parMoveCount: 6),
                 Level(
                     "level-4",
                     4,
@@ -145,7 +148,8 @@ namespace ChromaCube.EditorTools
                         Tile("l4-g", 1, 0, "stone", false),
                         Tile("l4-h", 2, 0, "amber", true),
                         Tile("l4-i", 3, 0, "stone", false)
-                    }),
+                    },
+                    parMoveCount: 8),
                 WorldCubeLevel(
                     "level-5",
                     5,
@@ -154,7 +158,8 @@ namespace ChromaCube.EditorTools
                     "Cross the edges of the large cube and solve colored tiles on each face.",
                     4,
                     new Vector2Int(1, 1),
-                    LoadBackgroundTexture(5)),
+                    LoadBackgroundTexture(5),
+                    parMoveCount: 10),
                 PathLevel(
                     "level-6",
                     6,
@@ -168,7 +173,8 @@ namespace ChromaCube.EditorTools
                     7,
                     LoadBackgroundTexture(6),
                     scatterGoals: true,
-                    decoyCount: 4),
+                    decoyCount: 4,
+                    parMoveCount: 26),
                 PathLevel(
                     "level-7",
                     7,
@@ -182,7 +188,8 @@ namespace ChromaCube.EditorTools
                     8,
                     LoadBackgroundTexture(5),
                     scatterGoals: true,
-                    decoyCount: 6),
+                    decoyCount: 6,
+                    parMoveCount: 32),
                 PathLevel(
                     "level-8",
                     8,
@@ -196,7 +203,8 @@ namespace ChromaCube.EditorTools
                     9,
                     LoadBackgroundTexture(6),
                     scatterGoals: true,
-                    decoyCount: 8),
+                    decoyCount: 8,
+                    parMoveCount: 38),
                 PathLevel(
                     "level-9",
                     9,
@@ -210,7 +218,8 @@ namespace ChromaCube.EditorTools
                     10,
                     LoadMilkyWayBackgroundTexture(),
                     scatterGoals: true,
-                    decoyCount: 12),
+                    decoyCount: 12,
+                    parMoveCount: 42),
                 PathLevel(
                     "level-10",
                     10,
@@ -224,7 +233,8 @@ namespace ChromaCube.EditorTools
                     11,
                     LoadBackgroundTexture(10),
                     scatterGoals: true,
-                    decoyCount: 16),
+                    decoyCount: 16,
+                    parMoveCount: 48),
                 PathLevel(
                     "level-11",
                     11,
@@ -238,7 +248,8 @@ namespace ChromaCube.EditorTools
                     12,
                     LoadBackgroundTexture(10),
                     scatterGoals: true,
-                    decoyCount: 18),
+                    decoyCount: 18,
+                    parMoveCount: 54),
                 PathLevel(
                     "level-12",
                     12,
@@ -252,7 +263,8 @@ namespace ChromaCube.EditorTools
                     13,
                     LoadBackgroundTexture(10),
                     scatterGoals: true,
-                    decoyCount: 22),
+                    decoyCount: 22,
+                    parMoveCount: 60),
                 PathLevel(
                     "level-13",
                     13,
@@ -267,7 +279,8 @@ namespace ChromaCube.EditorTools
                     LoadBackgroundTexture(10),
                     "poliigon_floor",
                     scatterGoals: true,
-                    decoyCount: 26),
+                    decoyCount: 26,
+                    parMoveCount: 68),
                 SerpentineLevel(
                     "level-14",
                     14,
@@ -280,7 +293,8 @@ namespace ChromaCube.EditorTools
                     moveWestFirst: true,
                     requiredCount: 15,
                     backgroundTexture: LoadArtBackgroundTexture(0, LoadMilkyWayBackgroundTexture()),
-                    decoyCount: 28),
+                    decoyCount: 28,
+                    parMoveCount: 54),
                 SerpentineLevel(
                     "level-15",
                     15,
@@ -293,7 +307,8 @@ namespace ChromaCube.EditorTools
                     moveWestFirst: false,
                     requiredCount: 16,
                     backgroundTexture: LoadArtBackgroundTexture(1, LoadBackgroundTexture(10)),
-                    decoyCount: 30),
+                    decoyCount: 30,
+                    parMoveCount: 60),
                 SerpentineLevel(
                     "level-16",
                     16,
@@ -308,7 +323,8 @@ namespace ChromaCube.EditorTools
                     backgroundTexture: LoadArtBackgroundTexture(2, LoadBackgroundTexture(6)),
                     floorColorId: "poliigon_floor",
                     decoyCount: 34,
-                    edgeInset: 1),
+                    edgeInset: 1,
+                    parMoveCount: 66),
                 SerpentineLevel(
                     "level-17",
                     17,
@@ -321,7 +337,8 @@ namespace ChromaCube.EditorTools
                     moveWestFirst: false,
                     requiredCount: 18,
                     backgroundTexture: LoadArtBackgroundTexture(3, LoadBackgroundTexture(5)),
-                    decoyCount: 36),
+                    decoyCount: 36,
+                    parMoveCount: 72),
                 SerpentineLevel(
                     "level-18",
                     18,
@@ -336,7 +353,8 @@ namespace ChromaCube.EditorTools
                     backgroundTexture: LoadArtBackgroundTexture(4, LoadBackgroundTexture(10)),
                     floorColorId: "poliigon_floor",
                     decoyCount: 42,
-                    edgeInset: 1),
+                    edgeInset: 1,
+                    parMoveCount: 78),
                 ShapedLevel(
                     "level-19",
                     19,
@@ -350,7 +368,8 @@ namespace ChromaCube.EditorTools
                     moveWestFirst: true,
                     requiredCount: 20,
                     backgroundTexture: LoadArtBackgroundTexture(5, LoadBackgroundTexture(10)),
-                    decoyCount: 44),
+                    decoyCount: 44,
+                    parMoveCount: 84),
                 ShapedLevel(
                     "level-20",
                     20,
@@ -365,7 +384,8 @@ namespace ChromaCube.EditorTools
                     requiredCount: 21,
                     backgroundTexture: LoadArtBackgroundTexture(0, LoadBackgroundTexture(6)),
                     floorColorId: "poliigon_floor",
-                    decoyCount: 46),
+                    decoyCount: 46,
+                    parMoveCount: 90),
                 ShapedLevel(
                     "level-21",
                     21,
@@ -379,7 +399,8 @@ namespace ChromaCube.EditorTools
                     moveWestFirst: true,
                     requiredCount: 22,
                     backgroundTexture: LoadArtBackgroundTexture(1, LoadBackgroundTexture(5)),
-                    decoyCount: 48),
+                    decoyCount: 48,
+                    parMoveCount: 96),
                 ShapedLevel(
                     "level-22",
                     22,
@@ -393,7 +414,8 @@ namespace ChromaCube.EditorTools
                     moveWestFirst: false,
                     requiredCount: 23,
                     backgroundTexture: LoadArtBackgroundTexture(2, LoadBackgroundTexture(10)),
-                    decoyCount: 52),
+                    decoyCount: 52,
+                    parMoveCount: 102),
                 ShapedLevel(
                     "level-23",
                     23,
@@ -408,7 +430,8 @@ namespace ChromaCube.EditorTools
                     requiredCount: 24,
                     backgroundTexture: LoadArtBackgroundTexture(3, LoadBackgroundTexture(6)),
                     floorColorId: "poliigon_floor",
-                    decoyCount: 56),
+                    decoyCount: 56,
+                    parMoveCount: 108),
                 ShapedLevel(
                     "level-24",
                     24,
@@ -422,7 +445,8 @@ namespace ChromaCube.EditorTools
                     moveWestFirst: false,
                     requiredCount: 25,
                     backgroundTexture: LoadArtBackgroundTexture(4, LoadBackgroundTexture(5)),
-                    decoyCount: 60),
+                    decoyCount: 60,
+                    parMoveCount: 114),
                 ShapedLevel(
                     "level-25",
                     25,
@@ -437,10 +461,26 @@ namespace ChromaCube.EditorTools
                     requiredCount: 26,
                     backgroundTexture: LoadArtBackgroundTexture(5, LoadBackgroundTexture(10)),
                     floorColorId: "poliigon_floor",
-                    decoyCount: 64)
+                    decoyCount: 64,
+                    parMoveCount: 120)
             };
 
             ApplyGroupedArtBackgrounds(levels, 3);
+
+            // Default par values for generated levels that don't have explicit ones.
+            // These are starting estimates; tune via Inspector after playtest.
+            for (var i = 0; i < levels.Count; i++)
+            {
+                if (levels[i].parMoveCount > 0) continue;
+
+                var required = 0;
+                foreach (var tile in levels[i].tiles)
+                {
+                    if (tile != null && tile.required) required++;
+                }
+
+                levels[i].parMoveCount = Mathf.Max(3, required + 3);
+            }
 
             for (var i = 0; i < levels.Count; i++)
             {
@@ -462,7 +502,7 @@ namespace ChromaCube.EditorTools
             return levels;
         }
 
-        private static LevelData Level(string id, int index, string title, string subtitle, string hint, int width, int height, Vector2Int start, TileData[] tiles)
+        private static LevelData Level(string id, int index, string title, string subtitle, string hint, int width, int height, Vector2Int start, TileData[] tiles, int parMoveCount = 0)
         {
             var level = ScriptableObject.CreateInstance<LevelData>();
             level.levelId = id;
@@ -475,6 +515,7 @@ namespace ChromaCube.EditorTools
             level.start = start;
             level.mechanicsMode = MechanicsMode.Classic;
             level.tiles = new List<TileData>(tiles);
+            level.parMoveCount = parMoveCount;
             level.faceColorMap = new List<FaceColorEntry>
             {
                 new FaceColorEntry { face = FaceKey.Top, colorId = "mint" },
@@ -487,7 +528,44 @@ namespace ChromaCube.EditorTools
             return level;
         }
 
-        private static LevelData PathLevel(string id, int index, string title, string subtitle, string hint, int width, int height, Vector2Int start, Direction[] path, int requiredCount, Texture2D backgroundTexture, string floorColorId = "stone", bool scatterGoals = false, int decoyCount = 0)
+        [MenuItem("Chroma Cube/Backfill Pars")]
+        public static void BackfillPars()
+        {
+            var guids = AssetDatabase.FindAssets("t:LevelData", new[] { LevelFolder });
+            var updated = 0;
+            foreach (var guid in guids)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                var level = AssetDatabase.LoadAssetAtPath<LevelData>(path);
+                if (level == null || level.parMoveCount > 0) continue;
+
+                var required = 0;
+                foreach (var tile in level.tiles)
+                {
+                    if (tile != null && tile.required) required++;
+                }
+
+                level.parMoveCount = Mathf.Max(3, required + 3);
+                EditorUtility.SetDirty(level);
+                updated++;
+            }
+
+            if (updated > 0)
+            {
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+                if (!Application.isBatchMode)
+                {
+                    EditorUtility.DisplayDialog("Chroma Cube", $"Backfilled par values for {updated} level(s).", "OK");
+                }
+            }
+            else if (!Application.isBatchMode)
+            {
+                EditorUtility.DisplayDialog("Chroma Cube", "No levels needed backfilling.", "OK");
+            }
+        }
+
+        private static LevelData PathLevel(string id, int index, string title, string subtitle, string hint, int width, int height, Vector2Int start, Direction[] path, int requiredCount, Texture2D backgroundTexture, string floorColorId = "stone", bool scatterGoals = false, int decoyCount = 0, int parMoveCount = 0)
         {
             var activeCells = new HashSet<Vector2Int>();
             for (var row = 0; row < height; row++)
@@ -498,10 +576,10 @@ namespace ChromaCube.EditorTools
                 }
             }
 
-            return MaskedPathLevel(id, index, title, subtitle, hint, width, height, start, activeCells, path, requiredCount, backgroundTexture, floorColorId, scatterGoals, decoyCount);
+            return MaskedPathLevel(id, index, title, subtitle, hint, width, height, start, activeCells, path, requiredCount, backgroundTexture, floorColorId, scatterGoals, decoyCount, parMoveCount);
         }
 
-        private static LevelData MaskedPathLevel(string id, int index, string title, string subtitle, string hint, int width, int height, Vector2Int start, HashSet<Vector2Int> activeCells, Direction[] path, int requiredCount, Texture2D backgroundTexture, string floorColorId = "stone", bool scatterGoals = false, int decoyCount = 0)
+        private static LevelData MaskedPathLevel(string id, int index, string title, string subtitle, string hint, int width, int height, Vector2Int start, HashSet<Vector2Int> activeCells, Direction[] path, int requiredCount, Texture2D backgroundTexture, string floorColorId = "stone", bool scatterGoals = false, int decoyCount = 0, int parMoveCount = 0)
         {
             var tiles = new List<TileData>();
             var position = start;
@@ -564,10 +642,11 @@ namespace ChromaCube.EditorTools
 
             var level = Level(id, index, title, subtitle, hint, width, height, start, tiles.ToArray());
             level.backgroundTexture = backgroundTexture;
+            level.parMoveCount = parMoveCount > 0 ? parMoveCount : path.Length + 2;
             return level;
         }
 
-        private static LevelData SerpentineLevel(string id, int index, string title, string subtitle, string hint, int width, int height, Vector2Int start, bool moveWestFirst, int requiredCount, Texture2D backgroundTexture, string floorColorId = "stone", int decoyCount = 0, int edgeInset = 0)
+        private static LevelData SerpentineLevel(string id, int index, string title, string subtitle, string hint, int width, int height, Vector2Int start, bool moveWestFirst, int requiredCount, Texture2D backgroundTexture, string floorColorId = "stone", int decoyCount = 0, int edgeInset = 0, int parMoveCount = 0)
         {
             return PathLevel(
                 id,
@@ -583,10 +662,11 @@ namespace ChromaCube.EditorTools
                 backgroundTexture,
                 floorColorId,
                 scatterGoals: true,
-                decoyCount: decoyCount);
+                decoyCount: decoyCount,
+                parMoveCount: parMoveCount);
         }
 
-        private static LevelData ShapedLevel(string id, int index, string title, string subtitle, string hint, int width, int height, RowSpan[] rowSpans, bool moveWestFirst, int requiredCount, Texture2D backgroundTexture, string floorColorId = "stone", int decoyCount = 0)
+        private static LevelData ShapedLevel(string id, int index, string title, string subtitle, string hint, int width, int height, RowSpan[] rowSpans, bool moveWestFirst, int requiredCount, Texture2D backgroundTexture, string floorColorId = "stone", int decoyCount = 0, int parMoveCount = 0)
         {
             var activeCells = BuildActiveCells(rowSpans);
             var start = GetShapeStart(rowSpans, moveWestFirst);
@@ -606,7 +686,8 @@ namespace ChromaCube.EditorTools
                 backgroundTexture,
                 floorColorId,
                 scatterGoals: true,
-                decoyCount: decoyCount);
+                decoyCount: decoyCount,
+                parMoveCount: parMoveCount);
         }
 
         private static HashSet<int> PickGoalIndices(List<TileData> pathTiles, int requiredCount, bool scatterGoals)
@@ -733,7 +814,7 @@ namespace ChromaCube.EditorTools
             }
         }
 
-        private static LevelData WorldCubeLevel(string id, int index, string title, string subtitle, string hint, int size, Vector2Int start, Texture2D backgroundTexture)
+        private static LevelData WorldCubeLevel(string id, int index, string title, string subtitle, string hint, int size, Vector2Int start, Texture2D backgroundTexture, int parMoveCount = 0)
         {
             var tiles = new List<TileData>();
             foreach (WorldCubeFace face in System.Enum.GetValues(typeof(WorldCubeFace)))
@@ -754,7 +835,7 @@ namespace ChromaCube.EditorTools
             AddGoal(tiles, WorldCubeFace.West, 2, 2, "coral");
             AddGoal(tiles, WorldCubeFace.Bottom, 1, 2, "slate");
 
-            var level = Level(id, index, title, subtitle, hint, size, size, start, tiles.ToArray());
+            var level = Level(id, index, title, subtitle, hint, size, size, start, tiles.ToArray(), parMoveCount);
             level.mechanicsMode = MechanicsMode.WorldCube;
             level.backgroundTexture = backgroundTexture;
             return level;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ChromaCube.Core;
 using ChromaCube.Data;
 using ChromaCube.Level;
 using UnityEngine;
@@ -19,7 +20,9 @@ namespace ChromaCube.UI
         private Text subtitleText;
         private Text hintText;
         private Text captureText;
+        private Text moveText;
         private Text completeText;
+        private Text starText;
 
         private readonly List<Button> titleButtons = new List<Button>();
         private readonly List<Button> levelSelectButtons = new List<Button>();
@@ -43,6 +46,7 @@ namespace ChromaCube.UI
             levelManager = manager;
             levelManager.OnLevelLoaded    += HandleLevelLoaded;
             levelManager.OnCaptureChanged += HandleCaptureChanged;
+            levelManager.OnMoveCountChanged += HandleMoveCountChanged;
             levelManager.OnLevelCompleted += HandleLevelCompleted;
             BuildUi();
         }
@@ -73,6 +77,11 @@ namespace ChromaCube.UI
             if      (navUp)   SelectButton(selectedButtonIndex - 1);
             else if (navDown) SelectButton(selectedButtonIndex + 1);
             else if (confirm) currentButtons[selectedButtonIndex].onClick.Invoke();
+
+            if (kb != null && kb.zKey.wasPressedThisFrame && (kb.leftCtrlKey.isPressed || kb.rightCtrlKey.isPressed))
+            {
+                UndoLastMove();
+            }
         }
 
         // ── Build all panels ─────────────────────────────────────────────────
@@ -198,6 +207,33 @@ namespace ChromaCube.UI
                 new Vector2(0.25f, 0.824f), new Vector2(0.75f, 0.824f),
                 new Color(CBlue.r, CBlue.g, CBlue.b, 0.40f), 1f);
 
+            RebuildLevelSelectButtons();
+
+            levelSelectButtons.Add(CreatePillButton(levelSelectPanel.transform,
+                "← BACK", new Vector2(0.5f, 0.095f), ShowTitle,
+                new Vector2(220f, 50f), CRed));
+        }
+
+        private void RebuildLevelSelectButtons()
+        {
+            // Remove previous level buttons (keep the last BACK button)
+            for (var i = levelSelectButtons.Count - 1; i >= 0; i--)
+            {
+                var btn = levelSelectButtons[i];
+                if (btn == null) continue;
+                var label = btn.GetComponentInChildren<Text>();
+                if (label != null && label.text.Contains("BACK")) break;
+
+                if (buttonLabels.ContainsKey(btn))
+                {
+                    buttonLabels.Remove(btn);
+                    buttonBaseLabels.Remove(btn);
+                }
+
+                Destroy(btn.gameObject);
+                levelSelectButtons.RemoveAt(i);
+            }
+
             const int maxRowsPerColumn = 6;
             var columnCount = Mathf.Max(1, Mathf.CeilToInt(levelManager.Levels.Count / (float)maxRowsPerColumn));
             for (var i = 0; i < levelManager.Levels.Count; i++)
@@ -210,17 +246,20 @@ namespace ChromaCube.UI
                 var anchorY    = 0.745f - row * 0.098f;
                 // alternate accent colour per column
                 var accentCol  = (column % 3 == 0) ? CMint : (column % 3 == 1) ? CBlue : CPurple;
-                levelSelectButtons.Add(CreatePillButton(levelSelectPanel.transform,
-                    $"{level.index}.  {level.title}",
+
+                var bestStars = SaveSystem.GetBestStars(level.levelId);
+                var suffix = bestStars > 0 ? $"   {StarsToString(bestStars)}" : string.Empty;
+
+                var btn = CreatePillButton(levelSelectPanel.transform,
+                    $"{level.index}.  {level.title}{suffix}",
                     new Vector2(anchorX, anchorY),
                     () => StartLevel(localIndex),
                     new Vector2(280f, 50f),
-                    accentCol));
-            }
+                    accentCol);
 
-            levelSelectButtons.Add(CreatePillButton(levelSelectPanel.transform,
-                "← BACK", new Vector2(0.5f, 0.095f), ShowTitle,
-                new Vector2(220f, 50f), CRed));
+                buttonBaseLabels[btn] = $"{level.index}.  {level.title}";
+                levelSelectButtons.Add(btn);
+            }
         }
 
         // ════════════════════════════════════════════════════════════════════
@@ -240,18 +279,23 @@ namespace ChromaCube.UI
                 new Vector2(0.04f, 0.22f), new Vector2(700f, 30f),
                 new Color(CBlue.r, CBlue.g, CBlue.b, 0.80f));
 
-            // top-right score pill
+            // top-right stats pill (capture + moves)
             var scorePill = CreateRect(hudPanel.transform, "ScorePill",
-                new Vector2(0.80f, 0.90f), new Vector2(1.00f, 1.00f),
+                new Vector2(0.58f, 0.90f), new Vector2(1.00f, 1.00f),
                 new Color(0.04f, 0.06f, 0.10f, 0.80f));
-            captureText = CreateText(scorePill.transform, string.Empty, 28, TextAnchor.MiddleCenter,
-                new Vector2(0.5f, 0.5f), new Vector2(260f, 50f), CMint);
+            moveText = CreateText(scorePill.transform, string.Empty, 20, TextAnchor.MiddleLeft,
+                new Vector2(0.06f, 0.50f), new Vector2(260f, 36f), CAmber);
+            captureText = CreateText(scorePill.transform, string.Empty, 28, TextAnchor.MiddleRight,
+                new Vector2(0.94f, 0.50f), new Vector2(220f, 50f), CMint);
 
             hintText = CreateText(hudPanel.transform, string.Empty, 15, TextAnchor.MiddleLeft,
                 new Vector2(0.02f, 0.03f), new Vector2(900f, 36f),
                 new Color(1f, 1f, 1f, 0.38f));
 
             // bottom-right buttons
+            CreatePillButton(hudPanel.transform, "UNDO",
+                new Vector2(0.765f, 0.045f), UndoLastMove,
+                new Vector2(110f, 42f), CPurple);
             CreatePillButton(hudPanel.transform, "RESTART",
                 new Vector2(0.84f, 0.045f), () => levelManager.RestartCurrentLevel(),
                 new Vector2(160f, 42f), CAmber);
@@ -272,18 +316,23 @@ namespace ChromaCube.UI
 
             completeText = CreateText(completePanel.transform, "LEVEL COMPLETE",
                 52, TextAnchor.MiddleCenter,
-                new Vector2(0.5f, 0.60f), new Vector2(800f, 80f), CMint);
+                new Vector2(0.5f, 0.62f), new Vector2(800f, 80f), CMint);
             completeText.fontStyle = FontStyle.Bold;
 
+            starText = CreateText(completePanel.transform, string.Empty,
+                56, TextAnchor.MiddleCenter,
+                new Vector2(0.5f, 0.52f), new Vector2(400f, 72f), CAmber);
+            starText.fontStyle = FontStyle.Bold;
+
             CreateHorizBar(completePanel.transform, "CompleteSep",
-                new Vector2(0.3f, 0.545f), new Vector2(0.7f, 0.545f),
+                new Vector2(0.3f, 0.46f), new Vector2(0.7f, 0.46f),
                 new Color(CMint.r, CMint.g, CMint.b, 0.40f), 1f);
 
             CreatePillButton(completePanel.transform, "NEXT LEVEL",
-                new Vector2(0.5f, 0.44f), () => levelManager.LoadNextLevel(),
+                new Vector2(0.5f, 0.36f), () => levelManager.LoadNextLevel(),
                 new Vector2(300f, 62f), CMint);
             CreatePillButton(completePanel.transform, "LEVEL SELECT",
-                new Vector2(0.5f, 0.335f), ShowLevelSelect,
+                new Vector2(0.5f, 0.26f), ShowLevelSelect,
                 new Vector2(300f, 62f), CBlue);
         }
 
@@ -296,8 +345,14 @@ namespace ChromaCube.UI
             levelManager.LoadLevel(index);
         }
 
+        private void UndoLastMove()
+        {
+            levelManager.UndoLastMove();
+        }
+
         private void ShowLevelSelect()
         {
+            RebuildLevelSelectButtons();
             SetPanel(levelSelectPanel);
             SetMenuButtons(levelSelectButtons);
         }
@@ -307,8 +362,20 @@ namespace ChromaCube.UI
             titleText.text    = $"Level {level.index}:  {level.title}";
             subtitleText.text = level.subtitle;
             hintText.text     = $"Hint: {level.hint}";
+            moveText.text     = $"Moves: {levelManager.MoveCount} / {level.parMoveCount}";
             HandleCaptureChanged(captured, required);
             SetPanel(hudPanel);
+        }
+
+        private void HandleMoveCountChanged(int moves)
+        {
+            if (moveText == null || levelManager == null || levelManager.Levels == null || levelManager.CurrentLevelIndex < 0)
+            {
+                return;
+            }
+
+            var level = levelManager.Levels[levelManager.CurrentLevelIndex];
+            moveText.text = $"Moves: {moves} / {level.parMoveCount}";
         }
 
         private void HandleCaptureChanged(int captured, int required)
@@ -316,9 +383,10 @@ namespace ChromaCube.UI
             captureText.text = $"{captured} / {required}";
         }
 
-        private void HandleLevelCompleted(LevelData level)
+        private void HandleLevelCompleted(LevelData level, int stars, int moves)
         {
             completeText.text = $"Level {level.index}  Complete";
+            starText.text = StarsToString(stars);
             SetPanel(completePanel);
         }
 
@@ -367,6 +435,19 @@ namespace ChromaCube.UI
                     return;
                 }
             }
+        }
+
+        private static string StarsToString(int stars)
+        {
+            var filled = "★";
+            var empty  = "☆";
+            var result = string.Empty;
+            for (var i = 0; i < 3; i++)
+            {
+                result += i < stars ? filled : empty;
+            }
+
+            return result;
         }
 
         // ════════════════════════════════════════════════════════════════════

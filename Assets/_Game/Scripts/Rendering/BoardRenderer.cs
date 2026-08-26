@@ -19,6 +19,14 @@ namespace ChromaCube.Rendering
         [SerializeField] private float tileHeight = 0.12f;
         [SerializeField] private float capturedFadeDelay = 3f;
         [SerializeField] private float capturedFadeDuration = 1.1f;
+        [Header("Bottom-Face Preview")]
+        [SerializeField] private float previewScaleMultiplier = 1.1f;
+        [SerializeField] private float previewHeightOffset = 0.003f;
+        [SerializeField] private float previewAlpha = 0.35f;
+
+        private GameObject previewIndicator;
+        private Renderer previewRenderer;
+        private Material previewMaterial;
 
         private readonly List<TileRuntime> runtimeTiles = new List<TileRuntime>();
         private readonly Dictionary<string, Material> materialCache = new Dictionary<string, Material>();
@@ -30,6 +38,7 @@ namespace ChromaCube.Rendering
         public void Clear()
         {
             StopAllCoroutines();
+            previewIndicator = null;
 
             for (var i = transform.childCount - 1; i >= 0; i--)
             {
@@ -176,6 +185,49 @@ namespace ChromaCube.Rendering
                 default:
                     return new WorldCubeFrame(Vector3.up, Vector3.right, Vector3.forward);
             }
+        }
+
+        public void ShowBottomFacePreview(Vector3 worldPosition, Quaternion worldRotation, string colorId)
+        {
+            EnsurePreviewIndicator();
+            if (previewIndicator == null) return;
+
+            previewIndicator.transform.position = worldPosition + worldRotation * Vector3.up * previewHeightOffset;
+            previewIndicator.transform.rotation = worldRotation;
+            previewIndicator.SetActive(true);
+
+            var color = ColorPalette.Get(colorId);
+            previewMaterial.color = new Color(color.r, color.g, color.b, previewAlpha);
+        }
+
+        public void HideBottomFacePreview()
+        {
+            if (previewIndicator != null)
+            {
+                previewIndicator.SetActive(false);
+            }
+        }
+
+        private void EnsurePreviewIndicator()
+        {
+            if (previewIndicator != null) return;
+
+            previewIndicator = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            previewIndicator.name = "BottomFacePreview";
+            previewIndicator.transform.SetParent(transform, false);
+            previewIndicator.transform.localScale = new Vector3(tileSize * previewScaleMultiplier, 1f, tileSize * previewScaleMultiplier);
+            previewIndicator.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+
+            var collider = previewIndicator.GetComponent<Collider>();
+            if (collider != null) Destroy(collider);
+
+            previewRenderer = previewIndicator.GetComponent<Renderer>();
+            previewMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard"));
+            previewMaterial.renderQueue = 3000;
+            previewMaterial.SetFloat("_Mode", 3);
+            previewRenderer.sharedMaterial = previewMaterial;
+
+            previewIndicator.SetActive(false);
         }
 
         private void RenderWorldCube(LevelData level)
